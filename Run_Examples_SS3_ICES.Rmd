@@ -56,12 +56,12 @@ library(ss3diags)
 
 
 ```{r message=FALSE, warning=FALSE}
-dir1<-here("~/DOCAS/Workshops/Course_SS3_2023/herring-aspm")# con version 3.30.21
-dir2<-here("~/DOCAS/Workshops/Course_SS3_2023/herring-just-2019-as-equilibrium") # con version 3.30.19
-dir3<-here("~/DOCAS/Workshops/Course_SS3_2023/herring-scaa") # # con version 3.30.19
-dir3<-here("~/DOCAS/Workshops/Course_SS3_2023/herring-scaa-2dar") # 
-dir4<-here("~/DOCAS/Workshops/Course_SS3_2023/herring-scaa-2dar-noTV") # Version nueva con predator fleet
-dir5<-here("~/DOCAS/Workshops/Course_SS3_2023/predators") # v. 3.30.21
+dir1<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-aspm")# con version 3.30.21
+dir2<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-just-2019-as-equilibrium") # con version 3.30.19
+dir3<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-scaa") # # con version 3.30.19
+dir3<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-scaa-2dar") # 
+dir4<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-scaa-2dar-noTV") # Version nueva con predator fleet
+dir5<-here("~/DOCAS/Workshops/SS3_ICES_Course/predators") # v. 3.30.21
 ```
 
 
