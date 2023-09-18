@@ -1,0 +1,296 @@
+#V3.30.19.00-prerel;_safe;_compile_date:_Feb 25 2022;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_12.3
+HerringSD3031_datav3_30_10.dat #_DataFile 
+HerringSD3031_ctlv3_30_10.ctl #_Control 
+Run_Date: Mon Sep 18 12:18:13 2023
+Final_phase: 3  N_iterations: 186
+#_LIKELIHOOD 
+Label logL*Lambda
+TOTAL_LogL -9.14233
+Catch 3.73881e-18
+Equil_catch 0.00304439
+Survey -1.20397
+Age_comp 0.262204
+Recruitment -8.19566
+InitEQ_regime 0
+Sum_recdevs -0.021638
+Forecast_Recruitment 0
+Parm_priors -0.0444386
+Parm_softbounds 0.0364883
+Parm_devs 0
+F_Ballpark 0
+Crash_Pen 0
+#_PARAMETERS
+#label value se active? range
+#_BIOLOGY
+NatM_break_1_Fem_GP_1 0.563 0 Fix 0.201304
+NatM_break_2_Fem_GP_1 0.472 0 Fix 0.161739
+NatM_break_3_Fem_GP_1 0.332 0 Fix 0.10087
+NatM_break_4_Fem_GP_1 0.29 0 Fix 0.0826087
+NatM_break_5_Fem_GP_1 0.267 0 Fix 0.0726087
+NatM_break_6_Fem_GP_1 0.257 0 Fix 0.0682608
+L_at_Amin_Fem_GP_1 4 0 Fix 0.2
+L_at_Amax_Fem_GP_1 25 0 Fix 0.5
+VonBert_K_Fem_GP_1 0.4 0 Fix 0.466666
+CV_young_Fem_GP_1 0.2 0 Fix 0.333333
+CV_old_Fem_GP_1 0.2 0 Fix 0.166666
+Wtlen_1_Fem_GP_1 4e-06 0 Fix 0.500001
+Wtlen_2_Fem_GP_1 3.05 0 Fix 0.864286
+Mat50%_Fem_GP_1 0.13 0 Fix -0.174
+Mat_slope_Fem_GP_1 -4.149 0 Fix -0.1915
+Eggs/kg_inter_Fem_GP_1 1 0 Fix 0.666667
+Eggs/kg_slope_wt_Fem_GP_1 0 0 Fix 0.5
+CohortGrowDev 1 0 Fix 0.0909091
+FracFemale_GP_1 0.5 0 Fix 0.499999
+#_SPAWN_RECR
+SR_LN(R0) 17.35 0 Fix 0.15
+SR_BH_steep 0.775 0 Fix 0.749999
+SR_sigmaR 0.6 0 Fix 0.3
+SR_regime 0 0 Fix 0.5
+SR_autocorr 0 0 Fix 0
+Early_InitAge_17 0.00863835 0.602075 Act 0.500864
+Early_InitAge_16 0.0127904 0.602747 Act 0.501279
+Early_InitAge_15 0.0189748 0.603383 Act 0.501897
+Early_InitAge_14 0.0304106 0.599193 Act 0.503041
+Early_InitAge_13 0.052768 0.59689 Act 0.505277
+Early_InitAge_12 -0.0140957 0.557964 Act 0.49859
+Early_InitAge_11 -0.0408874 0.5423 Act 0.495911
+Early_InitAge_10 -0.0436335 0.520726 Act 0.495637
+Early_InitAge_9 -0.115574 0.498869 Act 0.488443
+Early_InitAge_8 0.00887043 0.461295 Act 0.500887
+Early_InitAge_7 -0.100545 0.44391 Act 0.489945
+Early_InitAge_6 -0.0702816 0.430223 Act 0.492972
+Early_InitAge_5 0.24237 0.439845 Act 0.524237
+Early_InitAge_4 -0.108263 0.448792 Act 0.489174
+Early_InitAge_3 0.0974964 0.477671 Act 0.50975
+Early_InitAge_2 -0.0011434 0.598367 Act 0.499886
+Early_InitAge_1 0.000465239 0.59955 Act 0.500046
+Main_RecrDev_2019 0 0 Fix 0.5
+ForeRecr_2020 0 0 Fix 0.5
+ForeRecr_2021 0 0 Fix 0.5
+ForeRecr_2022 0 0 Fix 0.5
+ForeRecr_2023 0 0 Fix 0.5
+ForeRecr_2024 0 0 Fix 0.5
+ForeRecr_2025 0 0 Fix 0.5
+ForeRecr_2026 0 0 Fix 0.5
+ForeRecr_2027 0 0 Fix 0.5
+ForeRecr_2028 0 0 Fix 0.5
+ForeRecr_2029 0 0 Fix 0.5
+#_Init_F
+InitF_seas_1_flt_1Fleet 0.131275 0.0954165 Act 0.0651699
+#_Catchability
+LnQ_base_Acoustics(2) -7.09169 0 Fix 0.358166
+Q_extraSD_Acoustics(2) 0 0 Fix 0
+LnQ_base_Trapnet(3) 0 0 Fix 0.5
+Q_extraSD_Trapnet(3) 0 0 Fix 0
+#_Selectivity
+AgeSel_P1_Fleet(1) -1000 0 Fix 0.00199005
+AgeSel_P2_Fleet(1) 1 0 Fix 0.52
+AgeSel_P3_Fleet(1) 0.769787 0.981998 Act 0.0855319
+AgeSel_P4_Fleet(1) 0.615429 0.853096 Act 0.068381
+AgeSel_P5_Fleet(1) 0.00912525 0.270362 Act 0.00101392
+AgeSel_P6_Fleet(1) 0.14668 0.67494 Act 0.0162978
+AgeSel_P7_Fleet(1) 0.00562601 0.175077 Act 0.000625112
+AgeSel_P8_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P9_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P10_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P11_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P12_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P13_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P14_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P15_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P16_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P17_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P18_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P19_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P20_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P21_Fleet(1) 0 0 Fix 0.357143
+AgeSel_P1_Acoustics(2) -1000 0 Fix 0.00199005
+AgeSel_P2_Acoustics(2) 1 0 Fix 0.52
+AgeSel_P3_Acoustics(2) 0.520392 1.06555 Act 0.0578213
+AgeSel_P4_Acoustics(2) 0.354444 0.948145 Act 0.0393827
+AgeSel_P5_Acoustics(2) 0.00545844 0.172177 Act 0.000606493
+AgeSel_P6_Acoustics(2) 0.0885294 0.780304 Act 0.0098366
+AgeSel_P7_Acoustics(2) 0.00179104 0.0596528 Act 0.000199004
+AgeSel_P8_Acoustics(2) 0 0 Fix 0
+AgeSel_P9_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P10_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P11_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P12_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P13_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P14_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P15_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P16_Acoustics(2) 0 0 Fix 0.526316
+AgeSel_P17_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P18_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P19_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P20_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P21_Acoustics(2) 0 0 Fix 0.357143
+AgeSel_P1_Trapnet(3) -1000 0 Fix 0.00199005
+AgeSel_P2_Trapnet(3) -1000 0 Fix 0.00199005
+AgeSel_P3_Trapnet(3) -1000 0 Fix 0.00199005
+AgeSel_P4_Trapnet(3) 1 0 Fix 0.3
+AgeSel_P5_Trapnet(3) 4.49994 100.62 Act 0.499994
+AgeSel_P6_Trapnet(3) 0.1 0 Fix 0.364286
+AgeSel_P7_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P8_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P9_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P10_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P11_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P12_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P13_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P14_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P15_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P16_Trapnet(3) 0 0 Fix 0.526316
+AgeSel_P17_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P18_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P19_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P20_Trapnet(3) 0 0 Fix 0.357143
+AgeSel_P21_Trapnet(3) 0 0 Fix 0.357143
+#_Derived_Quantities
+#_Spawn_Bio
+SSB_Virgin 1.2969e+06 0
+SSB_Initial 852843 151674
+SSB_2019 732352 234606
+SSB_2020 722839 229857
+SSB_2021 737247 188261
+SSB_2022 754114 150846
+SSB_2023 767164 125168
+SSB_2024 777385 109426
+SSB_2025 785598 101041
+SSB_2026 791130 98011.7
+SSB_2027 795949 97139.1
+SSB_2028 799521 97360.8
+SSB_2029 802259 98280.1
+#_Recruitment
+Recr_Virgin 3.42775e+07 0
+Recr_Initial 3.42775e+07 0
+Recr_2019 3.24613e+07 1.26575e+06
+Recr_2020 3.24094e+07 1.26892e+06
+Recr_2021 3.24875e+07 1.0039e+06
+Recr_2022 3.25757e+07 772978
+Recr_2023 3.26416e+07 622271
+Recr_2024 3.26918e+07 531431
+Recr_2025 3.27313e+07 481661
+Recr_2026 3.27575e+07 461449
+Recr_2027 3.27801e+07 452442
+Recr_2028 3.27967e+07 449886
+Recr_2029 3.28093e+07 451388
+#_SPR Basis=  (1-SPR)/(1-SPR_40%)
+SPRratio_2019 0.663565 0.125103
+SPRratio_2020 0.592123 0.122701
+SPRratio_2021 0.592123 0.122701
+SPRratio_2022 0.592123 0.122701
+SPRratio_2023 0.592123 0.122701
+SPRratio_2024 0.592123 0.122701
+SPRratio_2025 0.592123 0.122701
+SPRratio_2026 0.592123 0.122701
+SPRratio_2027 0.592123 0.122701
+SPRratio_2028 0.592123 0.122701
+SPRratio_2029 0.592123 0.122701
+#_F Basis= _abs_F;_with_F=Z-M;_for_ages_unweighted_3_7
+F_2019 0.158782 0.0633683
+F_2020 0.131713 0.0320462
+F_2021 0.131713 0.0320462
+F_2022 0.131713 0.0320462
+F_2023 0.131713 0.0320462
+F_2024 0.131713 0.0320462
+F_2025 0.131713 0.0320462
+F_2026 0.131713 0.0320462
+F_2027 0.131713 0.0320462
+F_2028 0.131713 0.0320462
+F_2029 0.131713 0.0320462
+#_Depletion Basis=  100%*B_MSY
+Bratio_2019 2.2061 0.707155
+Bratio_2020 2.17744 0.694244
+Bratio_2021 2.22084 0.565116
+Bratio_2022 2.27165 0.44611
+Bratio_2023 2.31096 0.361117
+Bratio_2024 2.34175 0.305595
+Bratio_2025 2.36649 0.272559
+Bratio_2026 2.38316 0.257664
+Bratio_2027 2.39767 0.251531
+Bratio_2028 2.40844 0.24978
+Bratio_2029 2.41668 0.251336
+#_Mgmt_Quantity
+SSB_unfished 1.2969e+06 0
+Totbio_unfished 1.69709e+06 0
+SmryBio_unfished 1.69709e+06 0
+Recr_unfished 3.42775e+07 0
+SSB_Btgt 518762 1.58406e-11
+SPR_Btgt 0.443548 1.65575e-17
+annF_Btgt 0.316541 0.0819465
+Dead_Catch_Btgt 113646 3917.79
+SSB_SPR 457864 1.7729e-11
+annF_SPR 0.385947 0.111415
+Dead_Catch_SPR 118297 4200.34
+SSB_MSY 331967 8861.53
+SPR_MSY 0.309971 0.0063369
+annF_MSY 0.603011 0.205087
+Dead_Catch_MSY 122870 4537.63
+Ret_Catch_MSY 122870 4537.63
+B_MSY/SSB_unfished 0.255969 0.00683283
+ForeCatch_2020 72874.6 33323.6
+ForeCatch_2021 73717.5 28284.6
+ForeCatch_2022 75314.7 24586.5
+ForeCatch_2023 76553.4 21974.3
+ForeCatch_2024 77694.9 19370.5
+ForeCatch_2025 78602.2 17463
+ForeCatch_2026 79219.4 16089.3
+ForeCatch_2027 79751.9 15187.4
+ForeCatch_2028 80148.8 14555.7
+ForeCatch_2029 80458.5 14097.8
+OFLCatch_2020 72874.6 33323.6
+OFLCatch_2021 73717.5 28284.6
+OFLCatch_2022 75314.7 24586.5
+OFLCatch_2023 76553.4 21974.3
+OFLCatch_2024 77694.9 19370.5
+OFLCatch_2025 78602.2 17463
+OFLCatch_2026 79219.4 16089.3
+OFLCatch_2027 79751.9 15187.4
+OFLCatch_2028 80148.8 14555.7
+OFLCatch_2029 80458.5 14097.8
+#_Extra_stdev
+ln(SPB)_2019 13.504 0.320345
+ln(SPB)_2019 13.504 0.320345
+ln(SPB)_2019 13.504 0.320345
+SmryBio_Virgin 1.69709e+06 0.0
+SmryBio_Initial 1.25068e+06 0.0
+SmryBio_2019 1.08701e+06 0.0
+SmryBio_2020 1.08384e+06 0.0
+SmryBio_2021 1.16931e+06 0.0
+SmryBio_2022 1.18726e+06 0.0
+SmryBio_2023 1.20133e+06 0.0
+SmryBio_2024 1.2124e+06 0.0
+SmryBio_2025 1.22119e+06 0.0
+SmryBio_2026 1.22722e+06 0.0
+SmryBio_2027 1.23235e+06 0.0
+SmryBio_2028 1.23617e+06 0.0
+SmryBio_2029 1.23915e+06 0.0
+#_survey_stdev 0
+#_Biomass
+TotBio_Virgin 1.69709e+06 0.0
+TotBio_Initial 1.25068e+06 0.0
+TotBio_2019 1.08701e+06 0.0
+TotBio_2020 1.15026e+06 0.0
+TotBio_2021 1.16931e+06 0.0
+TotBio_2022 1.18726e+06 0.0
+TotBio_2023 1.20133e+06 0.0
+TotBio_2024 1.2124e+06 0.0
+TotBio_2025 1.22119e+06 0.0
+TotBio_2026 1.22722e+06 0.0
+TotBio_2027 1.23235e+06 0.0
+TotBio_2028 1.23617e+06 0.0
+TotBio_2029 1.23915e+06 0.0
+TotCatch_Virgin 0 0.0
+TotCatch_Initial 81565.9 0.0
+TotCatch_2019 88907 0.0
+TotCatch_2020 72874.6 0.0
+TotCatch_2021 73717.5 0.0
+TotCatch_2022 75314.7 0.0
+TotCatch_2023 76553.4 0.0
+TotCatch_2024 77694.9 0.0
+TotCatch_2025 78602.2 0.0
+TotCatch_2026 79219.4 0.0
+TotCatch_2027 79751.9 0.0
+TotCatch_2028 80148.8 0.0
+TotCatch_2029 80458.5 0.0

@@ -1,0 +1,1534 @@
+1  reportdetail 0=minimal for data-limited, 1=all, 2=no growth, 3=custom
+1 Y DEFINITIONS report:1
+2 Y LIKELIHOOD report:2
+3 Y Input_Variance_Adjustment report:3
+4 Y Parm_devs_detail report:4
+5 Y PARAMETERS report:5
+6 Y DERIVED_QUANTITIES report:6
+7 Y MGparm_By_Year_after_adjustments report:7
+8 Y selparm(Size)_By_Year_after_adjustments report:8
+9 Y selparm(Age)_By_Year_after_adjustments report:9
+10 Y RECRUITMENT_DIST report:10
+11 Y MORPH_INDEXING report:11
+12 Y SIZEFREQ_TRANSLATION report:12
+13 Y MOVEMENT report:13
+14 Y EXPLOITATION report:14
+15 Y CATCH report:15
+16 Y TIME_SERIES report:16
+17 Y SPR_SERIES report:17
+18 Y Kobe_Plot report:18
+19 Y SPAWN_RECRUIT report:19
+20 Y SPAWN_RECR_CURVE report:20
+21 Y INDEX_1 report:21 summary
+22 Y INDEX_2 report:22 annual
+23 Y INDEX_3 report:23 Qparms
+24 Y DISCARD_SPECIFICATION report:24
+25 Y DISCARD_OUTPUT report:25
+26 Y MEAN_BODY_WT_OUTPUT report:26
+27 Y FIT_LEN_COMPS report:27
+28 Y FIT_AGE_COMPS report:28
+29 Y FIT_SIZE_COMPS report:29
+30 Y OVERALL_COMPS report:30
+31 Y LEN_SELEX report:31
+32 Y AGE_SELEX report:32
+33 Y ENVIRONMENTAL_DATA report:33
+34 Y TAG_Recapture report:34
+35 Y NUMBERS_AT_AGE report:35
+36 Y BIOMASS_AT_AGE report:36
+37 Y NUMBERS_AT_LENGTH report:37
+38 Y BIOMASS_AT_LENGTH report:38
+39 Y F_AT_AGE report:39
+40 Y CATCH_AT_AGE report:40
+41 Y DISCARD_AT_AGE report:41
+42 Y BIOLOGY report:42
+43 Y Natural_Mortality report:43
+44 Y AGE_SPECIFIC_K report:44
+45 Y Growth_Parameters report:45
+46 Y Seas_Effects report:46
+47 Y Biology_at_age_in_endyr report:47
+48 Y MEAN_BODY_WT(Begin) report:48
+49 Y MEAN_SIZE_TIMESERIES report:49
+50 Y AGE_LENGTH_KEY report:50
+51 Y AGE_AGE_KEY report:51
+52 Y COMPOSITION_DATABASE report:52
+53 Y SELEX_database report:53
+54 Y SPR/YPR_Profile report:54
+55 Y GLOBAL_MSY report:55
+56 Y SS_summary.sso report:56
+57 Y rebuilder.sso report:57
+58 Y SIStable.sso report:58
+59 Y Dynamic_Bzero report:59
+60 Y wtatage.ss_new report:60
+0  docheckup
+0  Do_ParmTrace
+0  Do_CumReport
+1  Do_all_priors
+1  SoftBound
+1  N_nudata
+10  Turn_off_phase
+1  MCeval burn_intvl
+1  MCeval thin_intvl
+0  jitter fraction for initial parm values
+-1  STD_Yr_min
+-2  STD_Yr_max (-1 for endyr; -2 for YrMax)
+0  N extra STD years to read
+0.0001  final_conv
+0  retro_yr
+0  Smry_Age
+2  depletion_basis as read; this is also known as Bratio and is a std quantity; has multi-yr and log(ratio) options
+Parse into: depletion_log(ratio): 0 depletion_multi-yr: 0 depletion_basis: 2
+1  depletion_level
+1  SPR_reporting
+5  F_reporting quantity, e.g. 3=sum(apical Fs)
+ 3 7  F_reporting_ages_R
+Will be checked against maxage later 
+0  F_std basis as read
+Parse into: F_std_log(ratio): 0 F_std_multi: 0 F_std_basis: 0
+For Kobe plot, set depletion_basis=2; depletion_level=1.0; F_reporting=your choose; F_std_basis=2
+Read files in 3.30 format
+SS will continue reading from starter.ss until it reads 3.30
+read MCMC_output_detail.MCMC_bump as a single real number;  separate values will be parsed from integer and fraction
+MCMC output detail(1=more_detail_to_posts; 2=write_report_for_each_mceval):  0
+MCMC bump to R0:  0
+Now get ALK tolerance (0.0 is OK for no compression; 0.1 is too big;  suggest 0.0001)
+ALK tolerance:  0
+Now get random number seed; enter -1 to use long(time) as the seed
+  finish reading starter.ss
+
+2019 start year 
+2019 end year 
+1 N seasons 
+ 12 months/seas (fractions OK) 
+2 Number of subseasons (even number only; min 2) for calculation of ALK 
+ 1 processed season duration (frac. of year) 
+ 0.5 processed subseason duration (frac. of year) 
+ processed subseason cumulative annual time within season 
+ 0 0.5
+SPAWN month: 1; seas: 1; subseas_for_ALK: 1; timing_in_season: 0
+1 N sexes 
+Accumulator age 20
+1 N_areas 
+3 total number of fishing fleets and surveys 
+rows are fleets; columns are: Fleet_#, fleet_type, timing, area, units, need_catch_mult
+1 #  1 -1 1 1 0 # Fleet
+2 #  3 1 1 2 0 # Acoustics
+3 #  3 1 1 2 0 # Trapnet
+YPR_optimize_mask:  1 0 0
+58 records
+first catch record:  -999 1 1 88907 0.1
+last catch record:  2019 1 1 88907 0.05
+ equ, seas:   -1 1 catches:  88907 0 0
+year, seas: 2019 1 catches:  88907 0 0
+
+#_show_total_catch_by_fleet
+1 type: 1 Fleet catch: 177814
+2 type: 3 Acoustics catch: 0
+3 type: 3 Trapnet catch: 0
+
+#_  now read survey characteristics:  fleet_#, svyunits, svyerrtype for each fleet 
+Units:  0=numbers; 1=biomass; 2=F; >=30 for special patterns
+Errtype:  -1=normal; 0=lognormal; >0=T
+SD_Report: 0=no sdreport; 1=enable sdreport
+Fleet Units Err_Type SD_Report
+ 1 1 0 0
+ 2 0 0 0
+ 3 0 0 0
+31 nobs_survey 
+ 2007 10 2 24843 0.1
+ 2008 10 2 22456 0.1
+ 2009 10 2 27358 0.1
+ 2010 10 2 26331 0.1
+ 2011 10 2 29881 0.1
+ 2012 10 2 28325 0.1
+ 2013 10 2 13900 0.3
+ 2014 10 2 13775 0.3
+ 2015 10 2 19067 0.3
+ 2016 10 2 16257 0.3
+ 2017 10 2 28142 0.3
+ 2018 10 2 15497 0.3
+ 2019 10 2 17746 0.3
+ 1990 5 3 0.237676 0.1
+ 1991 5 3 0.290024 0.1
+ 1992 5 3 0.416188 0.1
+ 1993 5 3 0.314425 0.1
+ 1994 5 3 0.386443 0.1
+ 1995 5 3 0.274869 0.1
+ 1996 5 3 0.30267 0.1
+ 1997 5 3 0.243412 0.1
+ 1998 5 3 0.215 0.1
+ 1999 5 3 0.174684 0.1
+ 2000 5 3 0.211202 0.1
+ 2001 5 3 0.26888 0.1
+ 2002 5 3 0.261544 0.1
+ 2003 5 3 0.223936 0.1
+ 2004 5 3 0.250747 0.1
+ 2005 5 3 0.408507 0.1
+ 2006 5 3 0.291245 0.1
+ 2019 5 -3 0.3 0.1
+Successful read of survey data; total N:  2
+Index Survey_name       N   Super_Per    Min_val   max_val  //  Observations:
+2    Acoustics   1     0      17746 17746 //  17746
+3    Trapnet   1     0      1e+09 -1e+09 //  0.3
+Number of sdreport index values: 0
+ note order of discard read is now: N fleets with disc, then if Ndisc_fleets>0 read:  fleet, disc_units, disc_error(for 1,Ndisc_fleets), then read obs 
+0 N fleets with discard 
+Successful read of discard data  
+Index Survey_name       N   Super_Per    Min_val   max_val  //  Observations:
+0 Use mean body size (weight or length); If 0, then no additional input in 3.30 
+Successful pre-processing of mean-bodysize data
+2 LenBin_option:  1=set to data bins; 2 generate uniform; 3 = read custom
+ 2 2 40 input for setup of pop length bins 
+1 indicator for length data  
+#_now read for each fleet info for processing the length comps:
+#_mintailcomp: upper and lower distribution for females and males separately are accumulated until exceeding this level.
+#_addtocomp:  after accumulation of tails; this value added to all bins
+#_males and females treated as combined gender below this bin number 
+#_compressbins: accumulate upper tail by this number of bins; acts simultaneous with mintailcomp; set=0 for no forced accumulation
+#_Comp_Error:  0=multinomial, 1=Dirichlet
+#_Comp_ERR-2:  index of Dirichlet parameter to use
+#_minsamplesize: minimum sample size; set to 1 to match 3.24, set to 0 for no minimum
+-1 1e-07 0 0 0 0 0.01  #_fleet: 1 Fleet
+-1 1e-07 0 0 0 0 0.01  #_fleet: 2 Acoustics
+-1 1e-07 0 0 0 0 0.01  #_fleet: 3 Trapnet
+number of D-M parameters needed for length comp data: 0
+
+2 nlen_bin_for_data 
+ len_bins_dat 
+ 5 30
+
+Processed Population length bin info 
+ 2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40
+
+Processed Data length bin info 
+ 5 30
+
+Processed Population to Data length bin conversion matrix
+len_obs_#:1 #  -9999 0 0 0 0 0 0 0
+0 N length comp observations 
+Lendata Nobs by fleet  0 0 0
+Lendata superperiods by fleet  0 0 0
+Overall_Compositions
+Seas Fleet len_bins  5 30
+Successful processing of length data
+
+Enter the number of agebins, or 0 if no age data
+16 N age bins 
+ 0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 agebins 
+1 N age error defs 
+ageerror_definitions_as_read
+ 0.5 1.5 2.5 3.5 4.5 5.5 6.5 7.5 8.5 9.5 10.5 11.5 12.5 13.5 14.5 15.5 16.5 17.5 18.5 19.5 20.5
+ 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001 0.001
+#_now read for each fleet info for processing the age comps:
+#_mintailcomp: upper and lower distribution for females and males separately are accumulated until exceeding this level.
+#_addtocomp:  after accumulation of tails; this value added to all bins
+#_males and females treated as combined gender below this bin number 
+#_compressbins: accumulate upper tail by this number of bins; acts simultaneous with mintailcomp; set=0 for no forced accumulation
+#_Comp_Error:  0=multinomial, 1=dirichlet
+#_Comp_ERR-2:  index of parameter to use, cumulative count after DM parms for length comp
+#_minsamplesize: minimum sample size; set to 1 to match 3.24, set to 0 for no minimum
+-1 1e-07 0 2 0 0 0.01  #_fleet: 1 Fleet
+-1 1e-07 0 0 0 0 0.01  #_fleet: 2 Acoustics
+-1 1e-07 0 2 0 0 0.01  #_fleet: 3 Trapnet
+number of D-M parameters needed for length and age comp data: 0
+1 Lbin method for defined size ranges 
+age_obs_#:1 #  1980 7 1 0 0 1 -1 -1 123 0 124930 112920 61920 66620 262270 90230 96830 57120 21975 30323 5895 2811 1183 247 286
+age_obs_#:2 #  1981 7 1 0 0 1 -1 -1 108 0 27570 124000 59130 48010 57110 136920 54220 40650 22597 11658 13766 2519 795 1474 322
+70 N age comp observations 
+age_obs_#:70 #  2006 5 3 0 0 1 -1 -1 4 0 0 0 0.0155163 0.138799 0.0478002 0.02531 0.0110775 0.0177498 0.0119711 0.00694584 0.00973763 0.00220542 0.00187021 0.00226144 0
+
+Age_Data Nobs by fleet  1 1 0
+Age_Data superperiods by fleet  0 0 0
+process age comps 
+area seas fleet age_bins  0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15
+1 1 1 freq  9.99999e-08 0.135715 0.17973 0.233337 0.120918 0.135273 0.063822 0.0396407 0.0318299 0.0129868 0.0123852 0.00717338 0.00660657 0.0205828 0 0
+1 1 1 cuml  9.99999e-08 0.135715 0.315445 0.548782 0.6697 0.804973 0.868795 0.908435 0.940265 0.953252 0.965637 0.972811 0.979417 1 1 1
+1 1 2 freq  9.99998e-08 0.199369 0.207483 0.213006 0.103347 0.131466 0.0472219 0.0277246 0.0247944 0.0147076 0.00833999 0.00704393 0.00281763 0.00473355 0.00264858 0.00529706
+1 1 2 cuml  9.99998e-08 0.199369 0.406852 0.619857 0.723205 0.854671 0.901893 0.929617 0.954412 0.969119 0.977459 0.984503 0.987321 0.992054 0.994703 1
+1 1 3 freq  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+1 1 3 cuml  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+Successful processing of age data 
+0 (0/1) use mean size-at-age data 
+0 N_envvar 
+0 N sizefreq methods to read 
+ finished processing sizefreq data 
+0 Do_TagData(0/1) 
+0 Do_Morphcomp(0/1) 
+Do dataread for selectivity priors(0/1):  0
+Yr  Seas Fleet  Age/Size  Bin  selex_prior  prior_sd
+feature not yet implemented
+ data read successful
+
+read Do_Benchmark(0=skip; 1= do Fspr, Fbtgt, Fmsy; 2=do Fspr, F0.1, Fmsy;  3=Fspr, Fbtgt, Fmsy, F_Blimit)
+1 echoed Do_Benchmark 
+read Do_MSY basis (1=F_SPR,2=calcMSY,3=F_Btarget,4=mult*F_endyr (disabled);5=calcMEY with MSY_unit options
+2 echoed Do_MSY basis
+Note that Do_MSY=5 is more flexible than Do_MSY=2 by providing control of MSY_units
+next read SPR target and Biomass target as fractions
+0.4 echoed SPR_target 
+0.4 echoed B_target 
+next read 10 Benchmark years for:  beg-end bio; beg-end selex; beg-end relF; beg-end recr_dist; beg-end SRparm
+codes: -999 means start year; >0 is an actual year; <=0 is relative to endyr
+ -999 0 -999 0 -999 0 -999 0 -999 0 echoed Benchmark years
+ 2019 2019 2019 2019 2019 2019 2019 2019 2019 2019 Benchmark years as processed
+next read:  1=use range of years as read for relF; 2 = set same as forecast relF below
+1  echoed Bmark_RelF_year basis
+
+next read forecast basis: 0=none; 1=F(SPR); 2=F(MSY) 3=F(Btgt); 4=Ave F (enter yrs); 5=read Fmult
+5 echoed Forecast basis
+
+#next read N forecast years
+10 #echoed N_Fcast_Yrs 
+
+# next read Fmult value to be used only if Forecast basis==5
+0.14 # echoed Fmult value
+
+# next enter Fcast_years:  beg_selex, end_selex, beg_relF, end_relF, beg_recruits, end_recruits
+# enter actual year, or values of 0 or -integer to be relative to endyr)
+ 0 0 0 0 0 0 # echoed Fcast years as read
+ 2019 2019 2019 2019 2019 2019  # After Transformation
+
+# next read flag for specifying selectivity used in forecasts; 0 is value that mimics 3.24, 1 is experimental
+0 # echoed Fcast_Specify_Selex value
+
+next read 4 values for:  control rule shape(0, 1, 2, 3 or 4), inflection (like 0.40), cutoff(like 0.10), scale(like 0.75)
+1  # echoed HarvestPolicy 
+0.004   # echoed harvest policy inflection 
+0.001   # echoed harvest policy cutoff 
+1   # echoed harvest policy scalar 
+
+# next enter 2 values that control looping through the forecast (see manual), then 3 placeholder values
+# first does F_msy or proxy; 2nd applies control rule; 3rd applies caps and allocations
+3 #echoed N forecast loops (1-3) (recommend 3)
+0 #echoed First forecast loop with stochastic recruitment (recommend 3)
+0 #echoed Forecast recruitment:  0=spawn_recr; 1=value*spawn_recr; 2=value*VirginRecr; 3=mean from year range
+1 #echoed Forecast loop control #4 (not used) 
+0 #echoed Forecast loop control #5 (reserved for future use) 
+
+#next enter year in which Fcast loop 3 caps and allocations begin to be applied
+2023 # echoed value
+
+#next enter 0, or stddev of implementation error
+0 # echoed value
+
+#next select rebuilding program output (0/1)
+0 # echoed value
+
+#next select rebuilding program:  year declared overfished
+2000 # echoed value
+
+#next select rebuilding program:  year rebuilding plan started
+2003 # echoed value
+
+#next select fleet relative F:  1=use first-last alloc year read above; 2=read list of seas, fleet, relF below
+# Note that fleet allocation is used directly as average F if Do_Forecast=4 
+1 # echoed value
+
+#next read Catch Basis for caps and allocations;  Same for all fleets
+2=dead catch bio, 3=retained catch bio, 5= dead catch numbers 6=retained catch numbers
+2 # echoed value
+
+# next read list of fleet ID and max annual catch;  end with fleet=-9999
+ -9999 -1
+ Processed Max totalcatch by fleet 
+ -1 -1 -1
+
+Read list of area ID and max annual catch;  end with area=-9999
+ -9999 -1
+ processed Max totalcatch by area 
+ -1
+
+Read list of fleet ID and assignment to allocation group;  end with fleet ID=-9999
+fishing fleets not assigned to allocation group are processed normally
+ -9999 -1
+ Processed Fleet allocation group assignments 
+ 0 0 0
+99 # basis for input Fcast catch:  -1= read with each obs; 2=dead catch; 3=retained catch; 99=input Hrate(F); -1=read fleet/time specific (bio/num units are from fleetunits; note new codes in SSV3.20)
+# yr seas fleet catch
+ -9999 1 1 1
+fill H4010_scale_vec with single input
+H4010_scale:  1 1 1 1 1 1 1 1 1 1
+ done reading forecast 
+
+SPR_reporting 1
+F_reporting 5
+Finished creating STD containers and indexes 
+ STD_SSB_Recr  1 2 3 4 5 6 7 8 9 10 11 12 13
+ STD_deplet  0 0 1 2 3 4 5 6 7 8 9 10 11
+ STD_SPR  0 0 1 2 3 4 5 6 7 8 9 10 11
+ STD_F  0 0 1 2 3 4 5 6 7 8 9 10 11
+
+ Begin reading control file 
+1 wtatage switch 
+1 N growth patterns 
+1  N platoons (1, 3 or 5)
+  do not read sd_ratio or platoon_distr
+4  # Recruitment distribution method; where: 2=parms for main effects for GP, Area, Settle timing; 3=one parm for each Settle event
+1  # future option for recr_dist_area: 1 is hardwired to do global SRR; 2 in future will do area-specific SRR
+1 Number of settlement events: GP/area/month to read (>=0) 
+0  # unused option 
+ settlement pattern as read 
+GPat  Month  Area Age
+* 1 1 1 0*
+Now calculate the number of unique settle timings, which will dictate the number of recr_dist_timing parameters 
+N settle timings: 1
+ unique_settle_times: 
+ 1 0
+settle events use these settle_times:  1
+Calculated assignments in which settlement occurs 
+Settle_event / Month / Seas / Seas_from_spawn / time_from_seas_start / age_at_settle
+1 / 1  /  1 / 0 / 0  / 0
+
+MORPH_INDEXING
+g Sex GP Settlement Birth_Seas Platoon Platoon% Sex*GP Sex*GP*settle_time Used(0/1) SettleTime_frac_yr
+1   1  1       1       1       1       100       1        1               1       0
+calen_age is elapsed years since beginning of year in which spawning occurred
+real_age is elapsed years since settlement
+g  s  subseas  ALK_idx settle_time age@settle age real_age calen_age
+1 1 1 1 1 0 0 0 0
+1 1 1 1 1 0 1 1 1
+1 1 1 1 1 0 2 2 2
+1 1 1 1 1 0 3 3 3
+1 1 2 2 1 0 0 0.5 0.5
+1 1 2 2 1 0 1 1.5 1.5
+1 1 2 2 1 0 2 2.5 2.5
+1 1 2 2 1 0 3 3.5 3.5
+ only 1 area, so no read of do_migration or migr_firstage 
+0 N_Block_Designs
+1  timevarying parameter constraint method
+ 1 1 1 1 1  timevarying parameter autogenerate (0) or read (1) for each parm type or (2) read then autogen if parm min==-12345
+1 natM_type
+6 N breakpoints 
+ 0.5 1 3 5 8 15 NatM_age_segment_breaks 
+1 growth model 
+ 0.1 999 -999 0 # growth specifications: AFIX1 AFIX2 LINF_decay placeholder  age-specific_K_ages
+ N_growparms  5
+g a seas subseas ALK_idx real_age calen_age lin_grow first_grow_age
+1 0 1 1 1 0 0 0 0
+1 0 1 2 2 0.5 0.5 -1 0
+1 1 1 1 1 1 1 -1 0
+1 1 1 2 2 1.5 1.5 -1 1
+1 2 1 1 1 2 2 -2 1
+1 2 1 2 2 2.5 2.5 -2 1
+1 3 1 1 1 3 3 -2 1
+1 3 1 2 2 3.5 3.5 -2 1
+0  SD_add_to_LAA
+0  CV_depvar
+2  Maturity_Option
+1  First_Mature_Age
+1  Fecundity option
+0  Hermaphro_Option: 0 means No; 1 for F to M; -1 for M to F
+1  MGparm_def
+ predparm pointer -1 -1 -1 19
+ Biology base parameter setup 19
+1  0.1 2.4 0.563 0.15 0.8 0 -1 0 0 0 0 0 0 0 NatM_break_1_Fem_GP_1
+2  0.1 2.4 0.472 0.15 0.8 0 -1 0 0 0 0 0 0 0 NatM_break_2_Fem_GP_1
+3  0.1 2.4 0.332 0.15 0.8 0 -1 0 0 0 0 0 0 0 NatM_break_3_Fem_GP_1
+4  0.1 2.4 0.29 0.15 0.8 0 -1 0 0 0 0 0 0 0 NatM_break_4_Fem_GP_1
+5  0.1 2.4 0.267 0.15 0.8 0 -1 0 0 0 0 0 0 0 NatM_break_5_Fem_GP_1
+6  0.1 2.4 0.257 0.15 0.8 0 -1 0 0 0 0 0 0 0 NatM_break_6_Fem_GP_1
+7  0 20 4 4 10 0 -2 0 0 0 0 0 0 0 L_at_Amin_Fem_GP_1
+8  10 40 25 20 10 0 -4 0 0 0 0 0 0 0 L_at_Amax_Fem_GP_1
+9  0.05 0.8 0.4 0.47 0.8 0 -4 0 0 0 0 0 0 0 VonBert_K_Fem_GP_1
+10  0.05 0.5 0.2 0.5 0.8 0 -3 0 0 0 0 0 0 0 CV_young_Fem_GP_1
+11  0.1 0.7 0.2 0.5 0.8 0 -3 0 0 0 0 0 0 0 CV_old_Fem_GP_1
+12  -3 3 4e-06 4e-06 0.8 0 -99 0 0 0 0 0 0 0 Wtlen_1_Fem_GP_1
+13  -3 4 3.05 3.0962 0.8 0 -99 0 0 0 0 0 0 0 Wtlen_2_Fem_GP_1
+14  1 6 0.13 2 0.8 0 -99 0 0 0 0 0 0 0 Mat50%_Fem_GP_1
+15  -3 3 -4.149 -0.25 0.8 0 -99 0 0 0 0 0 0 0 Mat_slope_Fem_GP_1
+16  -3 3 1 1 0.8 0 -99 0 0 0 0 0 0 0 Eggs/kg_inter_Fem_GP_1
+17  -3 3 0 0 0.8 0 -99 0 0 0 0 0 0 0 Eggs/kg_slope_wt_Fem_GP_1
+18  0.1 10 1 1 1 0 -1 0 0 0 0 0 0 0 CohortGrowDev
+19  1e-06 0.999999 0.5 0.5 0.5 0 -99 0 0 0 0 0 0 0 FracFemale_GP_1
+mgparm_type for each parm: 1=M; 2=growth; 3=wtlen,mat,fec,hermo; 4=recr&femfrac; 5=migr; 6=ageerror; 7=catchmult
+ 1 1 1 1 1 1 2 2 2 2 2 3 3 3 3 3 3 2 4
+Now read env, block/trend, and dev adjustments to MGparms 
+Display timevary_MG flag
+2018 timevary_MG:  0 0 0 0 0 0 0 0
+2019 timevary_MG:  0 0 0 0 0 0 0 0
+2020 timevary_MG:  0 0 0 0 0 0 0 0
+2021 timevary_MG:  0 0 0 0 0 0 0 0
+2022 timevary_MG:  0 0 0 0 0 0 0 0
+2023 timevary_MG:  0 0 0 0 0 0 0 0
+2024 timevary_MG:  0 0 0 0 0 0 0 0
+2025 timevary_MG:  0 0 0 0 0 0 0 0
+2026 timevary_MG:  0 0 0 0 0 0 0 0
+2027 timevary_MG:  0 0 0 0 0 0 0 0
+2028 timevary_MG:  0 0 0 0 0 0 0 0
+2029 timevary_MG:  0 0 0 0 0 0 0 0
+seasonal effects as read:  0 0 0 0 0 0 0 0 0 0
+MG_active  0 0 0 0 0 0 0 0
+3 #_SR_function: 1=NA; 2=Ricker(2 parms); 3=BevHolt(2); 4=SCAA(2); 5=Hockey(3); 6=B-H_flattop(2); 7=Survival(3); 8=Shepherd(3); 9=Ricker_Power(3) 
+0  # 0/1 to use steepness in initial equ recruitment calculation
+0  #  future feature:  0/1 to make realized sigmaR a function of SR curvature
+ SR parms 
+ 16 25 17.35 12.545 2 0 -1 0 0 0 0 0 0 0
+ 0.1 1 0.775 0.74 0.113 2 -1 0 0 0 0 0 0 0
+ 0 2 0.6 0.23 0.05 0 -2 0 0 0 0 0 0 0
+ -5 5 0 0 1 0 -1 0 0 0 0 0 0 0
+ 0 1 0 0.456 0.054 0 -2 0 0 0 0 0 0 0
+ Do recruitment_autocorr: 0
+SR_Npar and N_SRparm2 and N_SRparm3:  2 5 5
+SR_parm_RD:  17.35 0.775 0.6 0 0
+1 do_recdev
+2019 recdev_start
+2019 recdev_end
+-3 recdev_PH
+1 recdev_adv
+#_start of advanced SR options
+-17 #_recdev_early_start (0=none; neg value makes relative to recdev_start)
+2 #_recdev_early_phase
+-1 #_forecast_recruitment phase (incl. late recr) (0 value resets to maxphase+1)
+1 #_lambda for Fcast_recr_like occurring before endyr+1
+1956 #_last_early_yr_nobias_adj_in_MPD
+1975 #_first_yr_fullbias_adj_in_MPD
+2018 #_last_yr_fullbias_adj_in_MPD
+2019 #_first_recent_yr_nobias_adj_in_MPD
+0.9624 #_max_bias_adj_in_MPD
+ #_NOTE: biasadjustment forced to 0.0 after year recdev_end
+0 # period of cycle in recruitment 
+-5 #min rec_dev
+5 #max rec_dev
+0 #_read_recdevs
+#_end of advanced SR options
+#_recruitment bias adjustment
+ 0 0 0 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0.9624 0 0 0 0 0 0 0 0 0 0 0
+0.23 F ballpark is annual F, as specified in F_reporting, for a specified year
+-2008 F_ballpark_yr (<0 to ignore)  
+3 F_Method as read
+2.3 max_harvest_rate 
+4 N iterations for tuning hybrid F (typically 3-5)
+ ready to read init_F setup for: 1 fleet x season with initial equilibrium catch
+ initial equil F parameter setup
+ 0.001 2 0.2 0.1 0.1 0 1
+4  Overall F_Method_byPH:   3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3 3
+# read Q setup only for fleets with survey/CPUE/effort observations, end with fleet_ID<0 #  fleet_ID link_type link_info  extra_se(0/1)   biasadj(0/1)  float(0/1)
+q setup 
+ 0 0 0 0 0
+ 1 0 1 0 1
+ 1 0 1 0 1
+q setup 
+ 0 0 0 0 0
+ 1 0 1 0 1
+ 1 0 1 0 1
+q setup parms 
+ 0 0 0 0 0
+ 1 2 0 0 0
+ 3 4 0 0 0
+fleet 2 base index 1
+fleet 3 base index 3
+Q_Npar and Q_Npar2:  4 4
+Q_parm_RD: 
+1 -2.47811 LnQ_base_Acoustics(2)
+2 0 Q_extraSD_Acoustics(2)
+3 3.86604 LnQ_base_Trapnet(3)
+4 0 Q_extraSD_Trapnet(3)
+#
+ selex types 
+ 0 0 0 0
+ 0 0 0 0
+ 0 0 0 0
+ 17 0 0 0
+ 17 0 0 0
+ 17 0 0 0
+1 0
+2 0
+3 0
+4 17
+5 17
+6 17
+#Now count parameters for D-M variance of composition data; CANNOT be time-varying
+ selex and composition base parameters 
+1 ##  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P1_Fleet(1)
+2 ##  -25 25 1 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P2_Fleet(1)
+3 ##  0 9 1.45 -1 -1 0.01 2 0 0 0 0 0 0 0 ## AgeSel_P3_Fleet(1)
+4 ##  0 9 0.4 -1 -1 0.01 2 0 0 0 0 0 0 0 ## AgeSel_P4_Fleet(1)
+5 ##  0 9 0.15 -1 -1 0.01 2 0 0 0 0 0 0 0 ## AgeSel_P5_Fleet(1)
+6 ##  0 9 0.14 -1 -1 0.01 3 0 0 0 0 0 0 0 ## AgeSel_P6_Fleet(1)
+7 ##  0 9 0.03 -1 -1 0.01 3 0 0 0 0 0 0 0 ## AgeSel_P7_Fleet(1)
+8 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P8_Fleet(1)
+9 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P9_Fleet(1)
+10 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P10_Fleet(1)
+11 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P11_Fleet(1)
+12 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P12_Fleet(1)
+13 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P13_Fleet(1)
+14 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P14_Fleet(1)
+15 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P15_Fleet(1)
+16 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P16_Fleet(1)
+17 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P17_Fleet(1)
+18 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P18_Fleet(1)
+19 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P19_Fleet(1)
+20 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P20_Fleet(1)
+21 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P21_Fleet(1)
+22 ##  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P1_Acoustics(2)
+23 ##  -25 25 1 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P2_Acoustics(2)
+24 ##  0 9 0.6 -1 -1 0.01 2 0 0 0 0 0 0 0 ## AgeSel_P3_Acoustics(2)
+25 ##  0 9 0.2 -1 -1 0.01 2 0 0 0 0 0 0 0 ## AgeSel_P4_Acoustics(2)
+26 ##  0 9 0.02 -1 -1 0.01 2 0 0 0 0 0 0 0 ## AgeSel_P5_Acoustics(2)
+27 ##  0 9 0.11 -1 -1 0.01 3 0 0 0 0 0 0 0 ## AgeSel_P6_Acoustics(2)
+28 ##  0 9 0.14 -1 -1 0.01 3 0 0 0 0 0 0 0 ## AgeSel_P7_Acoustics(2)
+29 ##  0 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P8_Acoustics(2)
+30 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P9_Acoustics(2)
+31 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P10_Acoustics(2)
+32 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P11_Acoustics(2)
+33 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P12_Acoustics(2)
+34 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P13_Acoustics(2)
+35 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P14_Acoustics(2)
+36 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P15_Acoustics(2)
+37 ##  -10 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P16_Acoustics(2)
+38 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P17_Acoustics(2)
+39 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P18_Acoustics(2)
+40 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P19_Acoustics(2)
+41 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P20_Acoustics(2)
+42 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P21_Acoustics(2)
+43 ##  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P1_Trapnet(3)
+44 ##  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P2_Trapnet(3)
+45 ##  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P3_Trapnet(3)
+46 ##  -5 15 1 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P4_Trapnet(3)
+47 ##  0 9 0.3 -1 -1 0.01 2 0 0 0 0 0 0 0 ## AgeSel_P5_Trapnet(3)
+48 ##  -5 9 0.1 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P6_Trapnet(3)
+49 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P7_Trapnet(3)
+50 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P8_Trapnet(3)
+51 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P9_Trapnet(3)
+52 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P10_Trapnet(3)
+53 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P11_Trapnet(3)
+54 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P12_Trapnet(3)
+55 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P13_Trapnet(3)
+56 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P14_Trapnet(3)
+57 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P15_Trapnet(3)
+58 ##  -10 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P16_Trapnet(3)
+59 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P17_Trapnet(3)
+60 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P18_Trapnet(3)
+61 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P19_Trapnet(3)
+62 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P20_Trapnet(3)
+63 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P21_Trapnet(3)
+identify the fleet associated with each parameter
+check on conversion of retention parameter
+1 sel  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0
+2 sel  -25 25 1 -1 -1 0.01 -4 0 0 0 0 0 0 0
+3 sel  0 9 1.45 -1 -1 0.01 2 0 0 0 0 0 0 0
+4 sel  0 9 0.4 -1 -1 0.01 2 0 0 0 0 0 0 0
+5 sel  0 9 0.15 -1 -1 0.01 2 0 0 0 0 0 0 0
+6 sel  0 9 0.14 -1 -1 0.01 3 0 0 0 0 0 0 0
+7 sel  0 9 0.03 -1 -1 0.01 3 0 0 0 0 0 0 0
+8 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+9 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+10 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+11 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+12 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+13 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+14 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+15 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+16 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+17 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+18 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+19 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+20 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+21 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+22 sel  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0
+23 sel  -25 25 1 -1 -1 0.01 -4 0 0 0 0 0 0 0
+24 sel  0 9 0.6 -1 -1 0.01 2 0 0 0 0 0 0 0
+25 sel  0 9 0.2 -1 -1 0.01 2 0 0 0 0 0 0 0
+26 sel  0 9 0.02 -1 -1 0.01 2 0 0 0 0 0 0 0
+27 sel  0 9 0.11 -1 -1 0.01 3 0 0 0 0 0 0 0
+28 sel  0 9 0.14 -1 -1 0.01 3 0 0 0 0 0 0 0
+29 sel  0 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+30 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+31 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+32 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+33 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+34 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+35 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+36 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+37 sel  -10 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+38 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+39 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+40 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+41 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+42 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+43 sel  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0
+44 sel  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0
+45 sel  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0
+46 sel  -5 15 1 -1 -1 0.01 -4 0 0 0 0 0 0 0
+47 sel  0 9 0.3 -1 -1 0.01 2 0 0 0 0 0 0 0
+48 sel  -5 9 0.1 -1 -1 0.01 -4 0 0 0 0 0 0 0
+49 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+50 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+51 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+52 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+53 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+54 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+55 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+56 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+57 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+58 sel  -10 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+59 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+60 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+61 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+62 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+63 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
+ now read 0/1 for 2D_AR
+0  #_ 0/1 to request experimental 2D_AR selectivity smoother options  
+N_selparm: 63 with timevary: 63 with TV and 2D_AR: 63 timevary parm range for sel: 0 0 0
+Recalc_flag_for_length_selex_recalc_by_year
+1 Fleet  1 0 0 1 1 0 0 0 0 0 0 0 0 0 0
+2 Acoustics  1 0 0 1 1 0 0 0 0 0 0 0 0 0 0
+3 Trapnet  1 0 0 1 1 0 0 0 0 0 0 0 0 0 0
+Recalc_flag_for_age_selex_recalc_by_year
+1 Fleet  1 0 0 1 1 0 0 0 0 0 0 0 0 0 0
+2 Acoustics  1 0 0 1 1 0 0 0 0 0 0 0 0 0 0
+3 Trapnet  1 0 0 1 1 0 0 0 0 0 0 0 0 0 0
+0 TG_custom (need to read even if no tag data ); tag_data?: 0 N_Fleet: 1
+ read var_adjust list until -9999
+ 5 1 0.7483
+ 5 2 0.9224
+ 5 3 1.3982
+ -9999 1 0
+ number of variance adjustment records = 3
+ Var_adjustments as read 
+ 0 0 0
+ 0 0 0
+ 0 0 0
+ 1 1 1
+ 0.7483 0.9224 1.3982
+ 1 1 1
+ 1 1 1
+4 max_lambda_phase 
+1 sd_offset (adds log(s)); needed if variance parameters are estimated 
+ read lambda changes list until -9999
+ number of lambda change records = 1
+1 N lambda changes 
+ lambda changes 
+ 9 1 1 0.01 1
+0 # extra stdev reporting: 0 = skip, 1 = read specs for reporting stdev for selectivity, size, and numbers, 2 = add option for M, dyn. Bzero & Smrybio 
+End of control file successful! 999
+N parameters: 120
+Parameters plus derived quant: 219
+Adjust the phases 
+ requested turn_off phase: 10
+Fcast_dev_phase (read and adjusted): -1 -1
+ParCount 120   Active parameters: 29
+Turn_off_phase 10
+ max_phase 3
+219
+parm 120 covar 29
+deriv_start 120 29
+parm 133 covar 42
+parm 146 covar 55
+parm 157 covar 66
+parm 168 covar 77
+parm 179 covar 88
+parm 196 covar 105  after benchmark 
+parm 216 covar 125  after forecast 
+ do ln(SPB) std labels for 3 years
+ do Svy_sdreport labels 0
+parm 219 covar 128  after all derived quantities 
+Active parameters plus derived quantities:  128
+now in PARAMETER_SECTION 
+ now dimension the selectivity arrays 63
+ -1002 -25 0 0 0 0 0 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -1002 -25 0 0 0 0 0 0 -5 -5 -5 -5 -5 -5 -5 -10 -5 -5 -5 -5 -5 -1002 -1002 -1002 -5 0 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -10 -5 -5 -5 -5 -5
+ 3 25 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 3 25 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 3 3 3 15 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
+ -4 -4 2 2 2 3 3 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 2 2 2 3 3 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 2 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4 -4
+ OK after dimension the selectivity arrays 
+ check 0 
+ OK after dimension the 2dar arrays 
+end of parameter section
+ N_WTage_max 17
+ 1963 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.13472 0.12325 0.08508
+ 1964 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.13472 0.12325 0.08508
+ 1965 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.13472 0.12325 0.08508
+ 1966 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.13472 0.12325 0.08508
+ 1967 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.13472 0.12325 0.08508
+ 1968 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.13472 0.12325 0.08508
+ 1969 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.07742 0.12325 0.08508
+ 1970 1 1 1 1 -2 0 0 0.00466 0.02162 0.02789 0.036 0.03731 0.04457 0.049 0.0482 0.04992 0.05645 0.05689 0.05733 0.06517 0.06517 0.073 0.073
+ 1971 1 1 1 1 -2 0 0 0.00355 0.01771 0.0233 0.02588 0.02897 0.03475 0.03378 0.037 0.04457 0.05635 0.0405 0.0616 0.04 0.051 0.12325 0.12325
+ 1972 1 1 1 1 -2 0 0 0.00485 0.02143 0.02831 0.03277 0.03632 0.04209 0.04656 0.055 0.0552 0.05625 0.05811 0.06588 0.05867 0.11608 0.1735 0.059
+ 1973 1 1 1 1 -2 0 0 0.00616 0.02516 0.03332 0.03966 0.04366 0.04943 0.05933 0.073 0.06583 0.05625 0.05811 0.06588 0.05867 0.11608 0.1735 0.059
+ 1974 1 1 1 1 -2 0 0 0.00596 0.02348 0.0301 0.03606 0.04098 0.04164 0.04623 0.04975 0.05481 0.05625 0.05811 0.06588 0.05867 0.11608 0.08754 0.059
+ 1975 1 1 1 1 -2 0 0 0.0063 0.02481 0.03052 0.03529 0.03975 0.04307 0.0463 0.04977 0.05563 0.05545 0.06558 0.06208 0.07391 0.089 0.148 0.076
+ 1976 1 1 1 1 -2 0 0 0.00612 0.02419 0.03038 0.03592 0.03878 0.04285 0.04545 0.04926 0.05349 0.0568 0.05938 0.0645 0.0582 0.0632 0.058 0.093
+ 1977 1 1 1 1 -2 0 0 0.00618 0.02388 0.02946 0.03485 0.03879 0.04258 0.0457 0.04779 0.05122 0.05614 0.05921 0.07018 0.06236 0.071 0.101 0.0775
+ 1978 1 1 1 1 -2 0 0 0.00605 0.02526 0.02972 0.0338 0.03858 0.04254 0.04593 0.04958 0.053 0.05508 0.06464 0.07167 0.06667 0.062 0.098 0.098
+ 1979 1 1 1 1 -2 0 0 0.0061 0.02423 0.03165 0.03499 0.03743 0.04221 0.04759 0.04965 0.05491 0.05335 0.05666 0.0715 0.075 0.0775 0.0855 0.0855
+ 1980 1 1 1 1 -2 0 0 0.00637 0.02363 0.03137 0.03537 0.03753 0.04009 0.04503 0.05034 0.05565 0.05819 0.0571 0.0774 0.0615 0.093 0.073 0.073
+ 1981 1 1 1 1 -2 0 0 0.00628 0.02529 0.03288 0.04056 0.04187 0.046 0.04851 0.05416 0.05877 0.06837 0.06832 0.06475 0.10975 0.0745 0.0685 0.0685
+ 1982 1 1 1 1 -2 0 0 0.00546 0.02583 0.03401 0.03909 0.04332 0.04466 0.05028 0.05208 0.05955 0.06083 0.06739 0.0795 0.0725 0.0842 0.0685 0.09
+ 1983 1 1 1 1 -2 0 0 0.00444 0.02945 0.03727 0.04389 0.05029 0.05222 0.05615 0.06291 0.06263 0.06951 0.08121 0.09236 0.10333 0.10633 0.0685 0.09225
+ 1984 1 1 1 1 -2 0 0 0.00512 0.02985 0.03875 0.04449 0.051 0.05831 0.06051 0.05923 0.0631 0.06682 0.08176 0.07387 0.07223 0.115 0.064 0.09225
+ 1985 1 1 1 1 -2 0 0 0.00408 0.02758 0.0378 0.04205 0.04646 0.0519 0.05633 0.05759 0.05954 0.06346 0.07171 0.07548 0.07131 0.08041 0.06769 0.0945
+ 1986 1 1 1 1 -2 0 0 0.00512 0.02474 0.03389 0.03978 0.04458 0.04845 0.05044 0.05938 0.05768 0.06271 0.06339 0.06822 0.0814 0.06325 0.07138 0.07567
+ 1987 1 1 1 1 -2 0 0 0.00703 0.02538 0.03378 0.04174 0.04627 0.05126 0.05692 0.06017 0.06109 0.06641 0.06719 0.06641 0.07414 0.09 0.1095 0.1265
+ 1988 1 1 1 1 -2 0 0 0.00205 0.02712 0.0354 0.04208 0.04787 0.05389 0.06111 0.06201 0.06958 0.07162 0.07843 0.07698 0.08345 0.0904 0.0815 0.15375
+ 1989 1 1 1 1 -2 0 0 0.00542 0.03227 0.04156 0.04652 0.05165 0.05561 0.06068 0.06721 0.06447 0.07102 0.07573 0.08077 0.08171 0.11671 0.071 0.181
+ 1990 1 1 1 1 -2 0 0 0.01143 0.03221 0.03876 0.04517 0.05066 0.05696 0.06013 0.06848 0.07146 0.07524 0.0934 0.085 0.07875 0.09444 0.0806 0.112
+ 1991 1 1 1 1 -2 0 0 0.01268 0.02592 0.03555 0.04105 0.04796 0.05254 0.05496 0.05864 0.06381 0.06738 0.07058 0.07213 0.07969 0.07988 0.0902 0.108
+ 1992 1 1 1 1 -2 0 0 0.01001 0.02444 0.03037 0.03976 0.04359 0.04987 0.05384 0.05802 0.06476 0.0638 0.07153 0.06479 0.087 0.072 0.08633 0.108
+ 1993 1 1 1 1 -2 0 0 0.00849 0.02246 0.03015 0.034 0.04388 0.05032 0.05466 0.05958 0.06346 0.0665 0.0708 0.07875 0.093 0.0952 0.109 0.104
+ 1994 1 1 1 1 -2 0 0 0.01323 0.02663 0.03263 0.03567 0.03948 0.04926 0.05565 0.06203 0.06896 0.07362 0.06994 0.0765 0.0455 0.0845 0.0925 0.0835
+ 1995 1 1 1 1 -2 0 0 0.00663 0.02468 0.02889 0.03518 0.03862 0.0431 0.05221 0.06158 0.06787 0.07641 0.094 0.08733 0.104 0.10233 0.0925 0.0835
+ 1996 1 1 1 1 -2 0 0 0.01122 0.02565 0.03167 0.03439 0.03972 0.04395 0.04939 0.05782 0.06426 0.06872 0.07578 0.07 0.098 0.087 0.076 0.0835
+ 1997 1 1 1 1 -2 0 0 0.00504 0.01938 0.02829 0.03387 0.03699 0.04266 0.04719 0.0544 0.06371 0.06902 0.07114 0.0906 0.086 0.092 0.08808 0.063
+ 1998 1 1 1 1 -2 0 0.00023 0.00444 0.015 0.02683 0.03418 0.0407 0.0444 0.05564 0.05805 0.06663 0.08151 0.08263 0.11157 0.09682 0.11012 0.10017 0.09028
+ 1999 1 1 1 1 -2 0 8e-05 0.00507 0.01822 0.02616 0.03285 0.04138 0.046 0.05346 0.05735 0.06256 0.07374 0.07928 0.08604 0.10333 0.12063 0.12433 0.09028
+ 2000 1 1 1 1 -2 0 0.00085 0.00927 0.01869 0.02447 0.02934 0.03443 0.03884 0.04111 0.04619 0.0563 0.05531 0.06539 0.07087 0.06866 0.0782 0.07996 0.11756
+ 2001 1 1 1 1 -2 0 9e-05 0.00941 0.02142 0.02585 0.02894 0.03264 0.0395 0.04212 0.04714 0.04755 0.05763 0.06159 0.06191 0.06819 0.07761 0.07653 0.088
+ 2002 1 1 1 1 -2 0 0.00024 0.00916 0.02158 0.0261 0.03034 0.03359 0.03868 0.04394 0.04775 0.05403 0.05817 0.05805 0.06643 0.07466 0.08808 0.06386 0.0934
+ 2003 1 1 1 1 -2 0 0 0.00901 0.02191 0.02587 0.02926 0.03453 0.04015 0.03738 0.04381 0.05667 0.06101 0.06187 0.06155 0.07123 0.08524 0.07092 0.0582
+ 2004 1 1 1 1 -2 0 0.00013 0.00469 0.01856 0.0251 0.02996 0.03709 0.03888 0.04333 0.04903 0.05092 0.05957 0.05928 0.06402 0.07268 0.06286 0.0722 0.0734
+ 2005 1 1 1 1 -2 0 0.00015 0.00363 0.01674 0.02381 0.02777 0.03086 0.03863 0.03885 0.04257 0.04277 0.04746 0.05043 0.0445 0.05652 0.05526 0.0583 0.05691
+ 2006 1 1 1 1 -2 0 0.00016 0.00554 0.01781 0.02102 0.02667 0.03068 0.03502 0.03805 0.03992 0.04331 0.04303 0.04484 0.05058 0.05441 0.05091 0.04767 0.058
+ 2007 1 1 1 1 -2 0 0.00015 0.00828 0.01826 0.02478 0.02606 0.03109 0.03546 0.0353 0.04257 0.0427 0.04803 0.04813 0.05224 0.05161 0.06358 0.05567 0.06488
+ 2008 1 1 1 1 -2 0 0 0.00737 0.01915 0.02335 0.02626 0.02851 0.03336 0.03758 0.0404 0.04293 0.05352 0.04456 0.05376 0.06181 0.05143 0.0735 0.0806
+ 2009 1 1 1 1 -2 0 0 0.00804 0.01878 0.02268 0.02873 0.02833 0.03363 0.0363 0.04112 0.0441 0.05192 0.05076 0.05667 0.05633 0.05614 0.05838 0.06508
+ 2010 1 1 1 1 -2 0 0.00041 0.01433 0.02249 0.02592 0.02882 0.03485 0.03336 0.03945 0.04398 0.04308 0.0502 0.058 0.05487 0.05513 0.06725 0.05221 0.058
+ 2011 1 1 1 1 -2 0 9e-05 0.00737 0.02301 0.02682 0.02925 0.03271 0.03631 0.03877 0.04206 0.04139 0.04802 0.04798 0.05043 0.05979 0.0528 0.06014 0.061
+ 2012 1 1 1 1 -2 0 9e-05 0.01234 0.02312 0.0269 0.03028 0.03591 0.03642 0.04085 0.04583 0.04809 0.05029 0.05259 0.05666 0.05713 0.06748 0.0559 0.0662
+ 2013 1 1 1 1 -2 0 0.00141 0.01592 0.02458 0.02859 0.03222 0.03519 0.03684 0.03852 0.04378 0.04519 0.04633 0.0474 0.05145 0.05344 0.05604 0.06259 0.06576
+ 2014 1 1 1 1 -2 0 0.00154 0.01289 0.02591 0.02922 0.03263 0.04028 0.0403 0.04324 0.04758 0.04936 0.04863 0.05982 0.05555 0.059 0.07044 0.07171 0.07108
+ 2015 1 1 1 1 -2 0 0.00175 0.01543 0.02445 0.02938 0.03166 0.03664 0.03941 0.04301 0.04444 0.04708 0.05218 0.05077 0.05536 0.05254 0.05441 0.05736 0.07156
+ 2016 1 1 1 1 -2 0 0.0006 0.01253 0.02043 0.02831 0.03188 0.03481 0.03822 0.04489 0.04837 0.04746 0.05309 0.05394 0.06448 0.066 0.06146 0.07206 0.0772
+ 2017 1 1 1 1 -2 0 0.0011 0.01335 0.02276 0.02705 0.03192 0.03806 0.03904 0.04243 0.04809 0.05235 0.05568 0.05461 0.059 0.06147 0.06659 0.06644 0.06971
+ 2018 1 1 1 1 -2 0 0.00164 0.01542 0.02436 0.02778 0.03207 0.03653 0.03674 0.04094 0.04646 0.04927 0.06108 0.04908 0.0577 0.06455 0.062 0.05653 0.06943
+ -2019 1 1 1 1 -2 0 0.000776 0.0137199 0.0233285 0.02955 0.03227 0.03375 0.03942 0.04256 0.04693 0.05088 0.05127 0.05336 0.05574 0.06374 0.0604796 0.057 0.069
+ -2020 1 1 1 1 -2 0 0.001172 0.0141633 0.0234828 0.0281267 0.0320867 0.0361133 0.0384 0.0419767 0.04716 0.0508333 0.05601 0.05235 0.05748 0.0632533 0.0630232 0.05999 0.06938
+ 1963 1 1 1 1 -1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1964 1 1 1 1 -1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1965 1 1 1 1 -1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1966 1 1 1 1 -1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1967 1 1 1 1 -1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1968 1 1 1 1 -1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1969 1 1 1 1 -1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.0774 0.1233 0.0851
+ 1970 1 1 1 1 -1 0.006 0.0042 0.015 0.0235 0.0288 0.036 0.0373 0.0446 0.049 0.0482 0.0499 0.0565 0.0569 0.0573 0.0652 0.0652 0.073 0.073
+ 1971 1 1 1 1 -1 0.006 0.0041 0.0114 0.0192 0.024 0.0259 0.029 0.0348 0.0338 0.037 0.0446 0.0564 0.0405 0.0616 0.04 0.051 0.1233 0.1233
+ 1972 1 1 1 1 -1 0.006 0.0076 0.0157 0.0233 0.0292 0.0328 0.0363 0.0421 0.0466 0.055 0.0552 0.0563 0.0581 0.0659 0.0587 0.1161 0.1735 0.059
+ 1973 1 1 1 1 -1 0.006 0.011 0.0199 0.0273 0.0344 0.0397 0.0437 0.0494 0.0593 0.073 0.0658 0.0563 0.0581 0.0659 0.0587 0.1161 0.1735 0.059
+ 1974 1 1 1 1 -1 0.006 0.0147 0.0192 0.0255 0.031 0.0361 0.041 0.0416 0.0462 0.0497 0.0548 0.0563 0.0581 0.0659 0.0587 0.1161 0.0875 0.059
+ 1975 1 1 1 1 -1 0.0038 0.0118 0.0203 0.027 0.0315 0.0353 0.0398 0.0431 0.0463 0.0498 0.0556 0.0554 0.0656 0.0621 0.0739 0.089 0.148 0.076
+ 1976 1 1 1 1 -1 0.01 0.0116 0.0197 0.0263 0.0313 0.0359 0.0388 0.0429 0.0455 0.0493 0.0535 0.0568 0.0594 0.0645 0.0582 0.0632 0.058 0.093
+ 1977 1 1 1 1 -1 0.0077 0.0141 0.0199 0.026 0.0304 0.0348 0.0388 0.0426 0.0457 0.0478 0.0512 0.0561 0.0592 0.0702 0.0624 0.071 0.101 0.0775
+ 1978 1 1 1 1 -1 0.0055 0.0103 0.0195 0.0275 0.0306 0.0338 0.0386 0.0425 0.0459 0.0496 0.053 0.0551 0.0646 0.0717 0.0667 0.062 0.098 0.098
+ 1979 1 1 1 1 -1 0.0059 0.0142 0.0197 0.0263 0.0326 0.035 0.0374 0.0422 0.0476 0.0497 0.0549 0.0534 0.0567 0.0715 0.075 0.0775 0.0855 0.0855
+ 1980 1 1 1 1 -1 0.0041 0.011 0.0206 0.0257 0.0323 0.0354 0.0375 0.0401 0.045 0.0503 0.0557 0.0582 0.0571 0.0774 0.0615 0.093 0.073 0.073
+ 1981 1 1 1 1 -1 0.008 0.0124 0.0203 0.0272 0.0339 0.0406 0.0419 0.046 0.0485 0.0542 0.0588 0.0684 0.0683 0.0648 0.1098 0.0745 0.0685 0.0685
+ 1982 1 1 1 1 -1 0.002 0.0101 0.0188 0.0278 0.0351 0.0391 0.0433 0.0447 0.0503 0.0521 0.0595 0.0608 0.0674 0.0795 0.0725 0.0842 0.0685 0.09
+ 1983 1 1 1 1 -1 0.0077 0.012 0.0211 0.032 0.038 0.0439 0.0503 0.0522 0.0561 0.0629 0.0626 0.0695 0.0812 0.0924 0.1033 0.1063 0.0685 0.0923
+ 1984 1 1 1 1 -1 0.006 0.0131 0.0222 0.0321 0.04 0.0445 0.051 0.0583 0.0605 0.0592 0.0631 0.0668 0.0818 0.0739 0.0722 0.115 0.064 0.0923
+ 1985 1 1 1 1 -1 0.0056 0.01 0.0204 0.03 0.0382 0.0421 0.0465 0.0519 0.0563 0.0576 0.0595 0.0635 0.0717 0.0755 0.0713 0.0804 0.0677 0.0945
+ 1986 1 1 1 1 -1 0.0056 0.0118 0.0183 0.0272 0.0349 0.0398 0.0446 0.0484 0.0504 0.0594 0.0577 0.0627 0.0634 0.0682 0.0814 0.0633 0.0714 0.0757
+ 1987 1 1 1 1 -1 0.0056 0.0101 0.022 0.0285 0.0348 0.0417 0.0463 0.0513 0.0569 0.0602 0.0611 0.0664 0.0672 0.0664 0.0741 0.09 0.1095 0.1265
+ 1988 1 1 1 1 -1 0.0052 0.0113 0.0205 0.0319 0.0369 0.0421 0.0479 0.0539 0.0611 0.062 0.0696 0.0716 0.0784 0.077 0.0835 0.0904 0.0815 0.1538
+ 1989 1 1 1 1 -1 0.0056 0.0124 0.0236 0.0333 0.0416 0.0465 0.0517 0.0556 0.0607 0.0672 0.0645 0.071 0.0757 0.0808 0.0817 0.1167 0.071 0.181
+ 1990 1 1 1 1 -1 0.0057 0.0098 0.0194 0.0322 0.0388 0.0452 0.0507 0.057 0.0601 0.0685 0.0715 0.0752 0.0934 0.085 0.0788 0.0944 0.0806 0.112
+ 1991 1 1 1 1 -1 0.0065 0.0122 0.0215 0.0276 0.0355 0.041 0.048 0.0525 0.055 0.0586 0.0638 0.0674 0.0706 0.0721 0.0797 0.0799 0.0902 0.108
+ 1992 1 1 1 1 -1 0.0067 0.0121 0.02 0.0272 0.0304 0.0398 0.0436 0.0499 0.0538 0.058 0.0648 0.0638 0.0715 0.0648 0.087 0.072 0.0863 0.108
+ 1993 1 1 1 1 -1 0.007 0.0109 0.0193 0.0274 0.0311 0.034 0.0439 0.0503 0.0547 0.0596 0.0635 0.0665 0.0708 0.0788 0.093 0.0952 0.109 0.104
+ 1994 1 1 1 1 -1 0.006 0.0117 0.021 0.0275 0.0326 0.0357 0.0395 0.0493 0.0557 0.062 0.069 0.0736 0.0699 0.0765 0.0455 0.0845 0.0925 0.0835
+ 1995 1 1 1 1 -1 0.0071 0.0092 0.019 0.0271 0.0304 0.0352 0.0386 0.0431 0.0522 0.0616 0.0679 0.0764 0.094 0.0873 0.104 0.1023 0.0925 0.0835
+ 1996 1 1 1 1 -1 0.0035 0.0108 0.017 0.0257 0.0317 0.0344 0.0397 0.044 0.0494 0.0578 0.0643 0.0687 0.0758 0.07 0.098 0.087 0.076 0.0835
+ 1997 1 1 1 1 -1 0.004 0.0094 0.0157 0.0231 0.0292 0.0339 0.037 0.0427 0.0472 0.0544 0.0637 0.069 0.0711 0.0906 0.086 0.092 0.0881 0.063
+ 1998 1 1 1 1 -1 0.0045 0.0078 0.0135 0.0208 0.0279 0.0342 0.0407 0.0444 0.0556 0.0581 0.0666 0.0815 0.0826 0.1116 0.0968 0.1101 0.1002 0.0903
+ 1999 1 1 1 1 -1 0.006 0.0079 0.0134 0.0207 0.0264 0.0329 0.0414 0.046 0.0535 0.0573 0.0626 0.0737 0.0793 0.086 0.1033 0.1206 0.1243 0.0903
+ 2000 1 1 1 1 -1 0.0054 0.0077 0.0143 0.0201 0.025 0.0293 0.0344 0.0388 0.0411 0.0462 0.0563 0.0553 0.0654 0.0709 0.0687 0.0782 0.08 0.1176
+ 2001 1 1 1 1 -1 0.0055 0.0086 0.0154 0.0221 0.0267 0.0289 0.0326 0.0395 0.0421 0.0471 0.0475 0.0576 0.0616 0.0619 0.0682 0.0776 0.0765 0.088
+ 2002 1 1 1 1 -1 0.004 0.0081 0.0158 0.0225 0.0269 0.0306 0.035 0.0387 0.0439 0.0477 0.054 0.0582 0.058 0.0664 0.0747 0.0881 0.0639 0.0934
+ 2003 1 1 1 1 -1 0.0041 0.0077 0.0161 0.0233 0.0267 0.0305 0.0345 0.0401 0.042 0.0492 0.0567 0.061 0.0619 0.0616 0.0712 0.0852 0.0709 0.0582
+ 2004 1 1 1 1 -1 0.0044 0.0067 0.0138 0.0204 0.0259 0.03 0.0371 0.0389 0.0433 0.049 0.053 0.0596 0.0593 0.064 0.0727 0.0629 0.0722 0.0734
+ 2005 1 1 1 1 -1 0.0071 0.0075 0.013 0.0195 0.0248 0.0295 0.0318 0.0386 0.0388 0.0426 0.0446 0.0475 0.0504 0.0445 0.0565 0.0553 0.0583 0.0569
+ 2006 1 1 1 1 -1 0.0054 0.0082 0.015 0.0194 0.0231 0.0267 0.0326 0.035 0.038 0.0399 0.0433 0.043 0.0448 0.0506 0.0544 0.0509 0.0477 0.058
+ 2007 1 1 1 1 -1 0.0046 0.0074 0.0148 0.021 0.0248 0.0271 0.0311 0.0355 0.0392 0.0426 0.044 0.048 0.0496 0.0522 0.0516 0.0636 0.0557 0.0649
+ 2008 1 1 1 1 -1 0.0073 0.009 0.0147 0.021 0.0233 0.0282 0.0285 0.0334 0.0376 0.0404 0.0457 0.0535 0.0474 0.0538 0.0618 0.0514 0.0735 0.0806
+ 2009 1 1 1 1 -1 0.0062 0.0099 0.0158 0.0206 0.0239 0.0302 0.0311 0.0347 0.0374 0.0411 0.0441 0.0519 0.0508 0.0567 0.0563 0.0561 0.0584 0.0651
+ 2010 1 1 1 1 -1 0.0053 0.0082 0.0165 0.0225 0.0259 0.0288 0.0349 0.0334 0.0394 0.044 0.0431 0.0502 0.058 0.0549 0.0551 0.0673 0.0522 0.058
+ 2011 1 1 1 1 -1 0.0059 0.0089 0.016 0.023 0.0268 0.0293 0.0327 0.0363 0.0388 0.0421 0.0427 0.048 0.0495 0.0504 0.0598 0.0528 0.0601 0.061
+ 2012 1 1 1 1 -1 0.0066 0.0092 0.0165 0.0238 0.0274 0.0303 0.0359 0.0387 0.0408 0.0458 0.0486 0.0503 0.0526 0.0567 0.0571 0.0682 0.0559 0.0662
+ 2013 1 1 1 1 -1 0.0044 0.0128 0.0204 0.0251 0.0286 0.0322 0.0352 0.0368 0.0385 0.0438 0.0461 0.0463 0.0474 0.0515 0.0534 0.0572 0.0626 0.0658
+ 2014 1 1 1 1 -1 0.0078 0.0096 0.0182 0.0259 0.0292 0.0326 0.0403 0.0429 0.0455 0.0476 0.0494 0.0486 0.0598 0.0555 0.059 0.0704 0.0717 0.0711
+ 2015 1 1 1 1 -1 0.0049 0.0134 0.0193 0.0249 0.0294 0.0317 0.0366 0.0394 0.043 0.0444 0.0471 0.0522 0.0508 0.0554 0.0525 0.0544 0.0574 0.0716
+ 2016 1 1 1 1 -1 0.0086 0.0121 0.0174 0.0227 0.0283 0.0319 0.0348 0.0382 0.0449 0.0484 0.0516 0.0531 0.0539 0.0645 0.066 0.0615 0.0721 0.0772
+ 2017 1 1 1 1 -1 0.0064 0.0104 0.0176 0.0232 0.0273 0.0319 0.0381 0.039 0.0424 0.0481 0.0534 0.0557 0.0546 0.059 0.0615 0.0666 0.0664 0.0697
+ 2018 1 1 1 1 -1 0.0102 0.0102 0.0175 0.0244 0.0278 0.0321 0.0365 0.0367 0.0409 0.0465 0.0503 0.0611 0.0491 0.0577 0.0645 0.062 0.0565 0.0694
+ -2019 1 1 1 1 -1 0.00539 0.0097 0.01653 0.02405 0.02955 0.03227 0.03375 0.03942 0.04256 0.04693 0.05088 0.05127 0.05336 0.05574 0.06374 0.06434 0.057 0.069
+ -2020 1 1 1 1 -1 0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625 0.0384733 0.0418533 0.0469767 0.0512933 0.05609 0.0524533 0.05758 0.0632467 0.0644467 0.06 0.0693333
+ 1963 1 1 1 1 0 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1964 1 1 1 1 0 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1965 1 1 1 1 0 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1966 1 1 1 1 0 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1967 1 1 1 1 0 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1968 1 1 1 1 0 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1969 1 1 1 1 0 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.0774 0.1233 0.0851
+ 1970 1 1 1 1 0 0.006 0.0042 0.015 0.0235 0.0288 0.036 0.0373 0.0446 0.049 0.0482 0.0499 0.0565 0.0569 0.0573 0.0652 0.0652 0.073 0.073
+ 1971 1 1 1 1 0 0.006 0.0041 0.0114 0.0192 0.024 0.0259 0.029 0.0348 0.0338 0.037 0.0446 0.0564 0.0405 0.0616 0.04 0.051 0.1233 0.1233
+ 1972 1 1 1 1 0 0.006 0.0076 0.0157 0.0233 0.0292 0.0328 0.0363 0.0421 0.0466 0.055 0.0552 0.0563 0.0581 0.0659 0.0587 0.1161 0.1735 0.059
+ 1973 1 1 1 1 0 0.006 0.011 0.0199 0.0273 0.0344 0.0397 0.0437 0.0494 0.0593 0.073 0.0658 0.0563 0.0581 0.0659 0.0587 0.1161 0.1735 0.059
+ 1974 1 1 1 1 0 0.006 0.0147 0.0192 0.0255 0.031 0.0361 0.041 0.0416 0.0462 0.0497 0.0548 0.0563 0.0581 0.0659 0.0587 0.1161 0.0875 0.059
+ 1975 1 1 1 1 0 0.0038 0.0118 0.0203 0.027 0.0315 0.0353 0.0398 0.0431 0.0463 0.0498 0.0556 0.0554 0.0656 0.0621 0.0739 0.089 0.148 0.076
+ 1976 1 1 1 1 0 0.01 0.0116 0.0197 0.0263 0.0313 0.0359 0.0388 0.0429 0.0455 0.0493 0.0535 0.0568 0.0594 0.0645 0.0582 0.0632 0.058 0.093
+ 1977 1 1 1 1 0 0.0077 0.0141 0.0199 0.026 0.0304 0.0348 0.0388 0.0426 0.0457 0.0478 0.0512 0.0561 0.0592 0.0702 0.0624 0.071 0.101 0.0775
+ 1978 1 1 1 1 0 0.0055 0.0103 0.0195 0.0275 0.0306 0.0338 0.0386 0.0425 0.0459 0.0496 0.053 0.0551 0.0646 0.0717 0.0667 0.062 0.098 0.098
+ 1979 1 1 1 1 0 0.0059 0.0142 0.0197 0.0263 0.0326 0.035 0.0374 0.0422 0.0476 0.0497 0.0549 0.0534 0.0567 0.0715 0.075 0.0775 0.0855 0.0855
+ 1980 1 1 1 1 0 0.0041 0.011 0.0206 0.0257 0.0323 0.0354 0.0375 0.0401 0.045 0.0503 0.0557 0.0582 0.0571 0.0774 0.0615 0.093 0.073 0.073
+ 1981 1 1 1 1 0 0.008 0.0124 0.0203 0.0272 0.0339 0.0406 0.0419 0.046 0.0485 0.0542 0.0588 0.0684 0.0683 0.0648 0.1098 0.0745 0.0685 0.0685
+ 1982 1 1 1 1 0 0.002 0.0101 0.0188 0.0278 0.0351 0.0391 0.0433 0.0447 0.0503 0.0521 0.0595 0.0608 0.0674 0.0795 0.0725 0.0842 0.0685 0.09
+ 1983 1 1 1 1 0 0.0077 0.012 0.0211 0.032 0.038 0.0439 0.0503 0.0522 0.0561 0.0629 0.0626 0.0695 0.0812 0.0924 0.1033 0.1063 0.0685 0.0923
+ 1984 1 1 1 1 0 0.006 0.0131 0.0222 0.0321 0.04 0.0445 0.051 0.0583 0.0605 0.0592 0.0631 0.0668 0.0818 0.0739 0.0722 0.115 0.064 0.0923
+ 1985 1 1 1 1 0 0.0056 0.01 0.0204 0.03 0.0382 0.0421 0.0465 0.0519 0.0563 0.0576 0.0595 0.0635 0.0717 0.0755 0.0713 0.0804 0.0677 0.0945
+ 1986 1 1 1 1 0 0.0056 0.0118 0.0183 0.0272 0.0349 0.0398 0.0446 0.0484 0.0504 0.0594 0.0577 0.0627 0.0634 0.0682 0.0814 0.0633 0.0714 0.0757
+ 1987 1 1 1 1 0 0.0056 0.0101 0.022 0.0285 0.0348 0.0417 0.0463 0.0513 0.0569 0.0602 0.0611 0.0664 0.0672 0.0664 0.0741 0.09 0.1095 0.1265
+ 1988 1 1 1 1 0 0.0052 0.0113 0.0205 0.0319 0.0369 0.0421 0.0479 0.0539 0.0611 0.062 0.0696 0.0716 0.0784 0.077 0.0835 0.0904 0.0815 0.1538
+ 1989 1 1 1 1 0 0.0056 0.0124 0.0236 0.0333 0.0416 0.0465 0.0517 0.0556 0.0607 0.0672 0.0645 0.071 0.0757 0.0808 0.0817 0.1167 0.071 0.181
+ 1990 1 1 1 1 0 0.0057 0.0098 0.0194 0.0322 0.0388 0.0452 0.0507 0.057 0.0601 0.0685 0.0715 0.0752 0.0934 0.085 0.0788 0.0944 0.0806 0.112
+ 1991 1 1 1 1 0 0.0065 0.0122 0.0215 0.0276 0.0355 0.041 0.048 0.0525 0.055 0.0586 0.0638 0.0674 0.0706 0.0721 0.0797 0.0799 0.0902 0.108
+ 1992 1 1 1 1 0 0.0067 0.0121 0.02 0.0272 0.0304 0.0398 0.0436 0.0499 0.0538 0.058 0.0648 0.0638 0.0715 0.0648 0.087 0.072 0.0863 0.108
+ 1993 1 1 1 1 0 0.007 0.0109 0.0193 0.0274 0.0311 0.034 0.0439 0.0503 0.0547 0.0596 0.0635 0.0665 0.0708 0.0788 0.093 0.0952 0.109 0.104
+ 1994 1 1 1 1 0 0.006 0.0117 0.021 0.0275 0.0326 0.0357 0.0395 0.0493 0.0557 0.062 0.069 0.0736 0.0699 0.0765 0.0455 0.0845 0.0925 0.0835
+ 1995 1 1 1 1 0 0.0071 0.0092 0.019 0.0271 0.0304 0.0352 0.0386 0.0431 0.0522 0.0616 0.0679 0.0764 0.094 0.0873 0.104 0.1023 0.0925 0.0835
+ 1996 1 1 1 1 0 0.0035 0.0108 0.017 0.0257 0.0317 0.0344 0.0397 0.044 0.0494 0.0578 0.0643 0.0687 0.0758 0.07 0.098 0.087 0.076 0.0835
+ 1997 1 1 1 1 0 0.004 0.0094 0.0157 0.0231 0.0292 0.0339 0.037 0.0427 0.0472 0.0544 0.0637 0.069 0.0711 0.0906 0.086 0.092 0.0881 0.063
+ 1998 1 1 1 1 0 0.0045 0.0078 0.0135 0.0208 0.0279 0.0342 0.0407 0.0444 0.0556 0.0581 0.0666 0.0815 0.0826 0.1116 0.0968 0.1101 0.1002 0.0903
+ 1999 1 1 1 1 0 0.006 0.0079 0.0134 0.0207 0.0264 0.0329 0.0414 0.046 0.0535 0.0573 0.0626 0.0737 0.0793 0.086 0.1033 0.1206 0.1243 0.0903
+ 2000 1 1 1 1 0 0.0054 0.0077 0.0143 0.0201 0.025 0.0293 0.0344 0.0388 0.0411 0.0462 0.0563 0.0553 0.0654 0.0709 0.0687 0.0782 0.08 0.1176
+ 2001 1 1 1 1 0 0.0055 0.0086 0.0154 0.0221 0.0267 0.0289 0.0326 0.0395 0.0421 0.0471 0.0475 0.0576 0.0616 0.0619 0.0682 0.0776 0.0765 0.088
+ 2002 1 1 1 1 0 0.004 0.0081 0.0158 0.0225 0.0269 0.0306 0.035 0.0387 0.0439 0.0477 0.054 0.0582 0.058 0.0664 0.0747 0.0881 0.0639 0.0934
+ 2003 1 1 1 1 0 0.0041 0.0077 0.0161 0.0233 0.0267 0.0305 0.0345 0.0401 0.042 0.0492 0.0567 0.061 0.0619 0.0616 0.0712 0.0852 0.0709 0.0582
+ 2004 1 1 1 1 0 0.0044 0.0067 0.0138 0.0204 0.0259 0.03 0.0371 0.0389 0.0433 0.049 0.053 0.0596 0.0593 0.064 0.0727 0.0629 0.0722 0.0734
+ 2005 1 1 1 1 0 0.0071 0.0075 0.013 0.0195 0.0248 0.0295 0.0318 0.0386 0.0388 0.0426 0.0446 0.0475 0.0504 0.0445 0.0565 0.0553 0.0583 0.0569
+ 2006 1 1 1 1 0 0.0054 0.0082 0.015 0.0194 0.0231 0.0267 0.0326 0.035 0.038 0.0399 0.0433 0.043 0.0448 0.0506 0.0544 0.0509 0.0477 0.058
+ 2007 1 1 1 1 0 0.0046 0.0074 0.0148 0.021 0.0248 0.0271 0.0311 0.0355 0.0392 0.0426 0.044 0.048 0.0496 0.0522 0.0516 0.0636 0.0557 0.0649
+ 2008 1 1 1 1 0 0.0073 0.009 0.0147 0.021 0.0233 0.0282 0.0285 0.0334 0.0376 0.0404 0.0457 0.0535 0.0474 0.0538 0.0618 0.0514 0.0735 0.0806
+ 2009 1 1 1 1 0 0.0062 0.0099 0.0158 0.0206 0.0239 0.0302 0.0311 0.0347 0.0374 0.0411 0.0441 0.0519 0.0508 0.0567 0.0563 0.0561 0.0584 0.0651
+ 2010 1 1 1 1 0 0.0053 0.0082 0.0165 0.0225 0.0259 0.0288 0.0349 0.0334 0.0394 0.044 0.0431 0.0502 0.058 0.0549 0.0551 0.0673 0.0522 0.058
+ 2011 1 1 1 1 0 0.0059 0.0089 0.016 0.023 0.0268 0.0293 0.0327 0.0363 0.0388 0.0421 0.0427 0.048 0.0495 0.0504 0.0598 0.0528 0.0601 0.061
+ 2012 1 1 1 1 0 0.0066 0.0092 0.0165 0.0238 0.0274 0.0303 0.0359 0.0387 0.0408 0.0458 0.0486 0.0503 0.0526 0.0567 0.0571 0.0682 0.0559 0.0662
+ 2013 1 1 1 1 0 0.0044 0.0128 0.0204 0.0251 0.0286 0.0322 0.0352 0.0368 0.0385 0.0438 0.0461 0.0463 0.0474 0.0515 0.0534 0.0572 0.0626 0.0658
+ 2014 1 1 1 1 0 0.0078 0.0096 0.0182 0.0259 0.0292 0.0326 0.0403 0.0429 0.0455 0.0476 0.0494 0.0486 0.0598 0.0555 0.059 0.0704 0.0717 0.0711
+ 2015 1 1 1 1 0 0.0049 0.0134 0.0193 0.0249 0.0294 0.0317 0.0366 0.0394 0.043 0.0444 0.0471 0.0522 0.0508 0.0554 0.0525 0.0544 0.0574 0.0716
+ 2016 1 1 1 1 0 0.0086 0.0121 0.0174 0.0227 0.0283 0.0319 0.0348 0.0382 0.0449 0.0484 0.0516 0.0531 0.0539 0.0645 0.066 0.0615 0.0721 0.0772
+ 2017 1 1 1 1 0 0.0064 0.0104 0.0176 0.0232 0.0273 0.0319 0.0381 0.039 0.0424 0.0481 0.0534 0.0557 0.0546 0.059 0.0615 0.0666 0.0664 0.0697
+ 2018 1 1 1 1 0 0.0102 0.0102 0.0175 0.0244 0.0278 0.0321 0.0365 0.0367 0.0409 0.0465 0.0503 0.0611 0.0491 0.0577 0.0645 0.062 0.0565 0.0694
+ -2019 1 1 1 1 0 0.00539 0.0097 0.01653 0.02405 0.02955 0.03227 0.03375 0.03942 0.04256 0.04693 0.05088 0.05127 0.05336 0.05574 0.06374 0.06434 0.057 0.069
+ -2020 1 1 1 1 0 0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625 0.0384733 0.0418533 0.0469767 0.0512933 0.05609 0.0524533 0.05758 0.0632467 0.0644467 0.06 0.0693333
+ 1963 1 1 1 1 1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1964 1 1 1 1 1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1965 1 1 1 1 1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1966 1 1 1 1 1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1967 1 1 1 1 1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1968 1 1 1 1 1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.1347 0.1233 0.0851
+ 1969 1 1 1 1 1 0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342 0.0405 0.0431 0.0467 0.0499 0.0564 0.0518 0.0616 0.0546 0.0774 0.1233 0.0851
+ 1970 1 1 1 1 1 0.006 0.0042 0.015 0.0235 0.0288 0.036 0.0373 0.0446 0.049 0.0482 0.0499 0.0565 0.0569 0.0573 0.0652 0.0652 0.073 0.073
+ 1971 1 1 1 1 1 0.006 0.0041 0.0114 0.0192 0.024 0.0259 0.029 0.0348 0.0338 0.037 0.0446 0.0564 0.0405 0.0616 0.04 0.051 0.1233 0.1233
+ 1972 1 1 1 1 1 0.006 0.0076 0.0157 0.0233 0.0292 0.0328 0.0363 0.0421 0.0466 0.055 0.0552 0.0563 0.0581 0.0659 0.0587 0.1161 0.1735 0.059
+ 1973 1 1 1 1 1 0.006 0.011 0.0199 0.0273 0.0344 0.0397 0.0437 0.0494 0.0593 0.073 0.0658 0.0563 0.0581 0.0659 0.0587 0.1161 0.1735 0.059
+ 1974 1 1 1 1 1 0.006 0.0147 0.0192 0.0255 0.031 0.0361 0.041 0.0416 0.0462 0.0497 0.0548 0.0563 0.0581 0.0659 0.0587 0.1161 0.0875 0.059
+ 1975 1 1 1 1 1 0.0038 0.0118 0.0203 0.027 0.0315 0.0353 0.0398 0.0431 0.0463 0.0498 0.0556 0.0554 0.0656 0.0621 0.0739 0.089 0.148 0.076
+ 1976 1 1 1 1 1 0.01 0.0116 0.0197 0.0263 0.0313 0.0359 0.0388 0.0429 0.0455 0.0493 0.0535 0.0568 0.0594 0.0645 0.0582 0.0632 0.058 0.093
+ 1977 1 1 1 1 1 0.0077 0.0141 0.0199 0.026 0.0304 0.0348 0.0388 0.0426 0.0457 0.0478 0.0512 0.0561 0.0592 0.0702 0.0624 0.071 0.101 0.0775
+ 1978 1 1 1 1 1 0.0055 0.0103 0.0195 0.0275 0.0306 0.0338 0.0386 0.0425 0.0459 0.0496 0.053 0.0551 0.0646 0.0717 0.0667 0.062 0.098 0.098
+ 1979 1 1 1 1 1 0.0059 0.0142 0.0197 0.0263 0.0326 0.035 0.0374 0.0422 0.0476 0.0497 0.0549 0.0534 0.0567 0.0715 0.075 0.0775 0.0855 0.0855
+ 1980 1 1 1 1 1 0.0041 0.011 0.0206 0.0257 0.0323 0.0354 0.0375 0.0401 0.045 0.0503 0.0557 0.0582 0.0571 0.0774 0.0615 0.093 0.073 0.073
+ 1981 1 1 1 1 1 0.008 0.0124 0.0203 0.0272 0.0339 0.0406 0.0419 0.046 0.0485 0.0542 0.0588 0.0684 0.0683 0.0648 0.1098 0.0745 0.0685 0.0685
+ 1982 1 1 1 1 1 0.002 0.0101 0.0188 0.0278 0.0351 0.0391 0.0433 0.0447 0.0503 0.0521 0.0595 0.0608 0.0674 0.0795 0.0725 0.0842 0.0685 0.09
+ 1983 1 1 1 1 1 0.0077 0.012 0.0211 0.032 0.038 0.0439 0.0503 0.0522 0.0561 0.0629 0.0626 0.0695 0.0812 0.0924 0.1033 0.1063 0.0685 0.0923
+ 1984 1 1 1 1 1 0.006 0.0131 0.0222 0.0321 0.04 0.0445 0.051 0.0583 0.0605 0.0592 0.0631 0.0668 0.0818 0.0739 0.0722 0.115 0.064 0.0923
+ 1985 1 1 1 1 1 0.0056 0.01 0.0204 0.03 0.0382 0.0421 0.0465 0.0519 0.0563 0.0576 0.0595 0.0635 0.0717 0.0755 0.0713 0.0804 0.0677 0.0945
+ 1986 1 1 1 1 1 0.0056 0.0118 0.0183 0.0272 0.0349 0.0398 0.0446 0.0484 0.0504 0.0594 0.0577 0.0627 0.0634 0.0682 0.0814 0.0633 0.0714 0.0757
+ 1987 1 1 1 1 1 0.0056 0.0101 0.022 0.0285 0.0348 0.0417 0.0463 0.0513 0.0569 0.0602 0.0611 0.0664 0.0672 0.0664 0.0741 0.09 0.1095 0.1265
+ 1988 1 1 1 1 1 0.0052 0.0113 0.0205 0.0319 0.0369 0.0421 0.0479 0.0539 0.0611 0.062 0.0696 0.0716 0.0784 0.077 0.0835 0.0904 0.0815 0.1538
+ 1989 1 1 1 1 1 0.0056 0.0124 0.0236 0.0333 0.0416 0.0465 0.0517 0.0556 0.0607 0.0672 0.0645 0.071 0.0757 0.0808 0.0817 0.1167 0.071 0.181
+ 1990 1 1 1 1 1 0.0057 0.0098 0.0194 0.0322 0.0388 0.0452 0.0507 0.057 0.0601 0.0685 0.0715 0.0752 0.0934 0.085 0.0788 0.0944 0.0806 0.112
+ 1991 1 1 1 1 1 0.0065 0.0122 0.0215 0.0276 0.0355 0.041 0.048 0.0525 0.055 0.0586 0.0638 0.0674 0.0706 0.0721 0.0797 0.0799 0.0902 0.108
+ 1992 1 1 1 1 1 0.0067 0.0121 0.02 0.0272 0.0304 0.0398 0.0436 0.0499 0.0538 0.058 0.0648 0.0638 0.0715 0.0648 0.087 0.072 0.0863 0.108
+ 1993 1 1 1 1 1 0.007 0.0109 0.0193 0.0274 0.0311 0.034 0.0439 0.0503 0.0547 0.0596 0.0635 0.0665 0.0708 0.0788 0.093 0.0952 0.109 0.104
+ 1994 1 1 1 1 1 0.006 0.0117 0.021 0.0275 0.0326 0.0357 0.0395 0.0493 0.0557 0.062 0.069 0.0736 0.0699 0.0765 0.0455 0.0845 0.0925 0.0835
+ 1995 1 1 1 1 1 0.0071 0.0092 0.019 0.0271 0.0304 0.0352 0.0386 0.0431 0.0522 0.0616 0.0679 0.0764 0.094 0.0873 0.104 0.1023 0.0925 0.0835
+ 1996 1 1 1 1 1 0.0035 0.0108 0.017 0.0257 0.0317 0.0344 0.0397 0.044 0.0494 0.0578 0.0643 0.0687 0.0758 0.07 0.098 0.087 0.076 0.0835
+ 1997 1 1 1 1 1 0.004 0.0094 0.0157 0.0231 0.0292 0.0339 0.037 0.0427 0.0472 0.0544 0.0637 0.069 0.0711 0.0906 0.086 0.092 0.0881 0.063
+ 1998 1 1 1 1 1 0.0045 0.0078 0.0135 0.0208 0.0279 0.0342 0.0407 0.0444 0.0556 0.0581 0.0666 0.0815 0.0826 0.1116 0.0968 0.1101 0.1002 0.0903
+ 1999 1 1 1 1 1 0.006 0.0079 0.0134 0.0207 0.0264 0.0329 0.0414 0.046 0.0535 0.0573 0.0626 0.0737 0.0793 0.086 0.1033 0.1206 0.1243 0.0903
+ 2000 1 1 1 1 1 0.0054 0.0077 0.0143 0.0201 0.025 0.0293 0.0344 0.0388 0.0411 0.0462 0.0563 0.0553 0.0654 0.0709 0.0687 0.0782 0.08 0.1176
+ 2001 1 1 1 1 1 0.0055 0.0086 0.0154 0.0221 0.0267 0.0289 0.0326 0.0395 0.0421 0.0471 0.0475 0.0576 0.0616 0.0619 0.0682 0.0776 0.0765 0.088
+ 2002 1 1 1 1 1 0.004 0.0081 0.0158 0.0225 0.0269 0.0306 0.035 0.0387 0.0439 0.0477 0.054 0.0582 0.058 0.0664 0.0747 0.0881 0.0639 0.0934
+ 2003 1 1 1 1 1 0.0041 0.0077 0.0161 0.0233 0.0267 0.0305 0.0345 0.0401 0.042 0.0492 0.0567 0.061 0.0619 0.0616 0.0712 0.0852 0.0709 0.0582
+ 2004 1 1 1 1 1 0.0044 0.0067 0.0138 0.0204 0.0259 0.03 0.0371 0.0389 0.0433 0.049 0.053 0.0596 0.0593 0.064 0.0727 0.0629 0.0722 0.0734
+ 2005 1 1 1 1 1 0.0071 0.0075 0.013 0.0195 0.0248 0.0295 0.0318 0.0386 0.0388 0.0426 0.0446 0.0475 0.0504 0.0445 0.0565 0.0553 0.0583 0.0569
+ 2006 1 1 1 1 1 0.0054 0.0082 0.015 0.0194 0.0231 0.0267 0.0326 0.035 0.038 0.0399 0.0433 0.043 0.0448 0.0506 0.0544 0.0509 0.0477 0.058
+ 2007 1 1 1 1 1 0.0046 0.0074 0.0148 0.021 0.0248 0.0271 0.0311 0.0355 0.0392 0.0426 0.044 0.048 0.0496 0.0522 0.0516 0.0636 0.0557 0.0649
+ 2008 1 1 1 1 1 0.0073 0.009 0.0147 0.021 0.0233 0.0282 0.0285 0.0334 0.0376 0.0404 0.0457 0.0535 0.0474 0.0538 0.0618 0.0514 0.0735 0.0806
+ 2009 1 1 1 1 1 0.0062 0.0099 0.0158 0.0206 0.0239 0.0302 0.0311 0.0347 0.0374 0.0411 0.0441 0.0519 0.0508 0.0567 0.0563 0.0561 0.0584 0.0651
+ 2010 1 1 1 1 1 0.0053 0.0082 0.0165 0.0225 0.0259 0.0288 0.0349 0.0334 0.0394 0.044 0.0431 0.0502 0.058 0.0549 0.0551 0.0673 0.0522 0.058
+ 2011 1 1 1 1 1 0.0059 0.0089 0.016 0.023 0.0268 0.0293 0.0327 0.0363 0.0388 0.0421 0.0427 0.048 0.0495 0.0504 0.0598 0.0528 0.0601 0.061
+ 2012 1 1 1 1 1 0.0066 0.0092 0.0165 0.0238 0.0274 0.0303 0.0359 0.0387 0.0408 0.0458 0.0486 0.0503 0.0526 0.0567 0.0571 0.0682 0.0559 0.0662
+ 2013 1 1 1 1 1 0.0044 0.0128 0.0204 0.0251 0.0286 0.0322 0.0352 0.0368 0.0385 0.0438 0.0461 0.0463 0.0474 0.0515 0.0534 0.0572 0.0626 0.0658
+ 2014 1 1 1 1 1 0.0078 0.0096 0.0182 0.0259 0.0292 0.0326 0.0403 0.0429 0.0455 0.0476 0.0494 0.0486 0.0598 0.0555 0.059 0.0704 0.0717 0.0711
+ 2015 1 1 1 1 1 0.0049 0.0134 0.0193 0.0249 0.0294 0.0317 0.0366 0.0394 0.043 0.0444 0.0471 0.0522 0.0508 0.0554 0.0525 0.0544 0.0574 0.0716
+ 2016 1 1 1 1 1 0.0086 0.0121 0.0174 0.0227 0.0283 0.0319 0.0348 0.0382 0.0449 0.0484 0.0516 0.0531 0.0539 0.0645 0.066 0.0615 0.0721 0.0772
+ 2017 1 1 1 1 1 0.0064 0.0104 0.0176 0.0232 0.0273 0.0319 0.0381 0.039 0.0424 0.0481 0.0534 0.0557 0.0546 0.059 0.0615 0.0666 0.0664 0.0697
+ 2018 1 1 1 1 1 0.0102 0.0102 0.0175 0.0244 0.0278 0.0321 0.0365 0.0367 0.0409 0.0465 0.0503 0.0611 0.0491 0.0577 0.0645 0.062 0.0565 0.0694
+ -2019 1 1 1 1 1 0.00539 0.0097 0.01653 0.02405 0.02955 0.03227 0.03375 0.03942 0.04256 0.04693 0.05088 0.05127 0.05336 0.05574 0.06374 0.06434 0.057 0.069
+ -2020 1 1 1 1 1 0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625 0.0384733 0.0418533 0.0469767 0.0512933 0.05609 0.0524533 0.05758 0.0632467 0.0644467 0.06 0.0693333
+ 1963 1 1 1 1 2 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1964 1 1 1 1 2 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1965 1 1 1 1 2 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1966 1 1 1 1 2 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1967 1 1 1 1 2 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1968 1 1 1 1 2 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1969 1 1 1 1 2 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.077 0.123 0.085
+ 1970 1 1 1 1 2 0.006 0.004 0.015 0.024 0.029 0.036 0.037 0.045 0.049 0.048 0.05 0.056 0.057 0.057 0.065 0.065 0.073 0.073
+ 1971 1 1 1 1 2 0.006 0.004 0.011 0.019 0.024 0.026 0.029 0.035 0.034 0.037 0.045 0.056 0.041 0.062 0.04 0.051 0.123 0.123
+ 1972 1 1 1 1 2 0.006 0.008 0.016 0.023 0.029 0.033 0.036 0.042 0.047 0.055 0.055 0.056 0.058 0.066 0.059 0.116 0.174 0.059
+ 1973 1 1 1 1 2 0.006 0.011 0.02 0.027 0.034 0.04 0.044 0.049 0.059 0.073 0.066 0.056 0.058 0.066 0.059 0.116 0.174 0.059
+ 1974 1 1 1 1 2 0.006 0.015 0.019 0.026 0.031 0.036 0.041 0.042 0.046 0.05 0.055 0.056 0.058 0.066 0.059 0.116 0.088 0.059
+ 1975 1 1 1 1 2 0.004 0.012 0.02 0.027 0.031 0.035 0.04 0.043 0.046 0.05 0.056 0.055 0.066 0.062 0.074 0.089 0.148 0.076
+ 1976 1 1 1 1 2 0.01 0.012 0.02 0.026 0.031 0.036 0.039 0.043 0.045 0.049 0.053 0.057 0.059 0.065 0.058 0.063 0.058 0.093
+ 1977 1 1 1 1 2 0.008 0.014 0.02 0.026 0.03 0.035 0.039 0.043 0.046 0.048 0.051 0.056 0.059 0.07 0.062 0.071 0.101 0.078
+ 1978 1 1 1 1 2 0.005 0.01 0.02 0.027 0.031 0.034 0.039 0.043 0.046 0.05 0.053 0.055 0.065 0.072 0.067 0.062 0.098 0.098
+ 1979 1 1 1 1 2 0.006 0.014 0.02 0.026 0.033 0.035 0.037 0.042 0.048 0.05 0.055 0.053 0.057 0.072 0.075 0.078 0.086 0.086
+ 1980 1 1 1 1 2 0.004 0.011 0.021 0.026 0.032 0.035 0.038 0.04 0.045 0.05 0.056 0.058 0.057 0.077 0.062 0.093 0.073 0.073
+ 1981 1 1 1 1 2 0.008 0.012 0.02 0.027 0.034 0.041 0.042 0.046 0.049 0.054 0.059 0.068 0.068 0.065 0.11 0.075 0.069 0.069
+ 1982 1 1 1 1 2 0.002 0.01 0.019 0.028 0.035 0.039 0.043 0.045 0.05 0.052 0.06 0.061 0.067 0.08 0.073 0.084 0.069 0.09
+ 1983 1 1 1 1 2 0.008 0.012 0.021 0.032 0.038 0.044 0.05 0.052 0.056 0.063 0.063 0.07 0.081 0.092 0.103 0.106 0.069 0.092
+ 1984 1 1 1 1 2 0.006 0.013 0.022 0.032 0.04 0.044 0.051 0.058 0.061 0.059 0.063 0.067 0.082 0.074 0.072 0.115 0.064 0.092
+ 1985 1 1 1 1 2 0.006 0.01 0.02 0.03 0.038 0.042 0.046 0.052 0.056 0.058 0.06 0.063 0.072 0.075 0.071 0.08 0.068 0.095
+ 1986 1 1 1 1 2 0.006 0.012 0.018 0.027 0.035 0.04 0.045 0.048 0.05 0.059 0.058 0.063 0.063 0.068 0.081 0.063 0.071 0.076
+ 1987 1 1 1 1 2 0.006 0.01 0.022 0.029 0.035 0.042 0.046 0.051 0.057 0.06 0.061 0.066 0.067 0.066 0.074 0.09 0.11 0.127
+ 1988 1 1 1 1 2 0.005 0.011 0.02 0.032 0.037 0.042 0.048 0.054 0.061 0.062 0.07 0.072 0.078 0.077 0.083 0.09 0.082 0.154
+ 1989 1 1 1 1 2 0.006 0.012 0.024 0.033 0.042 0.047 0.052 0.056 0.061 0.067 0.064 0.071 0.076 0.081 0.082 0.117 0.071 0.181
+ 1990 1 1 1 1 2 0.006 0.01 0.019 0.032 0.039 0.045 0.051 0.057 0.06 0.068 0.071 0.075 0.093 0.085 0.079 0.094 0.081 0.112
+ 1991 1 1 1 1 2 0.007 0.012 0.021 0.028 0.036 0.041 0.048 0.053 0.055 0.059 0.064 0.067 0.071 0.072 0.08 0.08 0.09 0.108
+ 1992 1 1 1 1 2 0.007 0.012 0.02 0.027 0.03 0.04 0.044 0.05 0.054 0.058 0.065 0.064 0.072 0.065 0.087 0.072 0.086 0.108
+ 1993 1 1 1 1 2 0.007 0.011 0.019 0.027 0.031 0.034 0.044 0.05 0.055 0.06 0.063 0.067 0.071 0.079 0.093 0.095 0.109 0.104
+ 1994 1 1 1 1 2 0.006 0.012 0.021 0.027 0.033 0.036 0.039 0.049 0.056 0.062 0.069 0.074 0.07 0.077 0.046 0.085 0.093 0.084
+ 1995 1 1 1 1 2 0.007 0.009 0.019 0.027 0.03 0.035 0.039 0.043 0.052 0.062 0.068 0.076 0.094 0.087 0.104 0.102 0.093 0.084
+ 1996 1 1 1 1 2 0.003 0.011 0.017 0.026 0.032 0.034 0.04 0.044 0.049 0.058 0.064 0.069 0.076 0.07 0.098 0.087 0.076 0.084
+ 1997 1 1 1 1 2 0.004 0.009 0.016 0.023 0.029 0.034 0.037 0.043 0.047 0.054 0.064 0.069 0.071 0.091 0.086 0.092 0.088 0.063
+ 1998 1 1 1 1 2 0.004 0.008 0.013 0.021 0.028 0.034 0.041 0.044 0.056 0.058 0.067 0.082 0.083 0.112 0.097 0.11 0.1 0.09
+ 1999 1 1 1 1 2 0.006 0.008 0.013 0.021 0.026 0.033 0.041 0.046 0.053 0.057 0.063 0.074 0.079 0.086 0.103 0.121 0.124 0.09
+ 2000 1 1 1 1 2 0.005 0.008 0.014 0.02 0.025 0.029 0.034 0.039 0.041 0.046 0.056 0.055 0.065 0.071 0.069 0.078 0.08 0.118
+ 2001 1 1 1 1 2 0.005 0.009 0.015 0.022 0.027 0.029 0.033 0.039 0.042 0.047 0.048 0.058 0.062 0.062 0.068 0.078 0.077 0.088
+ 2002 1 1 1 1 2 0.004 0.008 0.016 0.022 0.027 0.031 0.035 0.039 0.044 0.048 0.054 0.058 0.058 0.066 0.075 0.088 0.064 0.093
+ 2003 1 1 1 1 2 0.004 0.008 0.016 0.023 0.027 0.03 0.035 0.04 0.042 0.049 0.057 0.061 0.062 0.062 0.071 0.085 0.071 0.058
+ 2004 1 1 1 1 2 0.004 0.007 0.014 0.02 0.026 0.03 0.037 0.039 0.043 0.049 0.053 0.06 0.059 0.064 0.073 0.063 0.072 0.073
+ 2005 1 1 1 1 2 0.007 0.007 0.013 0.019 0.025 0.03 0.032 0.039 0.039 0.043 0.045 0.047 0.05 0.045 0.057 0.055 0.058 0.057
+ 2006 1 1 1 1 2 0.005 0.008 0.015 0.019 0.023 0.027 0.033 0.035 0.038 0.04 0.043 0.043 0.045 0.051 0.054 0.051 0.048 0.058
+ 2007 1 1 1 1 2 0.003 0.013 0.018 0.023 0.024 0.027 0.032 0.035 0.039 0.041 0.043 0.044 0.047 0.049 0.053 0.059 0.058 0.053
+ 2008 1 1 1 1 2 0.005 0.016 0.02 0.023 0.025 0.028 0.031 0.033 0.038 0.043 0.046 0.051 0.053 0.056 0.053 0.06 0.055 0.061
+ 2009 1 1 1 1 2 0.005 0.015 0.02 0.024 0.024 0.029 0.033 0.034 0.037 0.042 0.044 0.046 0.047 0.052 0.056 0.053 0.055 0.054
+ 2010 1 1 1 1 2 0.004 0.014 0.02 0.024 0.026 0.028 0.032 0.037 0.038 0.04 0.041 0.047 0.05 0.053 0.052 0.052 0.054 0.053
+ 2011 1 1 1 1 2 0.004 0.014 0.02 0.024 0.028 0.03 0.032 0.036 0.04 0.038 0.043 0.045 0.051 0.05 0.052 0.046 0.051 0.057
+ 2012 1 1 1 1 2 0.006 0.015 0.021 0.025 0.028 0.03 0.034 0.035 0.039 0.041 0.043 0.043 0.052 0.07 0.054 0.051 0.046 0.056
+ 2013 1 1 1 1 2 0.004 0.016 0.022 0.026 0.029 0.033 0.035 0.035 0.037 0.042 0.044 0.044 0.045 0.046 0.048 0.052 0.053 0.052
+ 2014 1 1 1 1 2 0.005 0.016 0.023 0.028 0.03 0.035 0.038 0.039 0.04 0.042 0.05 0.045 0.048 0.044 0.051 0.05 0.049 0.046
+ 2015 1 1 1 1 2 0.005 0.014 0.021 0.025 0.029 0.034 0.035 0.036 0.039 0.041 0.043 0.044 0.048 0.051 0.046 0.057 0.049 0.062
+ 2016 1 1 1 1 2 0.005 0.016 0.022 0.026 0.03 0.034 0.037 0.04 0.044 0.047 0.046 0.05 0.048 0.049 0.051 0.058 0.049 0.061
+ 2017 1 1 1 1 2 0.006 0.017 0.023 0.028 0.03 0.034 0.037 0.04 0.044 0.047 0.047 0.048 0.051 0.051 0.056 0.053 0.058 0.059
+ 2018 1 1 1 1 2 0.006 0.015 0.022 0.026 0.03 0.033 0.035 0.04 0.042 0.044 0.047 0.049 0.048 0.048 0.057 0.055 0.052 0.058
+ -2019 1 1 1 1 2 0.00588 0.01599 0.02379 0.02863 0.03073 0.03406 0.03404 0.03771 0.03921 0.04152 0.04217 0.04516 0.04611 0.04165 0.05008 0.05331 0.052 0.058
+ -2020 1 1 1 1 2 0.00596 0.0159967 0.02293 0.0275433 0.0302433 0.0336867 0.0353467 0.0392367 0.0417367 0.0441733 0.04539 0.0473867 0.04837 0.0468833 0.05436 0.05377 0.054 0.0583333
+ 1963 1 1 1 1 3 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1964 1 1 1 1 3 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1965 1 1 1 1 3 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1966 1 1 1 1 3 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1967 1 1 1 1 3 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1968 1 1 1 1 3 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.135 0.123 0.085
+ 1969 1 1 1 1 3 0.006 0.005 0.014 0.022 0.027 0.032 0.034 0.04 0.043 0.047 0.05 0.056 0.052 0.062 0.055 0.077 0.123 0.085
+ 1970 1 1 1 1 3 0.006 0.004 0.015 0.024 0.029 0.036 0.037 0.045 0.049 0.048 0.05 0.056 0.057 0.057 0.065 0.065 0.073 0.073
+ 1971 1 1 1 1 3 0.006 0.004 0.011 0.019 0.024 0.026 0.029 0.035 0.034 0.037 0.045 0.056 0.041 0.062 0.04 0.051 0.123 0.123
+ 1972 1 1 1 1 3 0.006 0.008 0.016 0.023 0.029 0.033 0.036 0.042 0.047 0.055 0.055 0.056 0.058 0.066 0.059 0.116 0.174 0.059
+ 1973 1 1 1 1 3 0.006 0.011 0.02 0.027 0.034 0.04 0.044 0.049 0.059 0.073 0.066 0.056 0.058 0.066 0.059 0.116 0.174 0.059
+ 1974 1 1 1 1 3 0.006 0.015 0.019 0.026 0.031 0.036 0.041 0.042 0.046 0.05 0.055 0.056 0.058 0.066 0.059 0.116 0.088 0.059
+ 1975 1 1 1 1 3 0.004 0.012 0.02 0.027 0.031 0.035 0.04 0.043 0.046 0.05 0.056 0.055 0.066 0.062 0.074 0.089 0.148 0.076
+ 1976 1 1 1 1 3 0.01 0.012 0.02 0.026 0.031 0.036 0.039 0.043 0.045 0.049 0.053 0.057 0.059 0.065 0.058 0.063 0.058 0.093
+ 1977 1 1 1 1 3 0.008 0.014 0.02 0.026 0.03 0.035 0.039 0.043 0.046 0.048 0.051 0.056 0.059 0.07 0.062 0.071 0.101 0.078
+ 1978 1 1 1 1 3 0.005 0.01 0.02 0.027 0.031 0.034 0.039 0.043 0.046 0.05 0.053 0.055 0.065 0.072 0.067 0.062 0.098 0.098
+ 1979 1 1 1 1 3 0.006 0.014 0.02 0.026 0.033 0.035 0.037 0.042 0.048 0.05 0.055 0.053 0.057 0.072 0.075 0.078 0.086 0.086
+ 1980 1 1 1 1 3 0.004 0.011 0.021 0.026 0.032 0.035 0.038 0.04 0.045 0.05 0.056 0.058 0.057 0.077 0.062 0.093 0.073 0.073
+ 1981 1 1 1 1 3 0.008 0.012 0.02 0.027 0.034 0.041 0.042 0.046 0.049 0.054 0.059 0.068 0.068 0.065 0.11 0.075 0.069 0.069
+ 1982 1 1 1 1 3 0.002 0.01 0.019 0.028 0.035 0.039 0.043 0.045 0.05 0.052 0.06 0.061 0.067 0.08 0.073 0.084 0.069 0.09
+ 1983 1 1 1 1 3 0.008 0.012 0.021 0.032 0.038 0.044 0.05 0.052 0.056 0.063 0.063 0.07 0.081 0.092 0.103 0.106 0.069 0.092
+ 1984 1 1 1 1 3 0.006 0.013 0.022 0.032 0.04 0.044 0.051 0.058 0.061 0.059 0.063 0.067 0.082 0.074 0.072 0.115 0.064 0.092
+ 1985 1 1 1 1 3 0.006 0.01 0.02 0.03 0.038 0.042 0.046 0.052 0.056 0.058 0.06 0.063 0.072 0.075 0.071 0.08 0.068 0.095
+ 1986 1 1 1 1 3 0.006 0.012 0.018 0.027 0.035 0.04 0.045 0.048 0.05 0.059 0.058 0.063 0.063 0.068 0.081 0.063 0.071 0.076
+ 1987 1 1 1 1 3 0.006 0.01 0.022 0.029 0.035 0.042 0.046 0.051 0.057 0.06 0.061 0.066 0.067 0.066 0.074 0.09 0.11 0.127
+ 1988 1 1 1 1 3 0.005 0.011 0.02 0.032 0.037 0.042 0.048 0.054 0.061 0.062 0.07 0.072 0.078 0.077 0.083 0.09 0.082 0.154
+ 1989 1 1 1 1 3 0.006 0.012 0.024 0.033 0.042 0.047 0.052 0.056 0.061 0.067 0.064 0.071 0.076 0.081 0.082 0.117 0.071 0.181
+ 1990 1 1 1 1 3 0.006 0.01 0.019 0.032 0.039 0.046 0.051 0.059 0.061 0.07 0.092 0.135 0.101 0.101 0.101 0.094 0.081 0.112
+ 1991 1 1 1 1 3 0.007 0.012 0.021 0.027 0.035 0.042 0.048 0.054 0.058 0.062 0.068 0.107 0.069 0.067 0.096 0.08 0.09 0.108
+ 1992 1 1 1 1 3 0.007 0.012 0.02 0.027 0.03 0.04 0.043 0.048 0.055 0.062 0.058 0.064 0.061 0.063 0.079 0.072 0.086 0.108
+ 1993 1 1 1 1 3 0.007 0.011 0.019 0.025 0.03 0.033 0.041 0.051 0.053 0.064 0.065 0.064 0.085 0.07 0.12 0.095 0.109 0.104
+ 1994 1 1 1 1 3 0.006 0.012 0.021 0.026 0.031 0.034 0.038 0.047 0.055 0.063 0.064 0.07 0.085 0.07 0.124 0.085 0.093 0.084
+ 1995 1 1 1 1 3 0.007 0.009 0.019 0.027 0.03 0.035 0.038 0.042 0.05 0.057 0.061 0.071 0.109 0.076 0.127 0.102 0.093 0.084
+ 1996 1 1 1 1 3 0.003 0.011 0.017 0.025 0.031 0.034 0.039 0.044 0.049 0.055 0.061 0.086 0.067 0.075 0.11 0.087 0.076 0.084
+ 1997 1 1 1 1 3 0.004 0.009 0.016 0.022 0.027 0.031 0.036 0.04 0.045 0.065 0.043 0.074 0.068 0.092 0.079 0.092 0.088 0.063
+ 1998 1 1 1 1 3 0.004 0.008 0.013 0.02 0.024 0.032 0.041 0.048 0.06 0.054 0.041 0.077 0.067 0.092 0.079 0.11 0.1 0.09
+ 1999 1 1 1 1 3 0.006 0.008 0.013 0.021 0.023 0.031 0.042 0.052 0.038 0.06 0.062 0.063 0.065 0.092 0.047 0.121 0.124 0.09
+ 2000 1 1 1 1 3 0.005 0.008 0.014 0.021 0.024 0.029 0.041 0.047 0.066 0.086 0.069 0.085 0.083 0.108 0.103 0.078 0.08 0.118
+ 2001 1 1 1 1 3 0.005 0.009 0.015 0.021 0.024 0.028 0.041 0.041 0.055 0.048 0.047 0.07 0.061 0.068 0.097 0.078 0.077 0.088
+ 2002 1 1 1 1 3 0.004 0.008 0.016 0.022 0.029 0.028 0.036 0.038 0.042 0.051 0.052 0.053 0.045 0.055 0.09 0.088 0.064 0.093
+ 2003 1 1 1 1 3 0.004 0.008 0.016 0.022 0.026 0.024 0.039 0.041 0.046 0.043 0.058 0.058 0.054 0.064 0.082 0.085 0.071 0.058
+ 2004 1 1 1 1 3 0.004 0.007 0.014 0.021 0.024 0.02 0.041 0.045 0.049 0.062 0.065 0.063 0.064 0.073 0.074 0.063 0.072 0.073
+ 2005 1 1 1 1 3 0.007 0.007 0.013 0.018 0.027 0.028 0.027 0.057 0.064 0.049 0.058 0.062 0.07 0.064 0.066 0.055 0.058 0.057
+ 2006 1 1 1 1 3 0.005 0.008 0.015 0.015 0.022 0.027 0.031 0.042 0.041 0.04 0.041 0.062 0.05 0.064 0.058 0.051 0.048 0.058
+ 2007 1 1 1 1 3 0.005 0.007 0.015 0.021 0.025 0.027 0.031 0.035 0.039 0.043 0.044 0.048 0.05 0.052 0.052 0.064 0.056 0.065
+ 2008 1 1 1 1 3 0.007 0.009 0.015 0.021 0.023 0.028 0.029 0.033 0.038 0.04 0.046 0.054 0.047 0.054 0.062 0.051 0.074 0.081
+ 2009 1 1 1 1 3 0.006 0.01 0.016 0.021 0.024 0.03 0.031 0.035 0.037 0.041 0.044 0.052 0.051 0.057 0.056 0.056 0.058 0.065
+ 2010 1 1 1 1 3 0.005 0.008 0.016 0.022 0.026 0.029 0.035 0.033 0.039 0.044 0.043 0.05 0.058 0.055 0.055 0.067 0.052 0.058
+ 2011 1 1 1 1 3 0.006 0.009 0.016 0.023 0.027 0.029 0.033 0.036 0.039 0.042 0.043 0.048 0.049 0.05 0.06 0.053 0.06 0.061
+ 2012 1 1 1 1 3 0.007 0.009 0.016 0.024 0.027 0.03 0.036 0.039 0.041 0.046 0.049 0.05 0.053 0.057 0.057 0.068 0.056 0.066
+ 2013 1 1 1 1 3 0.004 0.013 0.02 0.025 0.029 0.032 0.035 0.037 0.039 0.044 0.046 0.046 0.047 0.051 0.053 0.057 0.063 0.066
+ 2014 1 1 1 1 3 0.008 0.01 0.018 0.026 0.029 0.033 0.04 0.043 0.046 0.048 0.049 0.049 0.06 0.056 0.059 0.07 0.072 0.071
+ 2015 1 1 1 1 3 0.005 0.013 0.019 0.025 0.029 0.032 0.037 0.039 0.043 0.044 0.047 0.052 0.051 0.055 0.053 0.054 0.057 0.072
+ 2016 1 1 1 1 3 0.009 0.012 0.017 0.023 0.028 0.032 0.035 0.038 0.045 0.048 0.052 0.053 0.054 0.064 0.066 0.061 0.072 0.077
+ 2017 1 1 1 1 3 0.006 0.01 0.018 0.023 0.027 0.032 0.038 0.039 0.042 0.048 0.053 0.056 0.055 0.059 0.061 0.067 0.066 0.07
+ 2018 1 1 1 1 3 0.01 0.01 0.018 0.024 0.028 0.032 0.037 0.037 0.041 0.046 0.05 0.061 0.049 0.058 0.065 0.062 0.057 0.069
+ -2019 1 1 1 1 3 0.00539 97 0.01653 0.02405 0.02955 0.03227 0.03375 0.03942 0.04256 0.04693 0.05088 0.05127 0.05336 0.05574 0.06374 0.06434 0.057 0.069
+ -2020 1 1 1 1 3 0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625 0.0384733 0.0418533 0.0469767 0.0512933 0.05609 0.0524533 0.05758 0.0632467 0.0644467 0.06 0.0693333
+ -9999 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ N_WTage_rd 348
+ last year read for -2 through Nfleet:   2020 2020 2020 2020 2020 2020
+ latest fill year for -2 through Nfleet:   2020 2020 2020 2020 2020 2020
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00435 0.02025 0.0265 0.03155 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00435 0.02025 0.0265 0.03155 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00435 0.02025 0.0265 0.03155 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00435 0.02025 0.0265 0.03155 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00435 0.02025 0.0265 0.03155 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00435 0.02025 0.0265 0.03155 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00435 0.02025 0.0265 0.03155 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00466 0.02162 0.02789 0.036 0.03731
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00355 0.01771 0.0233 0.02588 0.02897
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00485 0.02143 0.02831 0.03277 0.03632
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00616 0.02516 0.03332 0.03966 0.04366
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00596 0.02348 0.0301 0.03606 0.04098
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.0063 0.02481 0.03052 0.03529 0.03975
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00612 0.02419 0.03038 0.03592 0.03878
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00618 0.02388 0.02946 0.03485 0.03879
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00605 0.02526 0.02972 0.0338 0.03858
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.0061 0.02423 0.03165 0.03499 0.03743
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00637 0.02363 0.03137 0.03537 0.03753
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00628 0.02529 0.03288 0.04056 0.04187
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00546 0.02583 0.03401 0.03909 0.04332
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00444 0.02945 0.03727 0.04389 0.05029
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00512 0.02985 0.03875 0.04449 0.051
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00408 0.02758 0.0378 0.04205 0.04646
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00512 0.02474 0.03389 0.03978 0.04458
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00703 0.02538 0.03378 0.04174 0.04627
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00205 0.02712 0.0354 0.04208 0.04787
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00542 0.03227 0.04156 0.04652 0.05165
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.01143 0.03221 0.03876 0.04517 0.05066
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.01268 0.02592 0.03555 0.04105 0.04796
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.01001 0.02444 0.03037 0.03976 0.04359
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00849 0.02246 0.03015 0.034 0.04388
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.01323 0.02663 0.03263 0.03567 0.03948
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00663 0.02468 0.02889 0.03518 0.03862
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.01122 0.02565 0.03167 0.03439 0.03972
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00504 0.01938 0.02829 0.03387 0.03699
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00023 0.00444 0.015 0.02683 0.03418 0.0407
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 8e-05 0.00507 0.01822 0.02616 0.03285 0.04138
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00085 0.00927 0.01869 0.02447 0.02934 0.03443
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 9e-05 0.00941 0.02142 0.02585 0.02894 0.03264
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00024 0.00916 0.02158 0.0261 0.03034 0.03359
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00901 0.02191 0.02587 0.02926 0.03453
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00013 0.00469 0.01856 0.0251 0.02996 0.03709
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00015 0.00363 0.01674 0.02381 0.02777 0.03086
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00016 0.00554 0.01781 0.02102 0.02667 0.03068
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00015 0.00828 0.01826 0.02478 0.02606 0.03109
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00737 0.01915 0.02335 0.02626 0.02851
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0 0.00804 0.01878 0.02268 0.02873 0.02833
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00041 0.01433 0.02249 0.02592 0.02882 0.03485
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 9e-05 0.00737 0.02301 0.02682 0.02925 0.03271
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 9e-05 0.01234 0.02312 0.0269 0.03028 0.03591
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00141 0.01592 0.02458 0.02859 0.03222 0.03519
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00154 0.01289 0.02591 0.02922 0.03263 0.04028
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00175 0.01543 0.02445 0.02938 0.03166 0.03664
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.0006 0.01253 0.02043 0.02831 0.03188 0.03481
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.0011 0.01335 0.02276 0.02705 0.03192 0.03806
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.00164 0.01542 0.02436 0.02778 0.03207 0.03653
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.000776 0.0137199 0.0233285 0.02955 0.03227 0.03375
+year 2020 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -2  0 0.001172 0.0141633 0.0234828 0.0281267 0.0320867 0.0361133
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0042 0.015 0.0235 0.0288 0.036 0.0373
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0041 0.0114 0.0192 0.024 0.0259 0.029
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0076 0.0157 0.0233 0.0292 0.0328 0.0363
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.011 0.0199 0.0273 0.0344 0.0397 0.0437
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0147 0.0192 0.0255 0.031 0.0361 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0038 0.0118 0.0203 0.027 0.0315 0.0353 0.0398
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.01 0.0116 0.0197 0.0263 0.0313 0.0359 0.0388
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0077 0.0141 0.0199 0.026 0.0304 0.0348 0.0388
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0055 0.0103 0.0195 0.0275 0.0306 0.0338 0.0386
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0059 0.0142 0.0197 0.0263 0.0326 0.035 0.0374
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0041 0.011 0.0206 0.0257 0.0323 0.0354 0.0375
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.008 0.0124 0.0203 0.0272 0.0339 0.0406 0.0419
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.002 0.0101 0.0188 0.0278 0.0351 0.0391 0.0433
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0077 0.012 0.0211 0.032 0.038 0.0439 0.0503
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0131 0.0222 0.0321 0.04 0.0445 0.051
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0056 0.01 0.0204 0.03 0.0382 0.0421 0.0465
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0056 0.0118 0.0183 0.0272 0.0349 0.0398 0.0446
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0056 0.0101 0.022 0.0285 0.0348 0.0417 0.0463
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0052 0.0113 0.0205 0.0319 0.0369 0.0421 0.0479
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0056 0.0124 0.0236 0.0333 0.0416 0.0465 0.0517
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0057 0.0098 0.0194 0.0322 0.0388 0.0452 0.0507
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0065 0.0122 0.0215 0.0276 0.0355 0.041 0.048
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0067 0.0121 0.02 0.0272 0.0304 0.0398 0.0436
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.007 0.0109 0.0193 0.0274 0.0311 0.034 0.0439
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0117 0.021 0.0275 0.0326 0.0357 0.0395
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0071 0.0092 0.019 0.0271 0.0304 0.0352 0.0386
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0035 0.0108 0.017 0.0257 0.0317 0.0344 0.0397
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.004 0.0094 0.0157 0.0231 0.0292 0.0339 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0045 0.0078 0.0135 0.0208 0.0279 0.0342 0.0407
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.006 0.0079 0.0134 0.0207 0.0264 0.0329 0.0414
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0054 0.0077 0.0143 0.0201 0.025 0.0293 0.0344
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0055 0.0086 0.0154 0.0221 0.0267 0.0289 0.0326
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.004 0.0081 0.0158 0.0225 0.0269 0.0306 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0041 0.0077 0.0161 0.0233 0.0267 0.0305 0.0345
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0044 0.0067 0.0138 0.0204 0.0259 0.03 0.0371
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0071 0.0075 0.013 0.0195 0.0248 0.0295 0.0318
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0054 0.0082 0.015 0.0194 0.0231 0.0267 0.0326
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0046 0.0074 0.0148 0.021 0.0248 0.0271 0.0311
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0073 0.009 0.0147 0.021 0.0233 0.0282 0.0285
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0062 0.0099 0.0158 0.0206 0.0239 0.0302 0.0311
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0053 0.0082 0.0165 0.0225 0.0259 0.0288 0.0349
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0059 0.0089 0.016 0.023 0.0268 0.0293 0.0327
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0066 0.0092 0.0165 0.0238 0.0274 0.0303 0.0359
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0044 0.0128 0.0204 0.0251 0.0286 0.0322 0.0352
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0078 0.0096 0.0182 0.0259 0.0292 0.0326 0.0403
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0049 0.0134 0.0193 0.0249 0.0294 0.0317 0.0366
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0086 0.0121 0.0174 0.0227 0.0283 0.0319 0.0348
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0064 0.0104 0.0176 0.0232 0.0273 0.0319 0.0381
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.0102 0.0102 0.0175 0.0244 0.0278 0.0321 0.0365
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.00539 0.0097 0.01653 0.02405 0.02955 0.03227 0.03375
+year 2020 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet -1  0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0042 0.015 0.0235 0.0288 0.036 0.0373
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0041 0.0114 0.0192 0.024 0.0259 0.029
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0076 0.0157 0.0233 0.0292 0.0328 0.0363
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.011 0.0199 0.0273 0.0344 0.0397 0.0437
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0147 0.0192 0.0255 0.031 0.0361 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0038 0.0118 0.0203 0.027 0.0315 0.0353 0.0398
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.01 0.0116 0.0197 0.0263 0.0313 0.0359 0.0388
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0077 0.0141 0.0199 0.026 0.0304 0.0348 0.0388
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0055 0.0103 0.0195 0.0275 0.0306 0.0338 0.0386
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0059 0.0142 0.0197 0.0263 0.0326 0.035 0.0374
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0041 0.011 0.0206 0.0257 0.0323 0.0354 0.0375
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.008 0.0124 0.0203 0.0272 0.0339 0.0406 0.0419
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.002 0.0101 0.0188 0.0278 0.0351 0.0391 0.0433
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0077 0.012 0.0211 0.032 0.038 0.0439 0.0503
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0131 0.0222 0.0321 0.04 0.0445 0.051
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0056 0.01 0.0204 0.03 0.0382 0.0421 0.0465
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0056 0.0118 0.0183 0.0272 0.0349 0.0398 0.0446
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0056 0.0101 0.022 0.0285 0.0348 0.0417 0.0463
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0052 0.0113 0.0205 0.0319 0.0369 0.0421 0.0479
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0056 0.0124 0.0236 0.0333 0.0416 0.0465 0.0517
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0057 0.0098 0.0194 0.0322 0.0388 0.0452 0.0507
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0065 0.0122 0.0215 0.0276 0.0355 0.041 0.048
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0067 0.0121 0.02 0.0272 0.0304 0.0398 0.0436
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.007 0.0109 0.0193 0.0274 0.0311 0.034 0.0439
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0117 0.021 0.0275 0.0326 0.0357 0.0395
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0071 0.0092 0.019 0.0271 0.0304 0.0352 0.0386
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0035 0.0108 0.017 0.0257 0.0317 0.0344 0.0397
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.004 0.0094 0.0157 0.0231 0.0292 0.0339 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0045 0.0078 0.0135 0.0208 0.0279 0.0342 0.0407
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.006 0.0079 0.0134 0.0207 0.0264 0.0329 0.0414
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0054 0.0077 0.0143 0.0201 0.025 0.0293 0.0344
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0055 0.0086 0.0154 0.0221 0.0267 0.0289 0.0326
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.004 0.0081 0.0158 0.0225 0.0269 0.0306 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0041 0.0077 0.0161 0.0233 0.0267 0.0305 0.0345
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0044 0.0067 0.0138 0.0204 0.0259 0.03 0.0371
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0071 0.0075 0.013 0.0195 0.0248 0.0295 0.0318
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0054 0.0082 0.015 0.0194 0.0231 0.0267 0.0326
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0046 0.0074 0.0148 0.021 0.0248 0.0271 0.0311
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0073 0.009 0.0147 0.021 0.0233 0.0282 0.0285
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0062 0.0099 0.0158 0.0206 0.0239 0.0302 0.0311
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0053 0.0082 0.0165 0.0225 0.0259 0.0288 0.0349
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0059 0.0089 0.016 0.023 0.0268 0.0293 0.0327
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0066 0.0092 0.0165 0.0238 0.0274 0.0303 0.0359
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0044 0.0128 0.0204 0.0251 0.0286 0.0322 0.0352
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0078 0.0096 0.0182 0.0259 0.0292 0.0326 0.0403
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0049 0.0134 0.0193 0.0249 0.0294 0.0317 0.0366
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0086 0.0121 0.0174 0.0227 0.0283 0.0319 0.0348
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0064 0.0104 0.0176 0.0232 0.0273 0.0319 0.0381
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.0102 0.0102 0.0175 0.0244 0.0278 0.0321 0.0365
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.00539 0.0097 0.01653 0.02405 0.02955 0.03227 0.03375
+year 2020 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 0  0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0053 0.014 0.022 0.0273 0.0316 0.0342
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0042 0.015 0.0235 0.0288 0.036 0.0373
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0041 0.0114 0.0192 0.024 0.0259 0.029
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0076 0.0157 0.0233 0.0292 0.0328 0.0363
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.011 0.0199 0.0273 0.0344 0.0397 0.0437
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0147 0.0192 0.0255 0.031 0.0361 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0038 0.0118 0.0203 0.027 0.0315 0.0353 0.0398
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.01 0.0116 0.0197 0.0263 0.0313 0.0359 0.0388
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0077 0.0141 0.0199 0.026 0.0304 0.0348 0.0388
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0055 0.0103 0.0195 0.0275 0.0306 0.0338 0.0386
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0059 0.0142 0.0197 0.0263 0.0326 0.035 0.0374
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0041 0.011 0.0206 0.0257 0.0323 0.0354 0.0375
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.008 0.0124 0.0203 0.0272 0.0339 0.0406 0.0419
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.002 0.0101 0.0188 0.0278 0.0351 0.0391 0.0433
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0077 0.012 0.0211 0.032 0.038 0.0439 0.0503
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0131 0.0222 0.0321 0.04 0.0445 0.051
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0056 0.01 0.0204 0.03 0.0382 0.0421 0.0465
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0056 0.0118 0.0183 0.0272 0.0349 0.0398 0.0446
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0056 0.0101 0.022 0.0285 0.0348 0.0417 0.0463
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0052 0.0113 0.0205 0.0319 0.0369 0.0421 0.0479
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0056 0.0124 0.0236 0.0333 0.0416 0.0465 0.0517
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0057 0.0098 0.0194 0.0322 0.0388 0.0452 0.0507
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0065 0.0122 0.0215 0.0276 0.0355 0.041 0.048
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0067 0.0121 0.02 0.0272 0.0304 0.0398 0.0436
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.007 0.0109 0.0193 0.0274 0.0311 0.034 0.0439
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0117 0.021 0.0275 0.0326 0.0357 0.0395
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0071 0.0092 0.019 0.0271 0.0304 0.0352 0.0386
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0035 0.0108 0.017 0.0257 0.0317 0.0344 0.0397
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.004 0.0094 0.0157 0.0231 0.0292 0.0339 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0045 0.0078 0.0135 0.0208 0.0279 0.0342 0.0407
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.006 0.0079 0.0134 0.0207 0.0264 0.0329 0.0414
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0054 0.0077 0.0143 0.0201 0.025 0.0293 0.0344
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0055 0.0086 0.0154 0.0221 0.0267 0.0289 0.0326
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.004 0.0081 0.0158 0.0225 0.0269 0.0306 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0041 0.0077 0.0161 0.0233 0.0267 0.0305 0.0345
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0044 0.0067 0.0138 0.0204 0.0259 0.03 0.0371
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0071 0.0075 0.013 0.0195 0.0248 0.0295 0.0318
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0054 0.0082 0.015 0.0194 0.0231 0.0267 0.0326
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0046 0.0074 0.0148 0.021 0.0248 0.0271 0.0311
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0073 0.009 0.0147 0.021 0.0233 0.0282 0.0285
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0062 0.0099 0.0158 0.0206 0.0239 0.0302 0.0311
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0053 0.0082 0.0165 0.0225 0.0259 0.0288 0.0349
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0059 0.0089 0.016 0.023 0.0268 0.0293 0.0327
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0066 0.0092 0.0165 0.0238 0.0274 0.0303 0.0359
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0044 0.0128 0.0204 0.0251 0.0286 0.0322 0.0352
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0078 0.0096 0.0182 0.0259 0.0292 0.0326 0.0403
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0049 0.0134 0.0193 0.0249 0.0294 0.0317 0.0366
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0086 0.0121 0.0174 0.0227 0.0283 0.0319 0.0348
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0064 0.0104 0.0176 0.0232 0.0273 0.0319 0.0381
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.0102 0.0102 0.0175 0.0244 0.0278 0.0321 0.0365
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.00539 0.0097 0.01653 0.02405 0.02955 0.03227 0.03375
+year 2020 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 1  0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.004 0.015 0.024 0.029 0.036 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.004 0.011 0.019 0.024 0.026 0.029
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.008 0.016 0.023 0.029 0.033 0.036
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.011 0.02 0.027 0.034 0.04 0.044
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.015 0.019 0.026 0.031 0.036 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.012 0.02 0.027 0.031 0.035 0.04
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.01 0.012 0.02 0.026 0.031 0.036 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.008 0.014 0.02 0.026 0.03 0.035 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.01 0.02 0.027 0.031 0.034 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.014 0.02 0.026 0.033 0.035 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.011 0.021 0.026 0.032 0.035 0.038
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.008 0.012 0.02 0.027 0.034 0.041 0.042
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.002 0.01 0.019 0.028 0.035 0.039 0.043
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.008 0.012 0.021 0.032 0.038 0.044 0.05
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.013 0.022 0.032 0.04 0.044 0.051
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.01 0.02 0.03 0.038 0.042 0.046
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.012 0.018 0.027 0.035 0.04 0.045
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.01 0.022 0.029 0.035 0.042 0.046
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.011 0.02 0.032 0.037 0.042 0.048
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.012 0.024 0.033 0.042 0.047 0.052
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.01 0.019 0.032 0.039 0.045 0.051
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.007 0.012 0.021 0.028 0.036 0.041 0.048
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.007 0.012 0.02 0.027 0.03 0.04 0.044
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.007 0.011 0.019 0.027 0.031 0.034 0.044
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.012 0.021 0.027 0.033 0.036 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.007 0.009 0.019 0.027 0.03 0.035 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.003 0.011 0.017 0.026 0.032 0.034 0.04
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.009 0.016 0.023 0.029 0.034 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.008 0.013 0.021 0.028 0.034 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.008 0.013 0.021 0.026 0.033 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.008 0.014 0.02 0.025 0.029 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.009 0.015 0.022 0.027 0.029 0.033
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.008 0.016 0.022 0.027 0.031 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.008 0.016 0.023 0.027 0.03 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.007 0.014 0.02 0.026 0.03 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.007 0.007 0.013 0.019 0.025 0.03 0.032
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.008 0.015 0.019 0.023 0.027 0.033
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.003 0.013 0.018 0.023 0.024 0.027 0.032
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.016 0.02 0.023 0.025 0.028 0.031
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.015 0.02 0.024 0.024 0.029 0.033
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.014 0.02 0.024 0.026 0.028 0.032
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.014 0.02 0.024 0.028 0.03 0.032
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.015 0.021 0.025 0.028 0.03 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.004 0.016 0.022 0.026 0.029 0.033 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.016 0.023 0.028 0.03 0.035 0.038
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.014 0.021 0.025 0.029 0.034 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.005 0.016 0.022 0.026 0.03 0.034 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.017 0.023 0.028 0.03 0.034 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.006 0.015 0.022 0.026 0.03 0.033 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.00588 0.01599 0.02379 0.02863 0.03073 0.03406 0.03404
+year 2020 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 2  0.00596 0.0159967 0.02293 0.0275433 0.0302433 0.0336867 0.0353467
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.005 0.014 0.022 0.027 0.032 0.034
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.004 0.015 0.024 0.029 0.036 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.004 0.011 0.019 0.024 0.026 0.029
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.008 0.016 0.023 0.029 0.033 0.036
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.011 0.02 0.027 0.034 0.04 0.044
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.015 0.019 0.026 0.031 0.036 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.004 0.012 0.02 0.027 0.031 0.035 0.04
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.01 0.012 0.02 0.026 0.031 0.036 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.008 0.014 0.02 0.026 0.03 0.035 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.005 0.01 0.02 0.027 0.031 0.034 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.014 0.02 0.026 0.033 0.035 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.004 0.011 0.021 0.026 0.032 0.035 0.038
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.008 0.012 0.02 0.027 0.034 0.041 0.042
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.002 0.01 0.019 0.028 0.035 0.039 0.043
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.008 0.012 0.021 0.032 0.038 0.044 0.05
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.013 0.022 0.032 0.04 0.044 0.051
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.01 0.02 0.03 0.038 0.042 0.046
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.012 0.018 0.027 0.035 0.04 0.045
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.01 0.022 0.029 0.035 0.042 0.046
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.005 0.011 0.02 0.032 0.037 0.042 0.048
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.012 0.024 0.033 0.042 0.047 0.052
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.01 0.019 0.032 0.039 0.046 0.051
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.007 0.012 0.021 0.027 0.035 0.042 0.048
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.007 0.012 0.02 0.027 0.03 0.04 0.043
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.007 0.011 0.019 0.025 0.03 0.033 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.012 0.021 0.026 0.031 0.034 0.038
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.007 0.009 0.019 0.027 0.03 0.035 0.038
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.003 0.011 0.017 0.025 0.031 0.034 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.004 0.009 0.016 0.022 0.027 0.031 0.036
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.004 0.008 0.013 0.02 0.024 0.032 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.008 0.013 0.021 0.023 0.031 0.042
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.005 0.008 0.014 0.021 0.024 0.029 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.005 0.009 0.015 0.021 0.024 0.028 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.004 0.008 0.016 0.022 0.029 0.028 0.036
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.004 0.008 0.016 0.022 0.026 0.024 0.039
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.004 0.007 0.014 0.021 0.024 0.02 0.041
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.007 0.007 0.013 0.018 0.027 0.028 0.027
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.005 0.008 0.015 0.015 0.022 0.027 0.031
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.005 0.007 0.015 0.021 0.025 0.027 0.031
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.007 0.009 0.015 0.021 0.023 0.028 0.029
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.01 0.016 0.021 0.024 0.03 0.031
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.005 0.008 0.016 0.022 0.026 0.029 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.009 0.016 0.023 0.027 0.029 0.033
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.007 0.009 0.016 0.024 0.027 0.03 0.036
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.004 0.013 0.02 0.025 0.029 0.032 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.008 0.01 0.018 0.026 0.029 0.033 0.04
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.005 0.013 0.019 0.025 0.029 0.032 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.009 0.012 0.017 0.023 0.028 0.032 0.035
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.006 0.01 0.018 0.023 0.027 0.032 0.038
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.01 0.01 0.018 0.024 0.028 0.032 0.037
+year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.00539 97 0.01653 0.02405 0.02955 0.03227 0.03375
+year 2020 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625
+ fill benchmark years with mean 
+finished reading empirical wt-at-age.ss
+ do variance adjustment for surveys 
+ survey stderr has been set-up 
+ discard stderr has been set-up 
+ mean bodywt stderr has been set-up 
+ length comp var adjust has been set-up 
+ age comp var adjust has been set-up 
+ setup stderr for mean size-at-age: 
+ set parms to init values in CTL file 
+ MGparms read from ctl  0.563 0.472 0.332 0.29 0.267 0.257 4 25 0.4 0.2 0.2 4e-06 3.05 0.13 -4.149 1 0 1 0.5
+ SRR_parms read from ctl  17.35 0.775 0.6 0 0
+ rec_devs read from ctl  0
+ Q_parms read from ctl  -2.47811 0 3.86604 0
+ initF_parms read from ctl  0.2
+ selex_parms read from ctl  -1000 1 1.45 0.4 0.15 0.14 0.03 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1000 1 0.6 0.2 0.02 0.11 0.14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1000 -1000 -1000 1 0.3 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+ now check MGparm bounds and priors and do jitter if requested 
+ parameter init value is less than parameter min 0.13 < 1 for parm: 14
+ parameter init value is less than parameter min -4.149 < -3 for parm: 15
+ MG_parms after check  0.563 0.472 0.332 0.29 0.267 0.257 4 25 0.4 0.2 0.2 4e-06 3.05 0.13 -4.149 1 0 1 0.5
+
+ now check SR_parm bounds and priors and do jitter if requested 
+ SRR_parms after check  17.35 0.775 0.6 0 0
+ rec_devs after check  0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+
+ now check Qparm bounds and priors and do jitter if requested 
+ Q_parms after check  -2.47811 0 3.86604 0
+
+ now check init_F parm bounds and priors and do jitter if requested 
+ initF_parms after check  0.2
+
+ now check sel_parm bounds and priors and do jitter if requested 
+ selex_parms after check   -1000 1 1.45 0.4 0.15 0.14 0.03 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1000 1 0.6 0.2 0.02 0.11 0.14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1000 -1000 -1000 1 0.3 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
+ ready to evaluate once in prelim
+
+**********************
+number of parameters with timevary:  0
+get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  4e-06 3.05 0.13 -4.149 1 0 0 0
+ did MG setup
+ did growth1
+GROWTH,  yr= 2019
+sex: 1 GP: 1 Lmin: 4 Linf: 25 VBK_temp: -0.4 VBK@age:  0.4
+  settlement: 1 g: 1
+  L@A initial_year (w/o lin):  3.14297 10.3488 15.179 18.4168 20.5871 22.042 23.0172 plusgroup: 24.9927
+  adjusted size at maxage 24.9942  using decay of: -999
+  seas: 1  size@t+1:   3.14297 10.3488 15.179 18.4168 20.5871 22.042 23.0172 plusgroup: 24.9942
+sex: 1; Gpat: 1 settle: 1; L-at-Amin: 4; L at max age: 24.9942
+wtlen2 
+ 0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
+wtlen2^2  1.30185e-08 2.93655e-07 2.28675e-06 1.05925e-05 3.60259e-05 9.98101e-05 0.000238933 0.000512694 0.00101045 0.00186062 0.00324086 0.00538957 0.00861864 0.0133275 0.0200183 0.0293126 0.0419696 0.0589048 0.0812109 0.11018
+wtlen2:firstdiff  0.000241246 0.000670603 0.00132742 0.00221568 0.00333834 0.0046978 0.00629606 0.00813484 0.0102157 0.0125399 0.0151087 0.0179232 0.0209845 0.0242935 0.0278512 0.0316582 0.0357155 0.0400237 0.0445836
+fecundity option: 1 parms:  1 0
+maturity option: 2 parms:  0.13 -4.149
+gp: 1 g 1
+mat_len:  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ fec_len:  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
+ mat_fec_len:  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
+ mat_age:  0 0.973651 0.999573 0.999993 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ mat_len_age:  0 0.973651 0.999573 0.999993 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ fecundity_age:  0 0.00550578 0.0180971 0.0326094 0.0457799 0.0563635 0.0643084 0.0700339 0.0740561 0.0768362 0.0787379 0.0800297 0.0809034 0.0814925 0.0818889 0.0821554 0.0823343 0.0824544 0.0825349 0.082589 0.0826406
+ready to do natmort 
+Natmort seas:1 sex:1 Gpat:1 sex*Gpat:1 settlement:1 gpi:1
+ M:  0.563 0.472 0.402 0.332 0.311 0.29 0.282333 0.274667 0.267 0.265571 0.264143 0.262714 0.261286 0.259857 0.258429 0.257 0.257 0.257 0.257 0.257 0.257
+do recrdist: 
+ femfrac  0.5
+recruitment distribution in year: 2019
+GP Seas Area Use? female_recr_dist
+1 1 1 1 1
+ made the age_age' key 
+
+**********************
+number of parameters with timevary:  0
+GROWTH,  yr= 2019
+sex: 1 GP: 1 Lmin: 4 Linf: 25 VBK_temp: -0.4 VBK@age:  0.4
+  settlement: 1 g: 1
+  L@A initial_year (w/o lin):  3.14297 10.3488 15.179 18.4168 20.5871 22.042 23.0172 plusgroup: 24.9927
+  adjusted size at maxage 24.9942  using decay of: -999
+  seas: 1  size@t+1:   3.14297 10.3488 15.179 18.4168 20.5871 22.042 23.0172 plusgroup: 24.9942
+fecundity option: 1 parms:  1 0
+maturity option: 2 parms:  0.13 -4.149
+gp: 1 g 1
+mat_len:  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ fec_len:  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
+ mat_fec_len:  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
+ mat_age:  0 0.973651 0.999573 0.999993 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ mat_len_age:  0 0.973651 0.999573 0.999993 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+ fecundity_age:  0 0.00550578 0.0180971 0.0326094 0.0457799 0.0563635 0.0643084 0.0700339 0.0740561 0.0768362 0.0787379 0.0800297 0.0809034 0.0814925 0.0818889 0.0821554 0.0823343 0.0824544 0.0825349 0.082589 0.0826406
+yr 2019, seas: 1, fleet:3
+ sampled  size  333.331 2114.42 11839.8 51540 173586 452452 917406 1.46238e+06 1.86323e+06 1.94063e+06 1.69568e+06 1.2732e+06 834986 481460 244037 108424 42094.3 14240.6 4187.37 1356.89
+ sampled  age   0 0 0 3.46147e+06 2.89532e+06 1.97651e+06 1.21859e+06 754212 470390 295019 185294 116545 73408.4 46304 29249.1 18502.3 11715.3 7417.89 5585.24 3536.46 6104.41
+yr 2019, seas: 1, fleet:1
+ sampled  size  913.116 8473.1 56533.6 239037 649485 1.21765e+06 1.76944e+06 2.19891e+06 2.3973e+06 2.28149e+06 1.90979e+06 1.41951e+06 936619 545638 279252 125082 48876.8 16614.4 4901.2 1591.84
+ sampled  age   0 1.47743e+06 3.82314e+06 3.49164e+06 2.51245e+06 1.78377e+06 1.13345e+06 702190 438370 274986 172743 108671 68461 43191.2 27287.7 17264.8 10931.7 6921.74 5211.67 3299.92 5696.12
+yr 2019, seas: 1, fleet:2
+ sampled  size  1553.29 16390.9 113898 474744 1.20088e+06 1.95233e+06 2.31721e+06 2.38718e+06 2.3261e+06 2.08707e+06 1.68408e+06 1.22321e+06 797819 463242 237476 106824 41962.4 14339.2 4249.84 1386.63
+ sampled  age   0 3.8805e+06 4.2799e+06 3.21787e+06 2.03076e+06 1.3967e+06 991080 615363 385020 241620 151846 95564 60228.9 38013.4 24026.4 15207.6 9629.16 6096.99 4590.68 2906.73 5017.4
+ finished time series 

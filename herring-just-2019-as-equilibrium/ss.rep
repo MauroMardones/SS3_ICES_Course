@@ -1,0 +1,28 @@
+ CPUE  0 -1.20397 0
+ AGE   0.147116 0.115088 0
+ EQUL  0.304439 0 0
+ Recr -8.19566
+ Parm -0.0444386
+ F_ballpark 0
+Catch  3.73891e-18 0 0
+ -log(L): -9.14233  Spbio: 732352 732352
+
+Year Spbio Recruitment
+Virg 1.2969e+06 3.42775e+07
+Init 852843 3.42775e+07
+2019 732352 3.24613e+07
+
+EXPLOITATION F_Method:  instantaneous_annual_F 
+X Catch_Units  Bio  Num  Num 
+Yr Seas 1 2 3
+init_yr 1  0.131275 NA  NA 
+2019 1  0.168772 0 0
+
+LEN_SELEX
+Fleet Sex  3 5 7 9 11 13 15 17 19 21 23 25 27 29 31 33 35 37 39 41
+
+AGE_SELEX
+Fleet Sex  0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20
+1-Fleet 1  0 0.212961 0.459848 0.850925 0.858726 0.99439 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+2-Acoustics 1  0 0.37885 0.637486 0.908665 0.913638 0.998211 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
+3-Trapnet 1  0 0 0 0.0100524 0.904837 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1

@@ -1,0 +1,3 @@
+Note 1 Information: Max data length bin: 30  < max pop len bins: 40; so will accumulate larger pop len bins
+Warning 1 Adjustment: fleet: 3 age selex range max read is: 99; is >nages; SS3 will convert 
+Warning 2 : The experimental 2D_AR selectivity smoother option is selected!
