@@ -5,9 +5,9 @@
 #_User_info_available_at:https://vlab.noaa.gov/group/stock-synthesis
 #_Source_code_at:_https://github.com/nmfs-stock-synthesis/stock-synthesis
 
-StartTime: Mon Sep 18 12:30:05 2023
-EndTime: Mon Sep 18 12:30:23 2023
-This run took: 0 hours, 0 minutes, 18 seconds.
+StartTime: Mon Sep 18 16:10:17 2023
+EndTime: Mon Sep 18 16:10:28 2023
+This run took: 0 hours, 0 minutes, 11 seconds.
 Data_File: HerringSD3031_datav3_30_10.dat
 Control_File: HerringSD3031_ctlv3_30_10.ctl
 

@@ -84,13 +84,13 @@ Parse into: depletion_log(ratio): 0 depletion_multi-yr: 0 depletion_basis: 2
 Will be checked against maxage later 
 0  F_std basis as read
 Parse into: F_std_log(ratio): 0 F_std_multi: 0 F_std_basis: 0
-For Kobe plot, set depletion_basis=2; depletion_level=1.0; F_reporting=your choose; F_std_basis=2
+For Kobe plot, set depletion_basis=2; depletion_level=1.0; F_reporting=your choice; F_std_basis=2
 Read files in 3.30 format
 SS will continue reading from starter.ss until it reads 3.30
 read MCMC_output_detail.MCMC_bump as a single real number;  separate values will be parsed from integer and fraction
 MCMC output detail(1=more_detail_to_posts; 2=write_report_for_each_mceval):  0
 MCMC bump to R0:  0
-Now get ALK tolerance (0.0 is OK for no compression; 0.1 is too big;  suggest 0.0001)
+Now read ALK tolerance which is deprecated. If not 0, it will be reset to 0.
 ALK tolerance:  0
 Now get random number seed; enter -1 to use long(time) as the seed
   finish reading starter.ss
@@ -172,25 +172,34 @@ Index Survey_name       N   Super_Per    Min_val   max_val  //  Observations:
 Number of sdreport index values: 0
  note order of discard read is now: N fleets with disc, then if Ndisc_fleets>0 read:  fleet, disc_units, disc_error(for 1,Ndisc_fleets), then read obs 
 0 N fleets with discard 
-Successful read of discard data  
+Successful read of discard data 
 Index Survey_name       N   Super_Per    Min_val   max_val  //  Observations:
 0 Use mean body size (weight or length); If 0, then no additional input in 3.30 
 Successful pre-processing of mean-bodysize data
 2 LenBin_option:  1=set to data bins; 2 generate uniform; 3 = read custom
  2 2 40 input for setup of pop length bins 
 1 indicator for length data  
-#_now read for each fleet info for processing the length comps:
+#_now read controls for processing the length comps:
+Use_length_data == 1: invokes original input format starting with mintailcomp, one row for each fleet
+Use_length_data == 2: invokes list format with fleet and partition preceding controls
 #_mintailcomp: upper and lower distribution for females and males separately are accumulated until exceeding this level.
 #_addtocomp:  after accumulation of tails; this value added to all bins
 #_males and females treated as combined gender below this bin number 
 #_compressbins: accumulate upper tail by this number of bins; acts simultaneous with mintailcomp; set=0 for no forced accumulation
-#_Comp_Error:  0=multinomial, 1=Dirichlet
-#_Comp_ERR-2:  index of Dirichlet parameter to use
-#_minsamplesize: minimum sample size; set to 1 to match 3.24, set to 0 for no minimum
--1 1e-07 0 0 0 0 0.01  #_fleet: 1 Fleet
--1 1e-07 0 0 0 0 0.01  #_fleet: 2 Acoustics
--1 1e-07 0 0 0 0 0.01  #_fleet: 3 Trapnet
-number of D-M parameters needed for length comp data: 0
+#_Comp_Error:  0=multinomial, 1=dirichlet using theta * n, 2=dirichlet using beta, 3=MV_Tweedie with phi and power
+#_Comp_ERR-2:  consecutive index of error def to use
+#_minsamplesize: minimum sample size; set to 1 to match 3.24, minimum value is 0.001
+fleet partition mintailcomp addtocomp combM+F CompressBins CompError ParmSelect minsamplesize
+1 0 -1 1e-07 0 0 0 0 0.01  #_fleet: 1 Fleet
+1 1 -1 1e-07 0 0 0 0 0.01  #_fleet: 1 Fleet
+1 2 -1 1e-07 0 0 0 0 0.01  #_fleet: 1 Fleet
+2 0 -1 1e-07 0 0 0 0 0.01  #_fleet: 2 Acoustics
+2 1 -1 1e-07 0 0 0 0 0.01  #_fleet: 2 Acoustics
+2 2 -1 1e-07 0 0 0 0 0.01  #_fleet: 2 Acoustics
+3 0 -1 1e-07 0 0 0 0 0.01  #_fleet: 3 Trapnet
+3 1 -1 1e-07 0 0 0 0 0.01  #_fleet: 3 Trapnet
+3 2 -1 1e-07 0 0 0 0 0.01  #_fleet: 3 Trapnet
+number of D-M definitions needed for length comp data: 0
 
 2 nlen_bin_for_data 
  len_bins_dat 
@@ -198,6 +207,7 @@ number of D-M parameters needed for length comp data: 0
 
 Processed Population length bin info 
  2 4 6 8 10 12 14 16 18 20 22 24 26 28 30 32 34 36 38 40
+Note 1 Information: Max data length bin: 30  < max pop len bins: 40; so will accumulate larger pop len bins
 
 Processed Data length bin info 
  5 30
@@ -223,13 +233,13 @@ ageerror_definitions_as_read
 #_addtocomp:  after accumulation of tails; this value added to all bins
 #_males and females treated as combined gender below this bin number 
 #_compressbins: accumulate upper tail by this number of bins; acts simultaneous with mintailcomp; set=0 for no forced accumulation
-#_Comp_Error:  0=multinomial, 1=dirichlet
-#_Comp_ERR-2:  index of parameter to use, cumulative count after DM parms for length comp
-#_minsamplesize: minimum sample size; set to 1 to match 3.24, set to 0 for no minimum
+#_Comp_Error:  0=multinomial, 1=dirichlet using theta * n, 2=dirichlet using beta, 3=MV_Tweedie with phi and power
+#_Comp_ERR-2:  index of parameter (pair for Tweedie) to use, cumulative count after DM parms for length comp
+#_minsamplesize: minimum sample size; set to 1 to match 3.24, minimum value is 0.001
 -1 1e-07 0 2 0 0 0.01  #_fleet: 1 Fleet
 -1 1e-07 0 0 0 0 0.01  #_fleet: 2 Acoustics
 -1 1e-07 0 2 0 0 0.01  #_fleet: 3 Trapnet
-number of D-M parameters needed for length and age comp data: 0
+number of D-M definitions needed for both length and age comp data: 0
 1 Lbin method for defined size ranges 
 age_obs_#:1 #  1980 7 1 0 0 1 -1 -1 123 0 124930 112920 61920 66620 262270 90230 96830 57120 21975 30323 5895 2811 1183 247 286
 age_obs_#:2 #  1981 7 1 0 0 1 -1 -1 108 0 27570 124000 59130 48010 57110 136920 54220 40650 22597 11658 13766 2519 795 1474 322
@@ -251,8 +261,11 @@ Successful processing of age data
 0 (0/1) use mean size-at-age data 
 0 N_envvar 
 0 N sizefreq methods to read 
+here
+bins 
  finished processing sizefreq data 
-0 Do_TagData(0/1) 
+0 Do_TagData(0/1/2) 
+#  where 2 indicates additional read of TG_min_recap
 0 Do_Morphcomp(0/1) 
 Do dataread for selectivity priors(0/1):  0
 Yr  Seas Fleet  Age/Size  Bin  selex_prior  prior_sd
@@ -293,9 +306,9 @@ next read forecast basis: 0=none; 1=F(SPR); 2=F(MSY) 3=F(Btgt); 4=Ave F (enter y
 
 next read 4 values for:  control rule shape(0, 1, 2, 3 or 4), inflection (like 0.40), cutoff(like 0.10), scale(like 0.75)
 1  # echoed HarvestPolicy 
-0.004   # echoed harvest policy inflection 
-0.001   # echoed harvest policy cutoff 
-1   # echoed harvest policy scalar 
+0.004   # echoed control rule inflection (-1 to set to Bmsy/SSB_unf)
+0.001   # echoed control rule cutoff 
+1   # echoed control rule scalar 
 
 # next enter 2 values that control looping through the forecast (see manual), then 3 placeholder values
 # first does F_msy or proxy; 2nd applies control rule; 3rd applies caps and allocations
@@ -311,7 +324,7 @@ next read 4 values for:  control rule shape(0, 1, 2, 3 or 4), inflection (like 0
 #next enter 0, or stddev of implementation error
 0 # echoed value
 
-#next select rebuilding program output (0/1)
+#next select rebuilding program output: 0=no; 1=yes
 0 # echoed value
 
 #next select rebuilding program:  year declared overfished
@@ -537,7 +550,7 @@ Q_parm_RD:
 4 17
 5 17
 6 17
-#Now count parameters for D-M variance of composition data; CANNOT be time-varying
+#Now create parameters for D-M variance of composition data; CANNOT be time-varying
  selex and composition base parameters 
 1 ##  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P1_Fleet(1)
 2 ##  -25 25 1 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P2_Fleet(1)
@@ -603,7 +616,10 @@ Q_parm_RD:
 62 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P20_Trapnet(3)
 63 ##  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0 ## AgeSel_P21_Trapnet(3)
 identify the fleet associated with each parameter
+selparm_fleet:
+ 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 4 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 5 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6 6
 check on conversion of retention parameter
+check on mirror bounds
 1 sel  -1002 3 -1000 -1 -1 0.01 -4 0 0 0 0 0 0 0
 2 sel  -25 25 1 -1 -1 0.01 -4 0 0 0 0 0 0 0
 3 sel  0 9 1.45 -1 -1 0.01 2 0 0 0 0 0 0 0
@@ -668,7 +684,7 @@ check on conversion of retention parameter
 62 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
 63 sel  -5 9 0 -1 -1 0.01 -4 0 0 0 0 0 0 0
  now read 0/1 for 2D_AR
-0  #_ 0/1 to request experimental 2D_AR selectivity smoother options  
+0  #_ 0/1 to request experimental 2D_AR selectivity smoother options 
 N_selparm: 63 with timevary: 63 with TV and 2D_AR: 63 timevary parm range for sel: 0 0 0
 Recalc_flag_for_length_selex_recalc_by_year
 1 Fleet  1 0 0 1 1 0 0 0 0 0 0 0 0 0 0
@@ -724,7 +740,7 @@ parm 216 covar 125  after forecast
  do Svy_sdreport labels 0
 parm 219 covar 128  after all derived quantities 
 Active parameters plus derived quantities:  128
-now in PARAMETER_SECTION 
+Begin setting up parameters
  now dimension the selectivity arrays 63
  -1002 -25 0 0 0 0 0 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -1002 -25 0 0 0 0 0 0 -5 -5 -5 -5 -5 -5 -5 -10 -5 -5 -5 -5 -5 -1002 -1002 -1002 -5 0 -5 -5 -5 -5 -5 -5 -5 -5 -5 -5 -10 -5 -5 -5 -5 -5
  3 25 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 3 25 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 3 3 3 15 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9 9
@@ -733,6 +749,7 @@ now in PARAMETER_SECTION
  check 0 
  OK after dimension the 2dar arrays 
 end of parameter section
+Begin reading the empirical weight at age file
  N_WTage_max 17
  1963 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.13472 0.12325 0.08508
  1964 1 1 1 1 -2 0 0 0.00435 0.02025 0.0265 0.03155 0.0342 0.04047 0.04311 0.04673 0.0499 0.05635 0.05184 0.0616 0.05461 0.13472 0.12325 0.08508
@@ -1435,7 +1452,7 @@ year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.01 0.01 0.018 0.024 0.028 0
 year 2019 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.00539 97 0.01653 0.02405 0.02955 0.03227 0.03375
 year 2020 s 1 sex 1 gp 1 bs 1 morph 1 pop/fleet 3  0.00713 0.0099 0.01751 0.0236833 0.0281833 0.03209 0.03625
  fill benchmark years with mean 
-finished reading empirical wt-at-age.ss
+Finished reading the empirical weight at age file
  do variance adjustment for surveys 
  survey stderr has been set-up 
  discard stderr has been set-up 
@@ -1452,8 +1469,8 @@ finished reading empirical wt-at-age.ss
  selex_parms read from ctl  -1000 1 1.45 0.4 0.15 0.14 0.03 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1000 1 0.6 0.2 0.02 0.11 0.14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1000 -1000 -1000 1 0.3 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 
  now check MGparm bounds and priors and do jitter if requested 
- parameter init value is less than parameter min 0.13 < 1 for parm: 14
- parameter init value is less than parameter min -4.149 < -3 for parm: 15
+Warning 1 : parameter init value is less than parameter min 0.13 < 1 for parm: 14
+Warning 2 : parameter init value is less than parameter min -4.149 < -3 for parm: 15
  MG_parms after check  0.563 0.472 0.332 0.29 0.267 0.257 4 25 0.4 0.2 0.2 4e-06 3.05 0.13 -4.149 1 0 1 0.5
 
  now check SR_parm bounds and priors and do jitter if requested 
@@ -1468,13 +1485,13 @@ finished reading empirical wt-at-age.ss
 
  now check sel_parm bounds and priors and do jitter if requested 
  selex_parms after check   -1000 1 1.45 0.4 0.15 0.14 0.03 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1000 1 0.6 0.2 0.02 0.11 0.14 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -1000 -1000 -1000 1 0.3 0.1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
- ready to evaluate once in prelim
+Begin evaluating biology calculations once
 
 **********************
 number of parameters with timevary:  0
 get wtlen parms sex: 1 Gpat: 1 sex*Gpat: 1  4e-06 3.05 0.13 -4.149 1 0 0 0
- did MG setup
- did growth1
+Finished MGsetup
+Finished growth1
 GROWTH,  yr= 2019
 sex: 1 GP: 1 Lmin: 4 Linf: 25 VBK_temp: -0.4 VBK@age:  0.4
   settlement: 1 g: 1
@@ -1486,15 +1503,6 @@ wtlen2
  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
 wtlen2^2  1.30185e-08 2.93655e-07 2.28675e-06 1.05925e-05 3.60259e-05 9.98101e-05 0.000238933 0.000512694 0.00101045 0.00186062 0.00324086 0.00538957 0.00861864 0.0133275 0.0200183 0.0293126 0.0419696 0.0589048 0.0812109 0.11018
 wtlen2:firstdiff  0.000241246 0.000670603 0.00132742 0.00221568 0.00333834 0.0046978 0.00629606 0.00813484 0.0102157 0.0125399 0.0151087 0.0179232 0.0209845 0.0242935 0.0278512 0.0316582 0.0357155 0.0400237 0.0445836
-fecundity option: 1 parms:  1 0
-maturity option: 2 parms:  0.13 -4.149
-gp: 1 g 1
-mat_len:  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- fec_len:  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
- mat_fec_len:  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
- mat_age:  0 0.973651 0.999573 0.999993 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- mat_len_age:  0 0.973651 0.999573 0.999993 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- fecundity_age:  0 0.00550578 0.0180971 0.0326094 0.0457799 0.0563635 0.0643084 0.0700339 0.0740561 0.0768362 0.0787379 0.0800297 0.0809034 0.0814925 0.0818889 0.0821554 0.0823343 0.0824544 0.0825349 0.082589 0.0826406
 ready to do natmort 
 Natmort seas:1 sex:1 Gpat:1 sex*Gpat:1 settlement:1 gpi:1
  M:  0.563 0.472 0.402 0.332 0.311 0.29 0.282333 0.274667 0.267 0.265571 0.264143 0.262714 0.261286 0.259857 0.258429 0.257 0.257 0.257 0.257 0.257 0.257
@@ -1504,24 +1512,30 @@ recruitment distribution in year: 2019
 GP Seas Area Use? female_recr_dist
 1 1 1 1 1
  made the age_age' key 
+Finished evaluating biology calculations once
+
+
+Begin estimating
 
 **********************
 number of parameters with timevary:  0
+ MGsetup OK 
+ growth1 OK
 GROWTH,  yr= 2019
 sex: 1 GP: 1 Lmin: 4 Linf: 25 VBK_temp: -0.4 VBK@age:  0.4
   settlement: 1 g: 1
   L@A initial_year (w/o lin):  3.14297 10.3488 15.179 18.4168 20.5871 22.042 23.0172 plusgroup: 24.9927
   adjusted size at maxage 24.9942  using decay of: -999
   seas: 1  size@t+1:   3.14297 10.3488 15.179 18.4168 20.5871 22.042 23.0172 plusgroup: 24.9942
-fecundity option: 1 parms:  1 0
-maturity option: 2 parms:  0.13 -4.149
-gp: 1 g 1
-mat_len:  1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- fec_len:  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
- mat_fec_len:  0.000114098 0.000541899 0.0015122 0.00325462 0.00600216 0.0099905 0.0154575 0.0226428 0.0317877 0.0431349 0.0569285 0.0734137 0.0928367 0.115445 0.141486 0.171209 0.204865 0.242703 0.284975 0.331933
- mat_age:  0 0.973651 0.999573 0.999993 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- mat_len_age:  0 0.973651 0.999573 0.999993 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
- fecundity_age:  0 0.00550578 0.0180971 0.0326094 0.0457799 0.0563635 0.0643084 0.0700339 0.0740561 0.0768362 0.0787379 0.0800297 0.0809034 0.0814925 0.0818889 0.0821554 0.0823343 0.0824544 0.0825349 0.082589 0.0826406
+Natmort seas:1 sex:1 Gpat:1 sex*Gpat:1 settlement:1 gpi:1
+ M:  0.563 0.472 0.402 0.332 0.311 0.29 0.282333 0.274667 0.267 0.265571 0.264143 0.262714 0.261286 0.259857 0.258429 0.257 0.257 0.257 0.257 0.257 0.257
+natmort OK
+migr OK
+selectivity OK
+Calculate ALK
+Begin calculating virgin age struc 
+Begin calculating initial age structure
+Finished initial_conditions
 yr 2019, seas: 1, fleet:3
  sampled  size  333.331 2114.42 11839.8 51540 173586 452452 917406 1.46238e+06 1.86323e+06 1.94063e+06 1.69568e+06 1.2732e+06 834986 481460 244037 108424 42094.3 14240.6 4187.37 1356.89
  sampled  age   0 0 0 3.46147e+06 2.89532e+06 1.97651e+06 1.21859e+06 754212 470390 295019 185294 116545 73408.4 46304 29249.1 18502.3 11715.3 7417.89 5585.24 3536.46 6104.41
@@ -1532,3 +1546,29 @@ yr 2019, seas: 1, fleet:2
  sampled  size  1553.29 16390.9 113898 474744 1.20088e+06 1.95233e+06 2.31721e+06 2.38718e+06 2.3261e+06 2.08707e+06 1.68408e+06 1.22321e+06 797819 463242 237476 106824 41962.4 14339.2 4249.84 1386.63
  sampled  age   0 3.8805e+06 4.2799e+06 3.21787e+06 2.03076e+06 1.3967e+06 991080 615363 385020 241620 151846 95564 60228.9 38013.4 24026.4 15207.6 9629.16 6096.99 4590.68 2906.73 5017.4
  finished time series 
+Finished time_series
+Finished survey obj_fun  0 -1.20397 0
+Finished agecomp obj_fun  1.94214 0.67015 0
+ initequ_catch -log(L)  0.522832 0 0
+ catch -log(L)  6.53501e-16 0 0
+Finished recruitdev obj_fun -8.35752 16.3608 0.72
+ OK with obj_func -6.95976
+Wrote first version of output files (before hessian, benchmark, and forecast)
+Start benchmark and forecast, if requested
+Calculated Fspr 0.410229 0.4
+Calculated Btgt: 0.336456 0.4
+Calculated Fmsy 0.64095 122870
+Finished benchmark, forecast, and sdreporting
+Iterations: 186
+ finished COVAR.SSO
+Finished forecast
+Writing wtatage.ss_new
+Finished StdDev quantities
+Finished posteriors
+Finished SS_summary.sso
+Finished final writing of report.sso
+Begin writing data_echo.ss_new file
+Write starter.ss_new file 
+Write forecast.ss_new file 
+Write control.ss_new file 
+Begin final output calculations and warnings

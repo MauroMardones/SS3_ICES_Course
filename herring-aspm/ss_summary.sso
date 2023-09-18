@@ -1,7 +1,7 @@
 #V3.30.21.00;_safe;_compile_date:_Feb 10 2023;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.1
 HerringSD3031_datav3_30_10.dat #_DataFile 
 HerringSD3031_ctlv3_30_10.ctl #_Control 
-Run_Date: Mon Sep 18 12:30:05 2023
+Run_Date: Mon Sep 18 16:10:17 2023
 Final_phase: 2  N_iterations: 39
 #_LIKELIHOOD 
 Label logL*Lambda

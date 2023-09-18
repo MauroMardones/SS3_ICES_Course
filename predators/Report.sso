@@ -5,9 +5,9 @@
 #_User_info_available_at:https://vlab.noaa.gov/group/stock-synthesis
 #_Source_code_at:_https://github.com/nmfs-stock-synthesis/stock-synthesis
 
-StartTime: Mon Sep 18 15:58:09 2023
-EndTime: Mon Sep 18 16:00:19 2023
-This run took: 0 hours, 2 minutes, 10 seconds.
+StartTime: Mon Sep 18 16:22:04 2023
+EndTime: Mon Sep 18 16:24:38 2023
+This run took: 0 hours, 2 minutes, 34 seconds.
 Data_File: predator.dat
 Control_File: predator.ctl
 

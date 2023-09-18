@@ -5,7 +5,7 @@
 #_User_info_available_at:https://vlab.noaa.gov/group/stock-synthesis
 #_Source_code_at:_https://github.com/nmfs-stock-synthesis/stock-synthesis
 
-#_Start_time: Mon Sep 18 16:00:20 2023
+#_Start_time: Mon Sep 18 16:24:38 2023
 #_expected_values
 #C data file for vendace SD 30
 #V3.30.21.00;_safe;_compile_date:_Feb 10 2023;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.1

@@ -1,4 +1,4 @@
-#V3.30.19.00-prerel;_safe;_compile_date:_Feb 25 2022;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_12.3
+#V3.30.21.00;_safe;_compile_date:_Feb 10 2023;_Stock_Synthesis_by_Richard_Methot_(NOAA)_using_ADMB_13.1
 #C  generic forecast file (V3.24f) Herring SD 30-31
 # for all year entries except rebuilder; enter either: actual year, -999 for styr, 0 for endyr, neg number for rel. endyr
 1 # Benchmarks: 0=skip; 1=calc F_spr,F_btgt,F_msy; 2=calc F_spr,F0.1,F_msy; 3=add F_Blimit; 
@@ -22,8 +22,8 @@
 0 # Forecast selectivity (0=fcast selex is mean from year range; 1=fcast selectivity from annual time-vary parms)
 1 # Control rule method (0: none; 1: ramp does catch=f(SSB), buffer on F; 2: ramp does F=f(SSB), buffer on F; 3: ramp does catch=f(SSB), buffer on catch; 4: ramp does F=f(SSB), buffer on catch) 
 # values for top, bottom and buffer exist, but not used when Policy=0
-0.004 # Control rule Biomass level for constant F (as frac of Bzero, e.g. 0.40); (Must be > the no F level below) 
-0.001 # Control rule Biomass level for no F (as frac of Bzero, e.g. 0.10) 
+0.004 # Control rule inflection for constant F (as frac of Bzero, e.g. 0.40); must be > control rule cutoff, or set to -1 to use Bmsy/SSB_unf 
+0.001 # Control rule cutoff for no F (as frac of Bzero, e.g. 0.10) 
 1 # Buffer:  enter Control rule target as fraction of Flimit (e.g. 0.75), negative value invokes list of [year, scalar] with filling from year to YrMax 
 3 #_N forecast loops (1=OFL only; 2=ABC; 3=get F from forecast ABC catch with allocations applied)
 0 #_First forecast loop with stochastic recruitment
@@ -32,7 +32,7 @@
 0 #_Forecast loop control #5 (reserved for future bells&whistles) 
 2023  #FirstYear for caps and allocations (should be after years with fixed inputs) 
 0 # stddev of log(realized catch/target catch) in forecast (set value>0.0 to cause active impl_error)
-0 # Do West Coast gfish rebuilder output (0/1) 
+0 # Do West Coast gfish rebuilder output: 0=no; 1=yes 
 2000 # Rebuilder:  first year catch could have been set to zero (Ydecl)(-1 to set to 1999)
 2003 # Rebuilder:  year for current age structure (Yinit) (-1 to set to endyear+1)
 1 # fleet relative F:  1=use first-last alloc year; 2=read seas, fleet, alloc list below
