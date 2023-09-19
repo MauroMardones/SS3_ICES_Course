@@ -77,7 +77,7 @@ dir5<-here("~/DOCAS/Workshops/SS3_ICES_Course/predators") # v. 3.30.21
 #another way to run with new r4ss
 
 r4ss::run(
-  dir = dir5,
+  dir = dir1,
   exe = "ss_osx",
   skipfinished = FALSE, # TRUE will skip running if Report.sso present
   show_in_console = TRUE # change to true to watch the output go past
@@ -85,7 +85,7 @@ r4ss::run(
 ```
 
 ```{r message=F, include=FALSE}
-base.model <- SS_output(dir=dir2,
+base.model <- SS_output(dir=dir1,
                         covar=F,
                         forecast=F)
 ```
@@ -175,6 +175,41 @@ SSplotTimeseries(base.model,
   mainTitle = FALSE,
   mar = NULL
 )
+```
+
+## Desembarques
+
+
+```{r include=FALSE}
+start <- r4ss::SS_readstarter(file = file.path(dir1, "starter.SS"), 
+                              verbose = FALSE)
+dat <- r4ss::SS_readdat(file = file.path(dir1, start$datfile),
+                        verbose = FALSE)
+#ctl <- r4ss::SS_readctl(file = file.path(dir1, start$ctlfile),
+#                        verbose = FALSE,
+#                        use_datlist = TRUE, datlist = dat)
+
+```
+
+Los desembarques utilizados para cada una de las flotas que generan remoción en el recurso reineta, a saber; espinel, enmalle e industrial (Figura 6).
+
+```{r echo=FALSE, fig.pos="H", fig.height=3,fig.width=7, fig.cap= "\\label{F2}Desembarques de merluza común por flota"}
+
+cap <-dat$catch
+cap1 <- ggplot(cap %>% 
+                 filter(year!=-999), 
+               aes(y=catch, x=year,
+               fill=2)) +
+  geom_bar(stat = 'identity', alpha=0.8) +
+  theme_bw()+
+  theme(axis.text.x = element_text(angle = 90, hjust = 2))+
+  #scale_fill_viridis(discrete=F)+
+  #facet_wrap(.~fleet, labeller = as_labeller(flotas))+
+  theme(legend.position="none")+
+  ylab('Landings (t.)')+
+  xlab('')+
+  ggtitle('')
+cap1
 ```
 
 ### Predator fleet with RW
