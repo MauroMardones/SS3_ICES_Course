@@ -2,5 +2,6 @@
 .Rhistory
 .RData
 .Ruserdata
-.SS3_ICES_Course/*
+.herring-aspm/*
+.herring-scaa/*
 *.xlsx

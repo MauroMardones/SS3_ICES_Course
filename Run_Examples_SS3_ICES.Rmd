@@ -21,21 +21,13 @@ output:
     code-tools: true
 ---
 
-# Fases en la construcción de un modelo
+# Background
 
-El proceso de modelización y análisis estadístico de un banco de datos se puede estructurar según las siguientes pautas de actuación:
+This code contains model files and associated material for the 2023 ICES course on Stock Synthesis held in Copenhagen, Denmark. 
 
-- Contextualización del problema. Definición de objetivos y variables.
-- Diseño del experimento y recogida de información.
-- Registro y procesado previo de la información disponible.
-- Inspección gráfica e identificación de tendencias.
-- Consideración de hipótesis distribucionales y relacionales. Propuesta de modelización.
-- Ajuste del modelo. Comparación y selección del mejor modelo.
-- Diagnóstico y validación del modelo ajustado.
-- Valoración de la capacidad predictiva del modelo y predicción.
-- Interpretación y conclusiones.
 
-# Modelo setup
+
+# Model setup
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
@@ -56,17 +48,17 @@ library(ss3diags)
 
 
 ```{r message=FALSE, warning=FALSE}
-dir1<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-aspm")# con version 3.30.21
-dir2<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-just-2019-as-equilibrium") # con version 3.30.19
-dir3<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-scaa") # # con version 3.30.19
-dir3<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-scaa-2dar") # 
-dir4<-here("~/DOCAS/Workshops/SS3_ICES_Course/herring-scaa-2dar-noTV") # Version nueva con predator fleet
-dir5<-here("~/DOCAS/Workshops/SS3_ICES_Course/predators") # v. 3.30.21
+dir1<-here("SS3_ICES_Course/herring-aspm")# con version 3.30.21
+dir2<-here("SS3_ICES_Course/herring-just-2019-as-equilibrium") # con version 3.30.19
+dir3<-here("SS3_ICES_Course/herring-scaa") # # con version 3.30.19
+dir4<-here("SS3_ICES_Course/herring-scaa-2dar") # 
+dir5<-here("SS3_ICES_Course/herring-scaa-2dar-noTV") # Version nueva con predator fleet
+dir6<-here("SS3_ICES_Course/predators") # v. 3.30.21
 ```
 
 
 
-```{r  message=F, include=FALSE}
+```{r  eval=FALSE, message=F, include=FALSE}
 #shell(cmd="ss") # run SS para windows
 # aqui debo cambiar el setwd() para correr el modelo
 #dir5 <- setwd("~/DOCAS/SA_Krill/s5")
@@ -82,7 +74,54 @@ r4ss::run(
   skipfinished = FALSE, # TRUE will skip running if Report.sso present
   show_in_console = TRUE # change to true to watch the output go past
 )
+
+r4ss::run(
+  dir = dir1,
+  exe = "ss_osx",
+  skipfinished = FALSE, # TRUE will skip running if Report.sso present
+  show_in_console = TRUE # change to true to watch the output go past
+)
+
+r4ss::run(
+  dir = dir2,
+  exe = "ss_osx",
+  skipfinished = FALSE, # TRUE will skip running if Report.sso present
+  show_in_console = TRUE # change to true to watch the output go past
+)
+
+r4ss::run(
+  dir = dir3,
+  exe = "ss_osx",
+  skipfinished = FALSE, # TRUE will skip running if Report.sso present
+  show_in_console = TRUE # change to true to watch the output go past
+)
+
+r4ss::run(
+  dir = dir4,
+  exe = "ss_osx",
+  skipfinished = FALSE, # TRUE will skip running if Report.sso present
+  show_in_console = TRUE # change to true to watch the output go past
+)
+
+r4ss::run(
+  dir = dir5,
+  exe = "ss_osx",
+  skipfinished = FALSE, # TRUE will skip running if Report.sso present
+  show_in_console = TRUE # change to true to watch the output go past
+)
+
+r4ss::run(
+  dir = dir6,
+  exe = "ss_osx",
+  skipfinished = FALSE, # TRUE will skip running if Report.sso present
+  show_in_console = TRUE # change to true to watch the output go past
+)
 ```
+
+
+# Diagnosis
+
+## `herring-aspm` Model
 
 ```{r message=F, include=FALSE}
 base.model <- SS_output(dir=dir1,

@@ -23,9 +23,3 @@ Estimating row 1 out of 4 for hessian
 Estimating row 2 out of 4 for hessian
 Estimating row 3 out of 4 for hessian
 Estimating row 4 out of 4 for hessian
-Estimated covariance matrix may not be positive definite.
- 1.4795170509e-04 2.2445488594e-03 2.7500653138e-02 2.6545098000e+01
-size of file gradfil1.tmp = 0
-size of file gradfil2.tmp = 0
-size of file varssave.tmp = 0
-size of file cmpdiff.tmp = 0

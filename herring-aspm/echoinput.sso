@@ -1872,16 +1872,3 @@ Calculated Fspr 0.32046 0.4
 Calculated Btgt: 0.286081 0.4
 Calculated Fmsy 0.669171 132877
 Finished benchmark, forecast, and sdreporting
-Iterations: 39
- finished COVAR.SSO
-Finished forecast
-Writing wtatage.ss_new
-Finished StdDev quantities
-Finished posteriors
-Finished SS_summary.sso
-Finished final writing of report.sso
-Begin writing data_echo.ss_new file
-Write starter.ss_new file 
-Write forecast.ss_new file 
-Write control.ss_new file 
-Begin final output calculations and warnings
