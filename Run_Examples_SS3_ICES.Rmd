@@ -629,3 +629,10 @@ About F:
 –- set lambda on recdevs to low value (<0.10)
 - methods to data weighting  `tune_comps()`
 
+
+
+# Q&A
+
+- I have length comosition by area, but nothing more, could use this info like fleets?
+- I have size composition from  diets of predators. 
+
