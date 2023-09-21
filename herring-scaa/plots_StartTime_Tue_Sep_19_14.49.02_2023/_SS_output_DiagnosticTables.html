@@ -1,0 +1,96 @@
+<html><head><title>SS Output</title>
+    <!-- source for text below is http://unraveled.com/publications/css_tabs/ -->
+    <!-- CSS Tabs is licensed under Creative Commons Attribution 3.0 - http://creativecommons.org/licenses/by/3.0/ -->
+    
+    <style type="text/css">
+    
+    body {
+    font: 100% verdana, arial, sans-serif;
+    background-color: #fff;
+    margin: 50px;
+    }
+    
+    /* begin css tabs */
+    
+    ul#tabnav { /* general settings */
+    text-align: left; /* set to left, right or center */
+    margin: 1em 0 1em 0; /* set margins as desired */
+    font: bold 11px verdana, arial, sans-serif; /* set font as desired */
+    border-bottom: 1px solid #6c6; /* set border COLOR as desired */
+    list-style-type: none;
+    padding: 3px 10px 2px 10px; /* THIRD number must change with respect to padding-top (X) below */
+    }
+    
+    ul#tabnav li { /* do not change */
+    display: inline;
+    }
+    
+    body#tab1 li.tab1, body#tab2 li.tab2, body#tab3 li.tab3, body#tab4 li.tab4 { /* settings for selected tab */
+    border-bottom: 1px solid #fff; /* set border color to page background color */
+    background-color: #fff; /* set background color to match above border color */
+    }
+    
+    body#tab1 li.tab1 a, body#tab2 li.tab2 a, body#tab3 li.tab3 a, body#tab4 li.tab4 a { /* settings for selected tab link */
+    background-color: #fff; /* set selected tab background color as desired */
+    color: #000; /* set selected tab link color as desired */
+    position: relative;
+    top: 1px;
+    padding-top: 4px; /* must change with respect to padding (X) above and below */
+    }
+    
+    ul#tabnav li a { /* settings for all tab links */
+    padding: 2px 4px; /* set padding (tab size) as desired; FIRST number must change with respect to padding-top (X) above */
+    border: 1px solid #6c6; /* set border COLOR as desired; usually matches border color specified in #tabnav */
+    background-color: #cfc; /* set unselected tab background color as desired */
+    color: #666; /* set unselected tab link color as desired */
+    margin-right: 0px; /* set additional spacing between tabs as desired */
+    text-decoration: none;
+    border-bottom: none;
+    }
+    
+    ul#tabnav a:hover { /* settings for hover effect */
+    background: #fff; /* set desired hover color */
+    }
+    
+    /* end css tabs */
+    
+    
+    h2 {
+    font-size: 20px;
+    color: #4c994c;
+    padding-top: 1px;
+    font-weight: bold;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #6c6;
+    padding-bottom: 2px;
+    padding-left: 0px;
+    }
+    </style></head>
+<!-- Site navigation menu -->
+   <ul id="tabnav">
+    <li class="tab1"><a href="_SS_output.html">Home</a></li>
+    <li class="tab2"><a href="_SS_output_Bio.html">Bio</a></li>
+    <li class="tab3"><a href="_SS_output_Sel.html">Sel</a></li>
+    <li class="tab4"><a href="_SS_output_Timeseries.html">Timeseries</a></li>
+    <li class="tab5"><a href="_SS_output_RecDev.html">RecDev</a></li>
+    <li class="tab6"><a href="_SS_output_S-R.html">S-R</a></li>
+    <li class="tab7"><a href="_SS_output_Catch.html">Catch</a></li>
+    <li class="tab8"><a href="_SS_output_SPR.html">SPR</a></li>
+    <li class="tab9"><a href="_SS_output_Index.html">Index</a></li>
+    <li class="tab10"><a href="_SS_output_Numbers.html">Numbers</a></li>
+    <li class="tab11"><a href="_SS_output_CompDat.html">CompDat</a></li>
+    <li class="tab12"><a href="_SS_output_AgeComp.html">AgeComp</a></li>
+    <li class="tab13"><a href="_SS_output_Yield.html">Yield</a></li>
+    <li class="tab14"><a href="_SS_output_Data.html">Data</a></li>
+    <li class="tab15"><a href="_SS_output_Pars.html">Pars</a></li>
+    <li class="tab16"><a href="_SS_output_DiagnosticTables.html">DiagnosticTables</a></li>
+  </ul>
+
+
+<h2><a name="DiagnosticTables">DiagnosticTables</h2>
+<p align=left><b>Estimated parameters (excluding deviation parameters)</b><br> Any parameter with a gradient value with an absolute value above 0.001 or a parameter on bounds is colored in red.<br><i><small>file: <a href='parameterchecks.html'>parameterchecks.html</a></small></i>
+<br><div style="border: 1px solid #ddd; padding: 0px; overflow-y: scroll; height:480px; overflow-x: scroll; width:100%; "><table class="table" style="margin-left: auto; margin-right: auto;"> <thead>  <tr>   <th scope="col" style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Parameter </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Value </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Phase </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Min </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Max </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Init </th>   <th scope="col" style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Status </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Parm_StDev </th>   <th scope="col" style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Gradient </th>   <th scope="col" style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Pr_type </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Prior </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Pr_SD </th>   <th scope="col" style="text-align:right;position: sticky; top:0; background-color: #FFFFFF;"> Pr_Like </th>   <th scope="col" style="text-align:left;position: sticky; top:0; background-color: #FFFFFF;"> Afterbound </th>  </tr> </thead><tbody>  <tr>   <td style="text-align:left;"> SR_LN(R0) </td>   <td style="text-align:right;"> 17.1086000 </td>   <td style="text-align:right;"> 1 </td>   <td style="text-align:right;"> 16.000 </td>   <td style="text-align:right;"> 25 </td>   <td style="text-align:right;"> 17.430 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.1105110 </td>   <td style="text-align:left;"> <span style="     color: black !important;">-8.72944e-05</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> SR_BH_steep </td>   <td style="text-align:right;"> 0.7078660 </td>   <td style="text-align:right;"> 1 </td>   <td style="text-align:right;"> 0.100 </td>   <td style="text-align:right;"> 1 </td>   <td style="text-align:right;"> 0.775 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.1450720 </td>   <td style="text-align:left;"> <span style="     color: black !important;">6.52378e-06</span> </td>   <td style="text-align:left;"> Full_Beta </td>   <td style="text-align:right;"> 0.74 </td>   <td style="text-align:right;"> 0.113 </td>   <td style="text-align:right;"> 0.100765 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> InitF_seas_1_flt_1Fleet </td>   <td style="text-align:right;"> 0.0431210 </td>   <td style="text-align:right;"> 1 </td>   <td style="text-align:right;"> 0.001 </td>   <td style="text-align:right;"> 1 </td>   <td style="text-align:right;"> 0.200 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.0088798 </td>   <td style="text-align:left;"> <span style="     color: black !important;">-1.2603e-05</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P3_Fleet(1) </td>   <td style="text-align:right;"> 1.2925200 </td>   <td style="text-align:right;"> 2 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 1.450 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.0703638 </td>   <td style="text-align:left;"> <span style="     color: black !important;">3.08717e-06</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P4_Fleet(1) </td>   <td style="text-align:right;"> 0.3557340 </td>   <td style="text-align:right;"> 2 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.400 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.0578142 </td>   <td style="text-align:left;"> <span style="     color: black !important;">1.17988e-05</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P5_Fleet(1) </td>   <td style="text-align:right;"> 0.1275900 </td>   <td style="text-align:right;"> 2 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.150 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.0640973 </td>   <td style="text-align:left;"> <span style="     color: black !important;">3.8708e-06</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P6_Fleet(1) </td>   <td style="text-align:right;"> 0.1193260 </td>   <td style="text-align:right;"> 3 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.140 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.0722385 </td>   <td style="text-align:left;"> <span style="     color: black !important;">7.19204e-05</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P7_Fleet(1) </td>   <td style="text-align:right;"> 0.0319922 </td>   <td style="text-align:right;"> 3 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.030 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.0722123 </td>   <td style="text-align:left;"> <span style="     color: black !important;">9.4133e-05</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P3_Acoustics(2) </td>   <td style="text-align:right;"> 0.4941130 </td>   <td style="text-align:right;"> 2 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.600 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.1665220 </td>   <td style="text-align:left;"> <span style="     color: black !important;">4.85243e-06</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P4_Acoustics(2) </td>   <td style="text-align:right;"> 0.2310360 </td>   <td style="text-align:right;"> 2 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.200 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.1787820 </td>   <td style="text-align:left;"> <span style="     color: black !important;">2.17727e-05</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P5_Acoustics(2) </td>   <td style="text-align:right;"> 0.0242359 </td>   <td style="text-align:right;"> 2 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.020 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.2206190 </td>   <td style="text-align:left;"> <span style="     color: black !important;">1.71849e-05</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P6_Acoustics(2) </td>   <td style="text-align:right;"> 0.0317189 </td>   <td style="text-align:right;"> 3 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.110 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.2520050 </td>   <td style="text-align:left;"> <span style="     color: black !important;">9.89465e-06</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P7_Acoustics(2) </td>   <td style="text-align:right;"> 0.1415240 </td>   <td style="text-align:right;"> 3 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.140 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.2243080 </td>   <td style="text-align:left;"> <span style="     color: black !important;">-3.50872e-06</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr>  <tr>   <td style="text-align:left;"> AgeSel_P5_Trapnet(3) </td>   <td style="text-align:right;"> 0.1156330 </td>   <td style="text-align:right;"> 2 </td>   <td style="text-align:right;"> -5.000 </td>   <td style="text-align:right;"> 9 </td>   <td style="text-align:right;"> 0.300 </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>   <td style="text-align:right;"> 0.1464650 </td>   <td style="text-align:left;"> <span style="     color: black !important;">-1.37006e-06</span> </td>   <td style="text-align:left;"> No_prior </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:right;"> NA </td>   <td style="text-align:left;"> <span style="     color: black !important;">OK</span> </td>  </tr></tbody></table></div>
+
+</body>
+</html>

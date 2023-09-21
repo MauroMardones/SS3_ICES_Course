@@ -2,8 +2,8 @@
 title: "SS3 Course ICES 2023"
 author: "Mauricio Mardones"
 date:  "`r format(Sys.time(), '%d %B, %Y')`"
-bibliography: seaice.bib
-csl: apa.csl
+#bibliography: seaice.bib
+#csl: apa.csl
 link-citations: yes
 linkcolor: blue
 output:
@@ -30,6 +30,7 @@ This code contains model files and associated material for the 2023 ICES course 
 # Model setup
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+#knitr::opts_knit$set(root.dir = "path/to/project/directory")
 ```
 
 ```{r message=FALSE}
@@ -44,23 +45,26 @@ library(r4ss)
 library(here)
 #remotes::install_github("PIFSCstockassessments/ss3diags")
 library(ss3diags)
+library(knitr)
+library(tidyverse)
 ```
 
 
 
 ```{r message=FALSE, warning=FALSE}
-dir1<-here("Workshops" , "SS3_ICES_Course", "herring-aspm")# con version 3.30.21
+dir1<-here("herring-aspm")# version 3.30.21
 dir2<-here("Workshops" , "SS3_ICES_Course", "herring-just-2019-as-equilibrium") 
-dir3<-here("Workshops" , "SS3_ICES_Course", "herring-scaa") # 
+dir3<-here("herring-scaa") # 
 dir4<-here("Workshops" , "SS3_ICES_Course", "herring-scaa-2dar") # 
-dir5<-here("Workshops" , "SS3_ICES_Course", "herring-scaa-2dar-noTV") 
+dir5<-here("herring-scaa-2dar-noTV") 
 dir6<-here("Workshops" , "SS3_ICES_Course", "predators") # v. 3.30.21
+
 ```
 
 Run models
 
-```{r eval=FALSE, message=FALSE, warning=FALSE}
-#shell(cmd="ss") # run SS para windows
+```{r eval=FALSE, include=TRUE, warning=FALSE}
+#shell(cmd="ss_win") # run SS para windows
 # aqui debo cambiar el setwd() para correr el modelo
 #dir5 <- setwd("~/DOCAS/SA_Krill/s5")
 # r4ss::run(dirvec = dir3, model = './ss_osx', 
@@ -148,12 +152,12 @@ SS_plots(base.model,
 Data disponible para este escenario. Espinel es la serie mas consistente del conjunto de datos.
 
 ```{r}
-SSplotData(base.model, subplot = 2)
+SSplotData(base.model1, subplot = 2)
 ```
 
 Respecto a los valores y parametros biologicos modelados, los siguientes graficos identifican los estimadores puntuales del recurso
 
-```{reval=FALSE}
+```{eval=FALSE}
 SSplotBiology(base.model, 
               subplots =1, 
               labels = c("Length (cm)", "Age (yr)",
@@ -174,21 +178,21 @@ SSplotBiology(base.model,
 
 aporte de las cohortes por año para las capturas.
 ```{r}
-SSplotCohortCatch(base.model)
+SSplotCohortCatch(base.model1)
 ```
 
 \quad
 
 AJuste de tallas por flota
 ```{r}
-SSplotComps(base.model, subplots = 1)
+SSplotComps(base.model1, subplots = 1)
 ```
 
 Otros plots
 ```{r}
-SSplotDynamicB0(base.model, uncertainty = F)
+SSplotDynamicB0(base.model1, uncertainty = F)
 #SSplotSPR(base.model3)
-SSplotPars(base.model)
+SSplotPars(base.model1)
 
 ```
 
@@ -196,12 +200,12 @@ Salida de las biomasas con las dos flotas
 
 
 ```{r}
-SSplotTimeseries(base.model, subplot = 1)
+SSplotTimeseries(base.model1, subplot = 1)
 ```
 
 
 ```{r}
-SSplotTimeseries(base.model,
+SSplotTimeseries(base.model1,
   subplot=1,
   add = FALSE,
   forecastplot = FALSE,
@@ -227,6 +231,107 @@ SSplotTimeseries(base.model,
   mar = NULL
 )
 ```
+
+## `herring-scaa` Model
+
+```{r message=F, include=FALSE}
+base.model3 <- SS_output(dir=dir3,
+                        covar=F,
+                        forecast=F)
+```
+
+Saco los outputs en html
+
+```{r eval=FALSE,  message=F, include=FALSE}
+SS_plots(base.model3)
+```
+
+
+
+Data disponible para este escenario. Espinel es la serie mas consistente del conjunto de datos.
+
+```{r}
+SSplotData(base.model3, subplot = 2)
+SSplotRecdevs(base.model3)
+```
+
+Respecto a los valores y parametros biologicos modelados, los siguientes graficos identifican los estimadores puntuales del recurso
+
+```{r eval=FALSE}
+SSplotBiology(base.model3, subplots =1, 
+              labels = c("Length (cm)", 
+                         "Age (yr)", 
+                         "Maturity", 
+                         "Mean weight (kg) in last year",
+                         "Spawning output",
+                         "Length (cm, beginning of the year)",
+                         "Natural mortality",
+                         "Female weight (kg)",
+                         "Female length (cm)", 
+                         "Fecundity", 
+                         "Default fecundity label",
+                         "Year", 
+                         "Hermaphroditism transition rate", 
+                         "Fraction females by age at equilibrium"),
+               )
+```
+
+aporte de las cohortes por año para las capturas.
+```{r}
+SSplotCohortCatch(base.model3)
+```
+
+\quad
+
+AJuste de tallas por flota
+```{r}
+SSplotComps(base.model3, subplots = 1)
+```
+
+Otros plots
+```{r}
+SSplotDynamicB0(base.model3, uncertainty = F)
+#SSplotSPR(base.model3)
+SSplotPars(base.model3)
+
+```
+
+Salida de las biomasas con las dos flotas
+
+
+```{r}
+SSplotTimeseries(base.model3, subplot = 10)
+```
+
+
+```{r eval=FALSE}
+SSplotTimeseries(base.model3,
+  subplot=1,
+  add = FALSE,
+  forecastplot = FALSE,
+  uncertainty = FALSE,
+  bioscale = 1,
+  minyr = -Inf,
+  maxyr = Inf,
+  plot = TRUE,
+  print = FALSE,
+  plotdir = "default",
+  verbose = TRUE,
+  btarg = "default",
+  minbthresh = "default",
+  xlab = "Year",
+  labels = NULL,
+  pwidth = 6.5,
+  pheight = 5,
+  punits = "in",
+  res = 300,
+  ptsize = 10,
+  cex.main = 1,
+  mainTitle = FALSE,
+  mar = NULL
+)
+```
+
 
 
 ## `herring-scaa-2dar-noTV` Model
@@ -384,7 +489,7 @@ Random walk is a useful tool for parameter estimation in dynamic models, as it a
 
 
 
-```{r}
+```{r eval=FALSE}
 #########################################################################
 #COMPARACION DE MODELOS con distinto desembarque
 #########################################################################
@@ -472,11 +577,11 @@ SStableComparisons(summaryoutput,
 
 # Analisis retrospectivo
 
-```{r}
+```{r eval=FALSE}
 
 #do retrospective model runs
-SS_doRetro('~/DOCAS/Workshops/SS3_ICES_Course', 
-           '', newsubdir = "retrospectives",
+retro(dir=file.path('~/DOCAS/Workshops/SS3_ICES_Course',, olsubdir="",
+      newsubdir = "retrospectives",
            subdirstart = "retro", years = 0:-5,
            overwrite = TRUE, exefile = "ss",
            extras = "-nox -nohess", 
@@ -518,5 +623,9 @@ About F:
 - F method = 4 gives best flexibility because it allows hybrid vs parameter conversion on a fleet-specific basis (today is the best method. If you have fleet specific).
 - 0.23 # F ballpark value in units of annual_F. Is usefuul when we have outlier data (High biomas or high F) and you can set what year happen this, i. e. ; -2008 # F ballpark year (neg value to disable).
 - Body weigth is in kilograms
-
+-Options 3 & 4 are experimental in SS3, but match some other models, like small pelagics stock.
+- If fixing without having an intended rationale, then let the estimated recruitments deviate from the curve:
+–- use recdev option 2, not 1, for more flexibility
+–- set lambda on recdevs to low value (<0.10)
+- methods to data weighting  `tune_comps()`
 
