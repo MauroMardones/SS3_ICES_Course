@@ -628,6 +628,14 @@ About F:
 –- use recdev option 2, not 1, for more flexibility
 –- set lambda on recdevs to low value (<0.10)
 - methods to data weighting  `tune_comps()`
+- Abundance predator is lika a Fishing effort (F)
+
+- run model with -nohess and 0 phasses
+
+- About BRP
+file `summary_sso` have a summary of outputs  like variables and Mgmt_Quantity
+
+- nll colud be near 1000. Many millions is a wrong!
 
 
 
