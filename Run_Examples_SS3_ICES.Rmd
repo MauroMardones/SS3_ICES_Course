@@ -632,6 +632,8 @@ About F:
 
 - run model with -nohess and 0 phasses
 
+- time varing GP process is usefull when we have bad fits in some part of our
+
 - About BRP
 file `summary_sso` have a summary of outputs  like variables and Mgmt_Quantity
 
